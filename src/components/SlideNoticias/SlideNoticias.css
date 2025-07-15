@@ -1,0 +1,195 @@
+.slideNotices {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.noticesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    gap: 50px;
+}
+
+.noticeCard {
+    width: 33%;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    max-height: 400px;
+    height: 100%;
+}
+
+.noticeCard:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+
+.noticeCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    max-height: 240px;
+}
+
+.noticeCard h3 {
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modalNotice .overlayModal {
+    background-color: rgba(51, 51, 51, .55);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.modalNotice {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.infoNotice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 3;
+    position: relative;
+}
+
+.infoNotice-content {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 16px;
+    width: 900px;
+    height: 500px;
+    position: relative;
+    max-width: 90%;
+}
+
+.infoNotice-content button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+}
+
+.infoNotice-content img {
+    max-width: 40%;
+    border-radius: 12px 0 0 12px;
+    object-fit: cover;
+}
+
+.infoNotice-content .content {
+    max-width: 60%;
+    width: 100%;
+    padding: 24px;
+}
+
+.infoNotice-content .content h2 {
+    max-height: 20%;
+    margin: 0;
+}
+
+.infoNotice-content .content p {
+    overflow-x: auto;
+    max-height: 80%;
+}
+
+@media (max-width:1300px) {
+    .noticesContainer {
+        max-width: 90%;
+        height: auto;
+    }
+
+    .noticeCard {
+        height: auto;
+        min-height: 300px;
+    }
+
+    .noticeCard img {
+        height: 200px;
+    }
+}
+
+@media (max-width:767px) {
+    .noticesContainer {
+        flex-direction: column;
+    }
+
+    .noticeCard {
+        width: 80%;
+    }
+
+    .infoNotice-content .content p {
+        font-size: 14px;
+    }
+
+    .infoNotice-content .content h2 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 650px) {
+    .infoNotice-content {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .infoNotice-content .content h2 {
+        font-size: 16px;
+        margin: 0;
+        padding: 24px 24px 12px 24px;
+        text-align: center;
+    }
+
+    .infoNotice-content .content {
+        max-height: 70%;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .infoNotice-content img {
+        max-height: 30%;
+        max-width: 100%;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .infoNotice-content .content p {
+        font-size: 14px;
+        padding: 12px 24px 24px 24px;
+        margin: 0;
+        max-height: 60%;
+    }
+
+    .infoNotice-content button {
+        background-color: white;
+        border-radius: 100%;
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+}

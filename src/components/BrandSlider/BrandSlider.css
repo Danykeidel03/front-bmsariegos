@@ -1,0 +1,51 @@
+.logo-slider {
+    overflow: hidden;
+    padding: 0;
+    white-space: nowrap;
+    position: relative;
+    margin-top: 25px;
+}
+
+.logo-slider:hover .logos-slide {
+    animation-play-state: paused;
+}
+
+.logos-slide {
+    display: inline-block;
+    animation: 180s slide infinite linear;
+}
+
+.logos-slide img {
+    width: auto;
+    height: auto;
+    margin: 0 40px;
+    max-height: 140px;
+    max-width: 300px;
+}
+
+.logoLink:hover img {
+    transform: rotateY(360deg);
+    transition: all ease-in-out 0.75s;
+}
+
+.logoLink {
+  width: auto;
+  max-width: 450px;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 700px){
+    .logos-slide img {
+        max-height: 70px;
+        max-width: 150px;
+    }
+}

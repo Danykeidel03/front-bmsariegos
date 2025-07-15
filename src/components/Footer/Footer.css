@@ -1,0 +1,86 @@
+.footer {
+    background-color: #119bc6;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 32px 48px;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.footer__section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.logo-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__logo-main {
+    max-width: 140px;
+    height: auto;
+}
+
+.info-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.footer__title {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rrss-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.rrss-logo {
+    display: flex;
+    gap: 16px;
+}
+
+.footer__icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .info-footer,
+    .rrss-footer {
+        align-items: center;
+    }
+
+    .footer__list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+}

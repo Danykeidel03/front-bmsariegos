@@ -1,0 +1,17 @@
+header,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+p,
+a,
+h1,
+h2,
+h3,
+ul,
+li,
+div,
+span {
+    font-family: sans-serif;
+}

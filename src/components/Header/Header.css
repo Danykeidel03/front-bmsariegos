@@ -1,0 +1,34 @@
+.header {
+  background-color: #119bc6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header .menuOptions ul {
+  margin: 0;
+  display: flex;
+  list-style: none;
+  color: white;
+  gap: 25px;
+  font-size: 18px;
+}
+
+.logoTeam img {
+  width: 75px;
+  height: auto;
+}
+
+@media (max-width:700px) {
+  .header .menuOptions ul {
+    font-size: 16px;
+    gap: 10px;
+  }
+}
+
+@media (max-width:400px) {
+  .header .menuOptions ul {
+    font-size: 14px;
+  }
+}

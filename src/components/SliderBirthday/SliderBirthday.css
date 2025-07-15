@@ -1,0 +1,65 @@
+.slideBirthday {
+  background: #119bc6;
+  padding: 30px 20px;
+  margin-top: 25px;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.slideBirthday h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.swiper-slide.swiper-slide-active .cardBirthday {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 20px;
+  background: #119bc6;
+  padding: 30px;
+  transition: transform 0.3s ease;
+}
+
+.birthInfo {
+  text-align: center;
+}
+
+.birthInfo .name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.birthInfo .date {
+  font-size: 1.2rem;
+  color: #e0f7ff;
+  margin-top: 5px;
+}
+
+.imgBirth {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/2922/2922510.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Swiper bullets */
+.swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+  opacity: 1;
+}
+
+.swiper-wrapper{
+  margin-bottom: 15px;
+}
