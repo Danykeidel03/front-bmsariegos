@@ -4,10 +4,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .header .menuOptions ul {
   margin: 0;
+  padding: 0;
   display: flex;
   list-style: none;
   color: white;
@@ -15,20 +18,61 @@
   font-size: 18px;
 }
 
+.header .menuOptions ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.header .menuOptions ul li a:hover {
+  text-decoration: underline;
+}
+
 .logoTeam img {
   width: 75px;
   height: auto;
 }
 
-@media (max-width:700px) {
-  .header .menuOptions ul {
-    font-size: 16px;
-    gap: 10px;
-  }
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-@media (max-width:400px) {
+@media (max-width: 768px) {
+  .menuToggle {
+    display: block;
+  }
+
+  .menuOptions {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #119bc6;
+    width: 200px;
+    transform: translateX(100%);
+  }
+
+  .menuOptions.active {
+    display: block;
+    transform: translateX(0);
+  }
+
   .header .menuOptions ul {
-    font-size: 14px;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .menuOptions ul li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .menuOptions ul li:last-child {
+    border-bottom: none;
   }
 }
