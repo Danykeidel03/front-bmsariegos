@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -19,6 +20,12 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Formulario enviado:', formData);
+        Swal.fire({
+            icon: 'success',
+            title: '¡Mensaje enviado!',
+            text: 'Gracias por contactarnos. Te responderemos pronto.',
+            confirmButtonText: 'Aceptar'
+        });
         setFormData({ name: '', email: '', subject: '', message: '' });
     };
 

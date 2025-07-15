@@ -1,92 +1,102 @@
+:root {
+    --primary-bg: #f9f9f9;
+    --primary-border: #e0e0e0;
+    --hover-bg: #f1f1f1;
+    --text-color: #333;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-modal: rgba(51, 51, 51, 0.55);
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 50px;
+    --transition: 0.2s ease;
+    --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .slideNotices {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 25px 0;
     position: relative;
 }
 
 .noticesContainer {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     max-width: 1280px;
-    gap: 50px;
+    gap: var(--spacing-lg);
 }
 
 .noticeCard {
-    width: 33%;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    flex: 1;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--primary-border);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
     font-size: 14px;
-    color: #333;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    color: var(--text-color);
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition), background-color var(--transition);
     max-height: 400px;
-    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .noticeCard:hover {
-    background-color: #f1f1f1;
+    background-color: var(--hover-bg);
     transform: scale(1.02);
 }
 
 .noticeCard img {
     width: 100%;
-    height: 100%;
+    height: 240px;
     object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    max-height: 240px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .noticeCard h3 {
-    padding: 0 16px;
+    padding: var(--spacing-sm);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-}
-
-.modalNotice .overlayModal {
-    background-color: rgba(51, 51, 51, .55);
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    margin: 0;
 }
 
 .modalNotice {
     position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalNotice .overlayModal {
+    position: absolute;
+    inset: 0;
+    background-color: var(--shadow-modal);
 }
 
 .infoNotice {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    z-index: 3;
     position: relative;
+    z-index: 1001;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px;
 }
 
 .infoNotice-content {
     display: flex;
-    flex-direction: row;
     background-color: white;
-    border-radius: 16px;
-    width: 900px;
+    border-radius: var(--border-radius-xl);
     height: 500px;
     position: relative;
-    max-width: 90%;
+    overflow: hidden;
 }
 
 .infoNotice-content button {
@@ -96,57 +106,75 @@
     background-color: transparent;
     border: none;
     font-size: 14px;
+    cursor: pointer;
+    z-index: 1002;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color var(--transition);
+}
+
+.infoNotice-content button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .infoNotice-content img {
-    max-width: 40%;
-    border-radius: 12px 0 0 12px;
+    width: 40%;
+    border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
     object-fit: cover;
 }
 
 .infoNotice-content .content {
-    max-width: 60%;
-    width: 100%;
-    padding: 24px;
+    flex: 1;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .infoNotice-content .content h2 {
-    max-height: 20%;
-    margin: 0;
+    margin: 0 0 var(--spacing-sm) 0;
+    flex-shrink: 0;
 }
 
 .infoNotice-content .content p {
-    overflow-x: auto;
-    max-height: 80%;
+    flex: 1;
+    overflow-y: auto;
+    margin: 0;
+    line-height: 1.5;
 }
 
-@media (max-width:1300px) {
+@media (max-width: 1300px) {
     .noticesContainer {
         max-width: 90%;
-        height: auto;
     }
 
     .noticeCard {
-        height: auto;
         min-height: 300px;
     }
 
     .noticeCard img {
         height: 200px;
     }
+
+    .noticeCard h3 {
+        height: calc(100% - 200px);
+    }
 }
 
-@media (max-width:767px) {
+@media (max-width: 768px) {
     .noticesContainer {
         flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     .noticeCard {
         width: 80%;
+        max-width: 400px;
     }
 
-    .infoNotice-content .content p {
-        font-size: 14px;
+    .infoNotice {
+        margin: 10px;
     }
 
     .infoNotice-content .content h2 {
@@ -156,40 +184,34 @@
 
 @media (max-width: 650px) {
     .infoNotice-content {
-        width: 100%;
         flex-direction: column;
+        height: auto;
+        max-height: 90vh;
+    }
+
+    .infoNotice-content img {
+        width: 100%;
+        height: 200px;
+        border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    }
+
+    .infoNotice-content .content {
+        padding: var(--spacing-md);
     }
 
     .infoNotice-content .content h2 {
         font-size: 16px;
-        margin: 0;
-        padding: 24px 24px 12px 24px;
         text-align: center;
-    }
-
-    .infoNotice-content .content {
-        max-height: 70%;
-        padding: 0;
-        max-width: 100%;
-    }
-
-    .infoNotice-content img {
-        max-height: 30%;
-        max-width: 100%;
-        border-radius: 12px 12px 0 0;
+        margin-bottom: 12px;
     }
 
     .infoNotice-content .content p {
         font-size: 14px;
-        padding: 12px 24px 24px 24px;
-        margin: 0;
-        max-height: 60%;
     }
 
     .infoNotice-content button {
         background-color: white;
-        border-radius: 100%;
-        padding: 7px 10px;
+        padding: 8px 10px;
         font-size: 12px;
     }
 }
