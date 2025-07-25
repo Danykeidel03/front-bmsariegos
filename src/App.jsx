@@ -1,27 +1,32 @@
 import './App.css';
 import Home from './pages/Home/Home';
 import Contact from './pages/Contact/Contact';
+import Admin from './pages/Admin/Admin';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/contacto" element={<Contact />} />
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   );
 }
 
 function AppContent() {
+  const location = useLocation();
+  const isAdminPage = location.pathname === '/admin';
+
   return (
     <>
-    <Header/>
+    {!isAdminPage && <Header/>}
     <div className="main-content">
       <AppRoutes />
     </div>
-    <Footer/>
+    {!isAdminPage && <Footer/>}
     </>
   );
 }

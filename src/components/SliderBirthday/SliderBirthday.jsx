@@ -53,7 +53,9 @@ const SliderBirthday = () => {
                         <div className='cardBirthday'>
                             <div className='birthInfo'>
                                 <div className='name'>{day.name}</div>
-                                <div className='date'>Felices {calculateAge(day.birthDay)} años!!</div>
+                                <div className='date'>
+                                    {day.daysUntil ? `Quedan ${day.daysUntil} días para tu cumpleaños` : `Felices ${calculateAge(day.birthDay)} años!!`}
+                                </div>
                             </div>
                             <div className='imgBirth'></div>
                         </div>
