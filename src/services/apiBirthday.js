@@ -9,7 +9,8 @@ const api = axios.create({
 })
 
 const objServices = {
-    getBirthday: () => api.get('/birthday')
+    getBirthday: () => api.get('/birthday'),
+    createBirthday: (formData) => api.post('/birthday', formData)
 }
 
 export default objServices;

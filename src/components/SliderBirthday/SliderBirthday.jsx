@@ -57,7 +57,9 @@ const SliderBirthday = () => {
                                     {day.daysUntil ? `Quedan ${day.daysUntil} días para tu cumpleaños` : `Felices ${calculateAge(day.birthDay)} años!!`}
                                 </div>
                             </div>
-                            <div className='imgBirth'></div>
+                            <div className='imgBirth'>
+                                <img src={`${day.photoName}`} alt={day.name} />
+                            </div>
                         </div>
                     </SwiperSlide>
                 ))}

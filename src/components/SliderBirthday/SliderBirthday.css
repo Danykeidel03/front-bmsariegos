@@ -44,9 +44,14 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/2922/2922510.png');
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+}
+
+.imgBirth img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Swiper bullets */
