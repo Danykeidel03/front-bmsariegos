@@ -11,7 +11,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/contacto" element={<Contact />} />
-      <Route path="/admin" element={<Admin />} />
+      <Route path="/adminBalonmano" element={<Admin />} />
     </Routes>
   );
 }
