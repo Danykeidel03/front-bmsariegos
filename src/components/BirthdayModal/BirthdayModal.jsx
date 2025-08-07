@@ -95,10 +95,19 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                             required
                         >
                             <option value="">Seleccionar categoría</option>
-                            <option value="Senior">Senior</option>
-                            <option value="Junior">Junior</option>
-                            <option value="Cadete">Cadete</option>
-                            <option value="Infantil">Infantil</option>
+                            <option value="Senior masc A">Senior masc A</option>
+                            <option value="Senior masc B">Senior masc B</option>
+                            <option value="Senior masc C">Senior masc C</option>
+                            <option value="Senior fem">Senior fem</option>
+                            <option value="Juv Fem">Juv Fem</option>
+                            <option value="Juv masc">Juv masc</option>
+                            <option value="Cadete masc A">Cadete masc A</option>
+                            <option value="Cadete masc B">Cadete masc B</option>
+                            <option value="Cadete fem">Cadete fem</option>
+                            <option value="Infantil masc A">Infantil masc A</option>
+                            <option value="Infantil masc B">Infantil masc B</option>
+                            <option value="Infantil Fem">Infantil Fem</option>
+                            <option value="Veteranos">Veteranos</option>
                         </select>
                     </div>
 
