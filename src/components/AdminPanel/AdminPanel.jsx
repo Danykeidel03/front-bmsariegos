@@ -24,6 +24,7 @@ const AdminPanel = ({ onLogout }) => {
                 text: 'Noticia creada correctamente'
             });
         } catch (error) {
+            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
