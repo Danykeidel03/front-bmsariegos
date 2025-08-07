@@ -49,6 +49,7 @@ const AdminPanel = ({ onLogout }) => {
                 text: 'Cumpleaños añadido correctamente'
             });
         } catch (error) {
+            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
