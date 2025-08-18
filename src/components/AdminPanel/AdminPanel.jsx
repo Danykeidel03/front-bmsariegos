@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import './AdminPanel.css';
 import NewsModal from '../NewsModal/NewsModal';
 import BirthdayModal from '../BirthdayModal/BirthdayModal';
+import SponsorModal from '../SponsorModal/SponsorModal';
 import apiNotice from '../../services/apiNotice';
 import apiBirthday from '../../services/apiBirthday';
+import apiSponsor from '../../services/apiSponsor';
 import Swal from 'sweetalert2';
 
 const AdminPanel = ({ onLogout }) => {
     const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
     const [isBirthdayModalOpen, setIsBirthdayModalOpen] = useState(false);
+    const [isSponsorModalOpen, setIsSponsorModalOpen] = useState(false);
 
     const handleNewsSubmit = async (formData) => {
         const data = new FormData();
@@ -57,6 +60,28 @@ const AdminPanel = ({ onLogout }) => {
             });
         }
     };
+
+    const handleSponsorSubmit = async (formData) => {
+        const data = new FormData();
+        data.append('name', formData.name);
+        data.append('logo', formData.logo);
+
+        try {
+            await apiSponsor.createSponsor(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Patrocinador añadido correctamente'
+            });
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo añadir el patrocinador'
+            });
+        }
+    };
     return (
         <div className="admin-panel">
             <div className="admin-header">
@@ -83,7 +108,7 @@ const AdminPanel = ({ onLogout }) => {
                     <div className="admin-card">
                         <h3>Gestión de Patrocinadores</h3>
                         <p>Añadir o modificar logos de patrocinadores</p>
-                        <button className="card-btn">Gestionar</button>
+                        <button className="card-btn" onClick={() => setIsSponsorModalOpen(true)}>Gestionar</button>
                     </div>
                     
                     <div className="admin-card">
@@ -104,6 +129,12 @@ const AdminPanel = ({ onLogout }) => {
                 isOpen={isBirthdayModalOpen}
                 onClose={() => setIsBirthdayModalOpen(false)}
                 onSubmit={handleBirthdaySubmit}
+            />
+            
+            <SponsorModal 
+                isOpen={isSponsorModalOpen}
+                onClose={() => setIsSponsorModalOpen(false)}
+                onSubmit={handleSponsorSubmit}
             />
         </div>
     );
