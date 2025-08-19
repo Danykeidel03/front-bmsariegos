@@ -64,7 +64,9 @@ const AdminPanel = ({ onLogout }) => {
     const handleSponsorSubmit = async (formData) => {
         const data = new FormData();
         data.append('name', formData.name);
-        data.append('logo', formData.logo);
+        data.append('photo', formData.logo);
+
+        console.log(data);
 
         try {
             await apiSponsor.createSponsor(data);
