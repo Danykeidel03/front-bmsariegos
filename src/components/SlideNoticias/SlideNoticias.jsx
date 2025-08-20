@@ -43,7 +43,7 @@ export default function SlideNoticias() {
                             <img src={modal.photoName} alt={modal.title} />
                             <div className="content">
                                 <h2>{modal.title}</h2>
-                                <p>{modal.descripcion}</p>
+                                <p dangerouslySetInnerHTML={{ __html: modal.descripcion.replace(/\n/g, '<br>') }}></p>
                             </div>
                         </div>
                     </div>
