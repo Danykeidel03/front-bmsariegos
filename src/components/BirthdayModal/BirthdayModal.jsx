@@ -16,7 +16,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         const fetchTeams = async () => {
             try {
                 const response = await apiTeam.getTeams();
-                setTeams(Array.isArray(response.data) ? response.data : []);
+                setTeams(Array.isArray(response.data.data) ? response.data.data : []);
             } catch (error) {
                 console.error('Error fetching teams:', error);
                 setTeams([]);
