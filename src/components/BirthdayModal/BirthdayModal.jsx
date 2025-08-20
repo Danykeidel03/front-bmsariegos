@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './BirthdayModal.css';
+import apiTeam from '../../services/apiTeam';
 
 const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -9,6 +10,23 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         category: '',
         photo: null
     });
+    const [teams, setTeams] = useState([]);
+
+    useEffect(() => {
+        const fetchTeams = async () => {
+            try {
+                const response = await apiTeam.getTeams();
+                setTeams(Array.isArray(response.data) ? response.data : []);
+            } catch (error) {
+                console.error('Error fetching teams:', error);
+                setTeams([]);
+            }
+        };
+        
+        if (isOpen) {
+            fetchTeams();
+        }
+    }, [isOpen]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -95,19 +113,11 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                             required
                         >
                             <option value="">Seleccionar categoría</option>
-                            <option value="Senior masc A">Senior masc A</option>
-                            <option value="Senior masc B">Senior masc B</option>
-                            <option value="Senior masc C">Senior masc C</option>
-                            <option value="Senior fem">Senior fem</option>
-                            <option value="Juv Fem">Juv Fem</option>
-                            <option value="Juv masc">Juv masc</option>
-                            <option value="Cadete masc A">Cadete masc A</option>
-                            <option value="Cadete masc B">Cadete masc B</option>
-                            <option value="Cadete fem">Cadete fem</option>
-                            <option value="Infantil masc A">Infantil masc A</option>
-                            <option value="Infantil masc B">Infantil masc B</option>
-                            <option value="Infantil Fem">Infantil Fem</option>
-                            <option value="Veteranos">Veteranos</option>
+                            {teams.map((team, index) => (
+                                <option key={index} value={team.name}>
+                                    {team.name}
+                                </option>
+                            ))}
                         </select>
                     </div>
 
