@@ -5,6 +5,7 @@ import BirthdayModal from '../BirthdayModal/BirthdayModal';
 import SponsorModal from '../SponsorModal/SponsorModal';
 import RivalModal from '../RivalModal/RivalModal';
 import TeamModal from '../TeamModal/TeamModal';
+import MatchModal from '../MatchModal/MatchModal';
 import apiNotice from '../../services/apiNotice';
 import apiBirthday from '../../services/apiBirthday';
 import apiSponsor from '../../services/apiSponsor';
@@ -17,6 +18,7 @@ const AdminPanel = ({ onLogout }) => {
     const [isSponsorModalOpen, setIsSponsorModalOpen] = useState(false);
     const [isRivalModalOpen, setIsRivalModalOpen] = useState(false);
     const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
+    const [isMatchModalOpen, setIsMatchModalOpen] = useState(false);
 
     const handleNewsSubmit = async (formData) => {
         const data = new FormData();
@@ -153,6 +155,12 @@ const AdminPanel = ({ onLogout }) => {
                     </div>
                     
                     <div className="admin-card">
+                        <h3>Gestión de Partidos</h3>
+                        <p>Crear partidos y finalizar con resultados</p>
+                        <button className="card-btn" onClick={() => setIsMatchModalOpen(true)}>Gestionar</button>
+                    </div>
+                    
+                    <div className="admin-card">
                         <h3>Configuración del Sitio</h3>
                         <p>Ajustes generales y configuración</p>
                         <button className="card-btn">Configurar</button>
@@ -187,6 +195,11 @@ const AdminPanel = ({ onLogout }) => {
             <TeamModal 
                 isOpen={isTeamModalOpen}
                 onClose={() => setIsTeamModalOpen(false)}
+            />
+            
+            <MatchModal 
+                isOpen={isMatchModalOpen}
+                onClose={() => setIsMatchModalOpen(false)}
             />
         </div>
     );

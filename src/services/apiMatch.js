@@ -9,12 +9,9 @@ const api = axios.create({
 })
 
 const objServices = {
-    createRival: (rivalData) => api.post('/rival-team', rivalData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    }),
-    getAllRivals: () => api.get('/rival-team')
+    getAllMatches: () => api.get('/match'),
+    createMatch: (matchData) => api.post('/match', matchData),
+    updateMatch: (matchId, matchUpdate) => api.put(`/match/${matchId}`, matchUpdate)
 }
 
 export default objServices;
