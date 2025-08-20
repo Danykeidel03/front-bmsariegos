@@ -27,8 +27,27 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
 
     const loadMatches = async () => {
         try {
-            const response = await apiMatch.getAllMatches();
-            setMatches(response.data.data);
+            const [matchesResponse, rivalsResponse, teamsResponse] = await Promise.all([
+                apiMatch.getAllMatches(),
+                apiRival.getAllRivals(),
+                apiTeam.getTeams()
+            ]);
+            
+            const matchesData = matchesResponse.data.data;
+            const rivalsData = rivalsResponse.data.data;
+            const teamsData = teamsResponse.data.data;
+            
+            const matchesWithInfo = matchesData.map(match => {
+                const rivalInfo = rivalsData.find(rival => rival._id === match.rivalTeam);
+                const ownTeamInfo = teamsData.find(team => team._id === match.ownTeam);
+                return {
+                    ...match,
+                    rivalTeam: rivalInfo || match.rivalTeam,
+                    ownTeam: ownTeamInfo || match.ownTeam
+                };
+            });
+            
+            setMatches(matchesWithInfo);
         } catch (error) {
             console.error('Error al cargar partidos:', error);
         }
@@ -170,12 +189,24 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                             <div className="matches-list">
                                 {matches.map(match => (
                                     <div key={match._id} className="match-item">
-                                        <div className="match-info">
-                                            <p><strong>Rival:</strong> {match.rivalTeam?.name || 'N/A'}</p>
-                                            <p><strong>Fecha:</strong> {match.date}</p>
-                                            <p><strong>Hora:</strong> {match.time}</p>
-                                            <p><strong>Lugar:</strong> {match.location}</p>
-                                            {match.result && <p><strong>Resultado:</strong> {match.result}</p>}
+                                        <div className="match-content">
+                                            <div className="match-rival-image">
+                                                {match.rivalTeam?.photoName && (
+                                                    <img 
+                                                        src={match.rivalTeam.photoName} 
+                                                        alt={`Escudo ${match.rivalTeam.name}`}
+                                                        className="rival-logo"
+                                                    />
+                                                )}
+                                            </div>
+                                            <div className="match-info">
+                                                <p><strong>Equipo:</strong> {match.ownTeam?.name || 'N/A'}</p>
+                                                <p><strong>Rival:</strong> {match.rivalTeam?.name || 'N/A'}</p>
+                                                <p><strong>Fecha:</strong> {new Date(match.date).toLocaleDateString('es-ES').replace(/\//g, '-')}</p>
+                                                <p><strong>Hora:</strong> {match.time}</p>
+                                                <p><strong>Lugar:</strong> {match.location}</p>
+                                                {match.result && <p><strong>Resultado:</strong> {match.result}</p>}
+                                            </div>
                                         </div>
                                         {!match.completed && (
                                             <button 

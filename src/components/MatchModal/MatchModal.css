@@ -36,13 +36,37 @@
     margin-bottom: 1rem;
     border-radius: 8px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.match-content {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.match-rival-image {
+    width: 20%;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.match-info {
+    width: 80%;
 }
 
 .match-info p {
     margin: 0.25rem 0;
     font-size: 0.9rem;
+}
+
+.rival-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
 .finalize-btn {
