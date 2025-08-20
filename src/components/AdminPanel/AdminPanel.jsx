@@ -3,15 +3,20 @@ import './AdminPanel.css';
 import NewsModal from '../NewsModal/NewsModal';
 import BirthdayModal from '../BirthdayModal/BirthdayModal';
 import SponsorModal from '../SponsorModal/SponsorModal';
+import RivalModal from '../RivalModal/RivalModal';
+import TeamModal from '../TeamModal/TeamModal';
 import apiNotice from '../../services/apiNotice';
 import apiBirthday from '../../services/apiBirthday';
 import apiSponsor from '../../services/apiSponsor';
+import apiRival from '../../services/apiRival';
 import Swal from 'sweetalert2';
 
 const AdminPanel = ({ onLogout }) => {
     const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
     const [isBirthdayModalOpen, setIsBirthdayModalOpen] = useState(false);
     const [isSponsorModalOpen, setIsSponsorModalOpen] = useState(false);
+    const [isRivalModalOpen, setIsRivalModalOpen] = useState(false);
+    const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
 
     const handleNewsSubmit = async (formData) => {
         const data = new FormData();
@@ -84,6 +89,28 @@ const AdminPanel = ({ onLogout }) => {
             });
         }
     };
+
+    const handleRivalSubmit = async (formData) => {
+        const data = new FormData();
+        data.append('name', formData.name);
+        data.append('photo', formData.photo);
+
+        try {
+            await apiRival.createRival(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Equipo rival creado correctamente'
+            });
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo crear el equipo rival'
+            });
+        }
+    };
     return (
         <div className="admin-panel">
             <div className="admin-header">
@@ -114,6 +141,18 @@ const AdminPanel = ({ onLogout }) => {
                     </div>
                     
                     <div className="admin-card">
+                        <h3>Gestión de Rivales</h3>
+                        <p>Crear y administrar equipos rivales</p>
+                        <button className="card-btn" onClick={() => setIsRivalModalOpen(true)}>Gestionar</button>
+                    </div>
+                    
+                    <div className="admin-card">
+                        <h3>Gestión de Equipos</h3>
+                        <p>Crear y administrar mis equipos</p>
+                        <button className="card-btn" onClick={() => setIsTeamModalOpen(true)}>Gestionar</button>
+                    </div>
+                    
+                    <div className="admin-card">
                         <h3>Configuración del Sitio</h3>
                         <p>Ajustes generales y configuración</p>
                         <button className="card-btn">Configurar</button>
@@ -137,6 +176,17 @@ const AdminPanel = ({ onLogout }) => {
                 isOpen={isSponsorModalOpen}
                 onClose={() => setIsSponsorModalOpen(false)}
                 onSubmit={handleSponsorSubmit}
+            />
+            
+            <RivalModal 
+                isOpen={isRivalModalOpen}
+                onClose={() => setIsRivalModalOpen(false)}
+                onSubmit={handleRivalSubmit}
+            />
+            
+            <TeamModal 
+                isOpen={isTeamModalOpen}
+                onClose={() => setIsTeamModalOpen(false)}
             />
         </div>
     );
