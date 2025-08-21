@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Contact.css';
 import Swal from 'sweetalert2';
+import SEO from '../../components/SEO/SEO';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -30,7 +31,13 @@ const Contact = () => {
     };
 
     return (
-        <div className='contact-container'>
+        <>
+            <SEO 
+                title="Contacto - Balonmano Sariegos"
+                description="Contacta con el Club de Balonmano Sariegos. Envíanos tu mensaje y te responderemos lo antes posible."
+                keywords="contacto, balonmano sariegos, club deportivo león, handball"
+            />
+            <div className='contact-container'>
             <h1 className='contact-title'>Contacto</h1>
             <form className='contact-form' onSubmit={handleSubmit}>
                 <div className='form-group'>
@@ -88,7 +95,8 @@ const Contact = () => {
                     Enviar Mensaje
                 </button>
             </form>
-        </div>
+            </div>
+        </>
     );
 };
 

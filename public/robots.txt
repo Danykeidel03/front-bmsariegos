@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /adminBalonmano
+
+Sitemap: https://balonmanosariegos.com/sitemap.xml

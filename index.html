@@ -1,13 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Club de Balonmano Sariegos en León. Noticias, partidos, equipos y toda la información del club. Únete a nuestra comunidad deportiva." />
+    <meta name="keywords" content="balonmano, sariegos, león, club deportivo, handball, deporte, equipos, partidos, noticias" />
+    <meta name="author" content="Balonmano Sariegos" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1e40af" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Balonmano Sariegos - Club de Balonmano en León" />
+    <meta property="og:description" content="Club de Balonmano Sariegos en León. Noticias, partidos, equipos y toda la información del club." />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Balonmano Sariegos" />
+    <meta property="og:locale" content="es_ES" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Balonmano Sariegos - Club de Balonmano en León" />
+    <meta name="twitter:description" content="Club de Balonmano Sariegos en León. Noticias, partidos, equipos y toda la información del club." />
+    <meta name="twitter:image" content="/logo.png" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/x-icon" href="/logo.ico" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    
+    <!-- Preloads -->
     <link rel="preload" href="/src/App.css" as="style" />
     <link rel="preload" href="/slider1.webp" as="image" fetchpriority="high" />
     <link rel="preconnect" href="https://back-bmsariegos-production.up.railway.app" />
-    <title>Balonmano Sariegos</title>
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://balonmanosariegos.com" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <title>Balonmano Sariegos - Club de Balonmano en León</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsOrganization",
+      "name": "Balonmano Sariegos",
+      "description": "Club de Balonmano Sariegos en León",
+      "url": "https://balonmanosariegos.com",
+      "logo": "https://balonmanosariegos.com/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sariegos",
+        "addressRegion": "León",
+        "addressCountry": "ES"
+      },
+      "sport": "Handball",
+      "sameAs": [
+        "https://www.instagram.com/balonmanosariegos",
+        "https://www.youtube.com/@balonmanosariegos",
+        "https://www.tiktok.com/@balonmanosariegos"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

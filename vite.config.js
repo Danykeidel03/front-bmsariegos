@@ -6,12 +6,20 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     cssCodeSplit: false,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           swiper: ['swiper'],
-          api: ['axios']
+          api: ['axios'],
+          ui: ['sweetalert2']
         }
       }
     }
@@ -20,6 +28,9 @@ export default defineConfig({
   server: {
     hmr: {
       overlay: false
+    },
+    headers: {
+      'Cache-Control': 'public, max-age=31536000'
     }
   }
 })
