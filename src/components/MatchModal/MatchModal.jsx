@@ -14,7 +14,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
         ownTeam: '',
         date: '',
         time: '',
-        location: '',
+        location: 'PABELLÓN MUNICIPAL DE SARIEGOS',
         isHome: true
     });
     const [editingMatch, setEditingMatch] = useState(null);
@@ -96,7 +96,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                 title: 'Éxito',
                 text: 'Partido creado correctamente'
             });
-            setFormData({ rivalTeam: '', ownTeam: '', date: '', time: '', location: '', isHome: true });
+            setFormData({ rivalTeam: '', ownTeam: '', date: '', time: '', location: 'PABELLÓN MUNICIPAL DE SARIEGOS', isHome: true });
             setRivalSearch('');
             loadMatches();
         } catch (error) {
@@ -255,7 +255,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                                             type="radio"
                                             name="isHome"
                                             checked={formData.isHome === true}
-                                            onChange={() => setFormData({...formData, isHome: true})}
+                                            onChange={() => setFormData({...formData, isHome: true, location: 'PABELLÓN MUNICIPAL DE SARIEGOS'})}
                                         />
                                         Local
                                     </label>
@@ -264,7 +264,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                                             type="radio"
                                             name="isHome"
                                             checked={formData.isHome === false}
-                                            onChange={() => setFormData({...formData, isHome: false})}
+                                            onChange={() => setFormData({...formData, isHome: false, location: ''})}
                                         />
                                         Suplente
                                     </label>
