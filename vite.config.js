@@ -6,14 +6,21 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     cssCodeSplit: false,
+    minify: 'terser',
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
+          swiper: ['swiper'],
           api: ['axios']
         }
       }
     }
   },
   base: '/',
+  server: {
+    hmr: {
+      overlay: false
+    }
+  }
 })

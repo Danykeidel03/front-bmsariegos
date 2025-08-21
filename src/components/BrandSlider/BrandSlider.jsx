@@ -4,38 +4,44 @@ import apiSponsor from '../../services/apiSponsor';
 
 const BrandSlider = () => {
     const [sponsors, setSponsors] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSponsors = async () => {
-            console.log('Fetching sponsors...');
             try {
                 const response = await apiSponsor.getSponsors();
                 setSponsors(Array.isArray(response.data.data) ? response.data.data : []);
             } catch (error) {
-                console.error('Error fetching sponsors:', error);
                 setSponsors([]);
+            } finally {
+                setLoading(false);
             }
         };
         
-        fetchSponsors();
+        const timer = setTimeout(fetchSponsors, 100);
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
-        const original = document.querySelector(".logos-slide");
-        const slider = document.querySelector(".logo-slider");
+        if (!loading && sponsors.length > 0) {
+            const original = document.querySelector(".logos-slide");
+            const slider = document.querySelector(".logo-slider");
 
-        if (original && slider && slider.children.length < 2) {
-            const copy = original.cloneNode(true);
-            slider.appendChild(copy);
+            if (original && slider && slider.children.length < 2) {
+                const copy = original.cloneNode(true);
+                slider.appendChild(copy);
+            }
         }
-    }, [sponsors]);
+    }, [sponsors, loading]);
+
+    if (loading) return <div style={{height: '100px'}}></div>;
 
     return (
         <div className="logo-slider">
             <div className="logos-slide">
-                {Array.isArray(sponsors) && sponsors.map((sponsor, index) => (
+                {sponsors.map((sponsor, index) => (
                     <a key={index} className='logoLink'>
-                        <img src={sponsor.photoName} alt={sponsor.name} />
+                        <img src={sponsor.photoName} alt={sponsor.name} loading="lazy" />
                     </a>
                 ))}
             </div>
