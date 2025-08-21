@@ -29,7 +29,7 @@ const SEO = ({
     
     updateMetaTag('name', 'robots', 'index, follow');
     updateMetaTag('name', 'author', 'Balonmano Sariegos');
-    updateMetaTag('name', 'theme-color', '#1e40af');
+    updateMetaTag('name', 'theme-color', '#119bc6');
   }, [title, description, keywords, image, url, type]);
 
   const updateMetaTag = (attribute, name, content) => {
