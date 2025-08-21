@@ -131,8 +131,8 @@ const AdminPanel = ({ onLogout }) => {
                     </div>
                     
                     <div className="admin-card">
-                        <h3>Gestión de Cumpleaños</h3>
-                        <p>Administrar fechas de cumpleaños de los miembros</p>
+                        <h3>Gestión de Jugadores</h3>
+                        <p>Administrar jugadores</p>
                         <button className="card-btn" onClick={() => setIsBirthdayModalOpen(true)}>Gestionar</button>
                     </div>
                     
