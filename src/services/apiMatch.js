@@ -11,7 +11,8 @@ const api = axios.create({
 const objServices = {
     getAllMatches: () => api.get('/match'),
     createMatch: (matchData) => api.post('/match', matchData),
-    updateMatch: (matchId, matchUpdate) => api.put(`/match/${matchId}`, matchUpdate)
+    updateMatch: (matchId, matchUpdate) => api.put(`/match/${matchId}`, matchUpdate),
+    updateMatchDateTime: (matchId, dateTimeData) => api.put(`/match/${matchId}/datetime`, dateTimeData)
 }
 
 export default objServices;

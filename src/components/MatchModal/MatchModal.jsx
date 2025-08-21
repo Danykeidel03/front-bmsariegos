@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './MatchModal.css';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
@@ -14,8 +14,14 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
         ownTeam: '',
         date: '',
         time: '',
-        location: ''
+        location: '',
+        isHome: true
     });
+    const [editingMatch, setEditingMatch] = useState(null);
+    const [editDateTime, setEditDateTime] = useState({ date: '', time: '' });
+    const [rivalSearch, setRivalSearch] = useState('');
+    const [showRivalDropdown, setShowRivalDropdown] = useState(false);
+    const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
         if (isOpen) {
@@ -24,6 +30,16 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
             loadTeams();
         }
     }, [isOpen]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (rivalSelectorRef.current && !rivalSelectorRef.current.contains(event.target)) {
+                setShowRivalDropdown(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const loadMatches = async () => {
         try {
@@ -80,13 +96,42 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                 title: 'Éxito',
                 text: 'Partido creado correctamente'
             });
-            setFormData({ rivalTeam: '', ownTeam: '', date: '', time: '', location: '' });
+            setFormData({ rivalTeam: '', ownTeam: '', date: '', time: '', location: '', isHome: true });
+            setRivalSearch('');
             loadMatches();
         } catch (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'No se pudo crear el partido'
+            });
+        }
+    };
+
+    const handleEditDateTime = async (matchId) => {
+        const match = matches.find(m => m._id === matchId);
+        setEditingMatch(matchId);
+        setEditDateTime({
+            date: match.date.split('T')[0],
+            time: match.time
+        });
+    };
+
+    const handleUpdateDateTime = async () => {
+        try {
+            await apiMatch.updateMatchDateTime(editingMatch, editDateTime);
+            Swal.fire({
+                icon: 'success',
+                title: 'Fecha actualizada',
+                text: 'La fecha y hora se han actualizado correctamente'
+            });
+            setEditingMatch(null);
+            loadMatches();
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo actualizar la fecha y hora'
             });
         }
     };
@@ -136,16 +181,40 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                         <div className="create-section">
                             <h3>Crear Nuevo Partido</h3>
                             <form onSubmit={handleSubmit}>
-                                <select
-                                    value={formData.rivalTeam}
-                                    onChange={(e) => setFormData({...formData, rivalTeam: e.target.value})}
-                                    required
-                                >
-                                    <option value="">Seleccionar rival</option>
-                                    {rivals.map(rival => (
-                                        <option key={rival._id} value={rival._id}>{rival.name}</option>
-                                    ))}
-                                </select>
+                                <div className="rival-selector" ref={rivalSelectorRef}>
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar rival..."
+                                        value={rivalSearch}
+                                        onChange={(e) => {
+                                            setRivalSearch(e.target.value);
+                                            setShowRivalDropdown(true);
+                                        }}
+                                        onFocus={() => setShowRivalDropdown(true)}
+                                        required={!formData.rivalTeam}
+                                    />
+                                    {showRivalDropdown && (
+                                        <div className="rival-dropdown">
+                                            {rivals
+                                                .filter(rival => rival.name.toLowerCase().includes(rivalSearch.toLowerCase()))
+                                                .slice(0, 10)
+                                                .map(rival => (
+                                                    <div
+                                                        key={rival._id}
+                                                        className="rival-option"
+                                                        onClick={() => {
+                                                            setFormData({...formData, rivalTeam: rival._id});
+                                                            setRivalSearch(rival.name);
+                                                            setShowRivalDropdown(false);
+                                                        }}
+                                                    >
+                                                        {rival.name}
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    )}
+                                </div>
 
                                 <select
                                     value={formData.ownTeam}
@@ -180,6 +249,27 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                                     required
                                 />
 
+                                <div className="home-away-selector">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="isHome"
+                                            checked={formData.isHome === true}
+                                            onChange={() => setFormData({...formData, isHome: true})}
+                                        />
+                                        Local
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="isHome"
+                                            checked={formData.isHome === false}
+                                            onChange={() => setFormData({...formData, isHome: false})}
+                                        />
+                                        Suplente
+                                    </label>
+                                </div>
+
                                 <button type="submit" className="submit-btn">Crear Partido</button>
                             </form>
                         </div>
@@ -202,19 +292,47 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                                             <div className="match-info">
                                                 <p><strong>Equipo:</strong> {match.ownTeam?.name || 'N/A'}</p>
                                                 <p><strong>Rival:</strong> {match.rivalTeam?.name || 'N/A'}</p>
-                                                <p><strong>Fecha:</strong> {new Date(match.date).toLocaleDateString('es-ES').replace(/\//g, '-')}</p>
-                                                <p><strong>Hora:</strong> {match.time}</p>
+                                                <p><strong>Tipo:</strong> {match.isHome ? 'Local' : 'Suplente'}</p>
+                                                {editingMatch === match._id ? (
+                                                    <div className="edit-datetime">
+                                                        <input
+                                                            type="date"
+                                                            value={editDateTime.date}
+                                                            onChange={(e) => setEditDateTime({...editDateTime, date: e.target.value})}
+                                                        />
+                                                        <input
+                                                            type="time"
+                                                            value={editDateTime.time}
+                                                            onChange={(e) => setEditDateTime({...editDateTime, time: e.target.value})}
+                                                        />
+                                                        <button onClick={handleUpdateDateTime} className="save-btn">Guardar</button>
+                                                        <button onClick={() => setEditingMatch(null)} className="cancel-btn">Cancelar</button>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <p><strong>Fecha:</strong> {new Date(match.date).toLocaleDateString('es-ES').replace(/\//g, '-')}</p>
+                                                        <p><strong>Hora:</strong> {match.time}</p>
+                                                    </>
+                                                )}
                                                 <p><strong>Lugar:</strong> {match.location}</p>
                                                 {match.result && <p><strong>Resultado:</strong> {match.result}</p>}
                                             </div>
                                         </div>
                                         {!match.completed && (
-                                            <button 
-                                                className="finalize-btn"
-                                                onClick={() => handleFinalize(match._id)}
-                                            >
-                                                Finalizar
-                                            </button>
+                                            <div className="match-actions">
+                                                <button 
+                                                    className="edit-btn"
+                                                    onClick={() => handleEditDateTime(match._id)}
+                                                >
+                                                    Editar Fecha
+                                                </button>
+                                                <button 
+                                                    className="finalize-btn"
+                                                    onClick={() => handleFinalize(match._id)}
+                                                >
+                                                    Finalizar
+                                                </button>
+                                            </div>
                                         )}
                                     </div>
                                 ))}
