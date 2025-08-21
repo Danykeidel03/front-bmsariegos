@@ -5,6 +5,15 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
+    cssCodeSplit: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          api: ['axios']
+        }
+      }
+    }
   },
   base: '/',
 })
