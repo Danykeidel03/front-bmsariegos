@@ -2,31 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './News.css';
 import apiNotice from '../../services/apiNotice';
 import SEO from '../../components/SEO/SEO';
-import { useSearchParams } from 'react-router-dom';
 
 const News = () => {
     const [modal, setModal] = useState(null);
     const [noticias, setNoticias] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         const fetchNoticias = async () => {
             try {
                 const data = await apiNotice.getNotices();
-                const noticiasData = data.data.data;
-                setNoticias(noticiasData);
-                
-                // Verificar si hay un ID en la URL para abrir el modal
-                const noticiaId = searchParams.get('id');
-                if (noticiaId) {
-                    const noticiaToShow = noticiasData.find(n => n._id === noticiaId);
-                    if (noticiaToShow) {
-                        setModal(noticiaToShow);
-                    }
-                    // Limpiar el parámetro de la URL
-                    setSearchParams({});
-                }
+                setNoticias(data.data.data);
             } catch (error) {
                 console.error('Error al cargar noticias:', error);
             } finally {
@@ -34,7 +20,7 @@ const News = () => {
             }
         };
         fetchNoticias();
-    }, [searchParams, setSearchParams]);
+    }, []);
 
     return (
         <>
