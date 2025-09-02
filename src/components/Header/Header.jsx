@@ -28,6 +28,7 @@ const Header = forwardRef(() => {
           <li>Socios</li>
           <li>Entradas</li>
           <li>Equipos</li>
+          <li><a href="/noticias">Noticias</a></li>
           <li><a href="/contacto">Contacto</a></li>
         </ul>
       </div>
