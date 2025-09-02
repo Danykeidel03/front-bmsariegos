@@ -8,15 +8,13 @@ export default function SlideNoticias() {
     const [loading, setLoading] = useState(true);
 
     const handleNoticiaClick = (noticia) => {
-        // Scroll suave hacia arriba
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        // Pequeño delay para que el scroll termine antes de abrir el modal
+        setModal(noticia);
         setTimeout(() => {
-            setModal(noticia);
-        }, 300);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 50);
     };
 
     useEffect(() => {

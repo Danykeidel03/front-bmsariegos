@@ -9,13 +9,13 @@ const News = () => {
     const [loading, setLoading] = useState(true);
 
     const handleNoticiaClick = (noticia) => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        setModal(noticia);
         setTimeout(() => {
-            setModal(noticia);
-        }, 300);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 50);
     };
 
     useEffect(() => {
