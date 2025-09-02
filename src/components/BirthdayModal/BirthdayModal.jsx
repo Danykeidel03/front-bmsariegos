@@ -22,7 +22,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             try {
                 const [teamsResponse, playersResponse] = await Promise.all([
                     apiTeam.getTeams(),
-                    apiBirthday.getBirthday()
+                    apiBirthday.getAllPlayers()
                 ]);
                 setTeams(Array.isArray(teamsResponse.data.data) ? teamsResponse.data.data : []);
                 setPlayers(Array.isArray(playersResponse.data.data) ? playersResponse.data.data : []);
@@ -52,7 +52,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
 
     const fetchPlayers = async () => {
         try {
-            const response = await apiBirthday.getBirthday();
+            const response = await apiBirthday.getAllPlayers();
             setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
             console.error('Error fetching players:', error);

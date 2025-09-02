@@ -12,7 +12,8 @@ const api = axios.create({
 })
 
 const objServices = {
-    getBirthday: () => api.get('/getA'),
+    getBirthday: () => api.get('/birthday'),
+    getAllPlayers: () => api.get('/getAll'),
     createBirthday: (formData) => api.post('/birthday', formData),
     updateBirthday: (id, formData) => api.put(`/birthday/${id}`, formData)
 }
