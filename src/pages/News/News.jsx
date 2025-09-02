@@ -12,7 +12,7 @@ const News = () => {
         setModal(noticia);
         setTimeout(() => {
             window.scrollTo({
-                top: 0,
+                top: window.innerHeight / 4,
                 behavior: 'smooth'
             });
         }, 50);
