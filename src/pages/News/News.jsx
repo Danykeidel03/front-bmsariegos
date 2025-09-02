@@ -8,6 +8,16 @@ const News = () => {
     const [noticias, setNoticias] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const handleNoticiaClick = (noticia) => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        setTimeout(() => {
+            setModal(noticia);
+        }, 300);
+    };
+
     useEffect(() => {
         const fetchNoticias = async () => {
             try {
@@ -47,7 +57,7 @@ const News = () => {
                     ) : (
                         <div className="news-grid">
                             {noticias.map((noticia, idx) => (
-                                <div className="news-card" key={idx} onClick={() => setModal(noticia)}>
+                                <div className="news-card" key={idx} onClick={() => handleNoticiaClick(noticia)}>
                                     <img src={noticia.photoName} alt={noticia.title} />
                                     <div className="news-content">
                                         <h3>{noticia.title}</h3>

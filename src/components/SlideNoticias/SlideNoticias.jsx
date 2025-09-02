@@ -7,6 +7,18 @@ export default function SlideNoticias() {
     const [noticias, setNoticias] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const handleNoticiaClick = (noticia) => {
+        // Scroll suave hacia arriba
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        // Pequeño delay para que el scroll termine antes de abrir el modal
+        setTimeout(() => {
+            setModal(noticia);
+        }, 300);
+    };
+
     useEffect(() => {
         const fetchNoticias = async () => {
             try {
@@ -27,7 +39,7 @@ export default function SlideNoticias() {
                     <p>Cargando noticias...</p>
                 ) : (
                     noticias.map((noticia, idx) => (
-                    <div className="noticeCard" key={idx} onClick={() => setModal(noticia)}>
+                    <div className="noticeCard" key={idx} onClick={() => handleNoticiaClick(noticia)}>
                         <img src={noticia.photoName} alt={noticia.title} />
                         <h3>{noticia.title}</h3>
                     </div>
