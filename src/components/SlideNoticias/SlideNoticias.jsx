@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import './SlideNoticias.css';
 import apiNotice from "../../services/apiNotice";
+import { useNavigate } from 'react-router-dom';
 
 export default function SlideNoticias() {
     const [modal, setModal] = useState(null);
     const [noticias, setNoticias] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    const handleNoticiaClick = (noticia) => {
+        navigate(`/noticias?id=${noticia._id}`);
+    };
 
     useEffect(() => {
         const fetchNoticias = async () => {
@@ -27,7 +33,7 @@ export default function SlideNoticias() {
                     <p>Cargando noticias...</p>
                 ) : (
                     noticias.map((noticia, idx) => (
-                    <div className="noticeCard" key={idx} onClick={() => setModal(noticia)}>
+                    <div className="noticeCard" key={idx} onClick={() => handleNoticiaClick(noticia)}>
                         <img src={noticia.photoName} alt={noticia.title} />
                         <h3>{noticia.title}</h3>
                     </div>
