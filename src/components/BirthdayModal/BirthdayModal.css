@@ -157,16 +157,31 @@
     border-radius: 8px;
     padding: 15px;
     background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.player-item h4 {
-    margin: 0 0 10px 0;
+.player-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-info h4 {
+    margin: 0 0 8px 0;
     color: #119bc6;
     font-size: 16px;
 }
 
-.player-item p {
-    margin: 5px 0;
+.player-info p {
+    margin: 3px 0;
     color: #666;
     font-size: 14px;
 }

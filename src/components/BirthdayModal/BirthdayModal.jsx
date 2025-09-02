@@ -152,15 +152,18 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         <div className="players-grid">
                             {filteredPlayers.map((player) => (
                                 <div key={player._id} className="player-item">
-                                    <h4>{player.name}</h4>
-                                    <p>DNI: {player.dni}</p>
-                                    <p>Categoría: {player.category}</p>
-                                    <button 
-                                        className="edit-btn" 
-                                        onClick={() => handleEdit(player)}
-                                    >
-                                        Editar
-                                    </button>
+                                    <img src={player.photoName} alt={player.name} className="player-photo" />
+                                    <div className="player-info">
+                                        <h4>{player.name}</h4>
+                                        <p>DNI: {player.dni}</p>
+                                        <p>Categoría: {player.category}</p>
+                                        <button 
+                                            className="edit-btn" 
+                                            onClick={() => handleEdit(player)}
+                                        >
+                                            Editar
+                                        </button>
+                                    </div>
                                 </div>
                             ))}
                         </div>
