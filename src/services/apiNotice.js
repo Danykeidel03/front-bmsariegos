@@ -17,7 +17,8 @@ const objServices = {
             'Content-Type': 'multipart/form-data'
         }
     }),
-    getNotices: () => api.get('/notice')
+    getNotices: () => api.get('/notice'),
+    deleteNotice: (id) => api.delete(`/notice/${id}`)
 }
 
 export default objServices;

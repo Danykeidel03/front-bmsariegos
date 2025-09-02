@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewsModal.css';
+import apiNotice from '../../services/apiNotice';
+import Swal from 'sweetalert2';
 
 const NewsModal = ({ isOpen, onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -7,6 +9,44 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
         descripcion: '',
         photo: null
     });
+    const [notices, setNotices] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchNotices();
+        }
+    }, [isOpen]);
+
+    const fetchNotices = async () => {
+        try {
+            const response = await apiNotice.getNotices();
+            setNotices(response.data.data || []);
+        } catch (error) {
+            console.error('Error fetching notices:', error);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede deshacer',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await apiNotice.deleteNotice(id);
+                await fetchNotices();
+                Swal.fire('Eliminado', 'La noticia ha sido eliminada', 'success');
+            } catch (error) {
+                Swal.fire('Error', 'No se pudo eliminar la noticia', 'error');
+            }
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -16,11 +56,12 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        await onSubmit(formData);
         setFormData({ titulo: '', descripcion: '', photo: null });
-        onClose();
+        setShowForm(false);
+        await fetchNotices();
     };
 
     if (!isOpen) return null;
@@ -32,7 +73,30 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
                     <h2>Gestión de Noticias</h2>
                     <button className="close-btn" onClick={onClose}>×</button>
                 </div>
-                <form className="news-form" onSubmit={handleSubmit}>
+                
+                {!showForm ? (
+                    <div className="news-list">
+                        <div className="list-header">
+                            <h3>Noticias Existentes</h3>
+                            <button className="add-btn" onClick={() => setShowForm(true)}>Añadir Nueva</button>
+                        </div>
+                        <div className="notices-grid">
+                            {notices.map((notice) => (
+                                <div key={notice._id} className="notice-item">
+                                    <h4>{notice.title}</h4>
+                                    <p>{notice.descripcion.substring(0, 100)}...</p>
+                                    <button 
+                                        className="delete-btn" 
+                                        onClick={() => handleDelete(notice._id)}
+                                    >
+                                        Eliminar
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <form className="news-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Título</label>
                         <input
@@ -63,15 +127,16 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
                             required
                         />
                     </div>
-                    <div className="form-actions">
-                        <button type="button" className="cancel-btn" onClick={onClose}>
-                            Cancelar
-                        </button>
-                        <button type="submit" className="submit-btn">
-                            Guardar
-                        </button>
-                    </div>
-                </form>
+                        <div className="form-actions">
+                            <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>
+                                Cancelar
+                            </button>
+                            <button type="submit" className="submit-btn">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );

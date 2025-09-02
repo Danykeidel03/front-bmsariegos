@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './BirthdayModal.css';
 import apiTeam from '../../services/apiTeam';
+import apiBirthday from '../../services/apiBirthday';
+import Swal from 'sweetalert2';
 
 const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -11,22 +13,51 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         photo: null
     });
     const [teams, setTeams] = useState([]);
+    const [players, setPlayers] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+    const [editingPlayer, setEditingPlayer] = useState(null);
 
     useEffect(() => {
-        const fetchTeams = async () => {
+        const fetchData = async () => {
             try {
-                const response = await apiTeam.getTeams();
-                setTeams(Array.isArray(response.data.data) ? response.data.data : []);
+                const [teamsResponse, playersResponse] = await Promise.all([
+                    apiTeam.getTeams(),
+                    apiBirthday.getBirthday()
+                ]);
+                setTeams(Array.isArray(teamsResponse.data.data) ? teamsResponse.data.data : []);
+                setPlayers(Array.isArray(playersResponse.data.data) ? playersResponse.data.data : []);
             } catch (error) {
-                console.error('Error fetching teams:', error);
+                console.error('Error fetching data:', error);
                 setTeams([]);
+                setPlayers([]);
             }
         };
         
         if (isOpen) {
-            fetchTeams();
+            fetchData();
         }
     }, [isOpen]);
+
+    const handleEdit = (player) => {
+        setEditingPlayer(player);
+        setFormData({
+            name: player.name,
+            dni: player.dni,
+            birthDay: player.birthDay.split('T')[0],
+            category: player.category,
+            photo: null
+        });
+        setShowForm(true);
+    };
+
+    const fetchPlayers = async () => {
+        try {
+            const response = await apiBirthday.getBirthday();
+            setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
+        } catch (error) {
+            console.error('Error fetching players:', error);
+        }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -43,17 +74,39 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit(formData);
-        setFormData({
-            name: '',
-            dni: '',
-            birthDay: '',
-            category: '',
-            photo: null
-        });
-        onClose();
+        
+        try {
+            if (editingPlayer) {
+                const data = new FormData();
+                data.append('name', formData.name);
+                data.append('dni', formData.dni);
+                data.append('birthDay', formData.birthDay);
+                data.append('category', formData.category);
+                if (formData.photo) {
+                    data.append('photo', formData.photo);
+                }
+                
+                await apiBirthday.updateBirthday(editingPlayer._id, data);
+                Swal.fire('Éxito', 'Jugador actualizado correctamente', 'success');
+            } else {
+                await onSubmit(formData);
+            }
+            
+            setFormData({
+                name: '',
+                dni: '',
+                birthDay: '',
+                category: '',
+                photo: null
+            });
+            setEditingPlayer(null);
+            setShowForm(false);
+            await fetchPlayers();
+        } catch (error) {
+            Swal.fire('Error', 'No se pudo guardar el jugador', 'error');
+        }
     };
 
     if (!isOpen) return null;
@@ -62,11 +115,34 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         <div className="modal-overlay">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h2>Añadir Cumpleaños</h2>
+                    <h2>Gestión de Jugadores</h2>
                     <button className="close-btn" onClick={onClose}>×</button>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="birthday-form">
+                {!showForm ? (
+                    <div className="players-list">
+                        <div className="list-header">
+                            <h3>Jugadores Existentes</h3>
+                            <button className="add-btn" onClick={() => setShowForm(true)}>Añadir Nuevo</button>
+                        </div>
+                        <div className="players-grid">
+                            {players.map((player) => (
+                                <div key={player._id} className="player-item">
+                                    <h4>{player.name}</h4>
+                                    <p>DNI: {player.dni}</p>
+                                    <p>Categoría: {player.category}</p>
+                                    <button 
+                                        className="edit-btn" 
+                                        onClick={() => handleEdit(player)}
+                                    >
+                                        Editar
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="birthday-form">
                     <div className="form-group">
                         <label htmlFor="name">Nombre:</label>
                         <input
@@ -133,15 +209,26 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         />
                     </div>
 
-                    <div className="form-actions">
-                        <button type="button" onClick={onClose} className="cancel-btn">
-                            Cancelar
-                        </button>
-                        <button type="submit" className="submit-btn">
-                            Guardar
-                        </button>
-                    </div>
-                </form>
+                        <div className="form-actions">
+                            <button type="button" onClick={() => {
+                                setShowForm(false);
+                                setEditingPlayer(null);
+                                setFormData({
+                                    name: '',
+                                    dni: '',
+                                    birthDay: '',
+                                    category: '',
+                                    photo: null
+                                });
+                            }} className="cancel-btn">
+                                Cancelar
+                            </button>
+                            <button type="submit" className="submit-btn">
+                                {editingPlayer ? 'Actualizar' : 'Guardar'}
+                            </button>
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );
