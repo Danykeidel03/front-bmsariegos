@@ -14,6 +14,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     });
     const [teams, setTeams] = useState([]);
     const [players, setPlayers] = useState([]);
+    const [filteredPlayers, setFilteredPlayers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [editingPlayer, setEditingPlayer] = useState(null);
 
@@ -25,7 +27,9 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                     apiBirthday.getAllPlayers()
                 ]);
                 setTeams(Array.isArray(teamsResponse.data.data) ? teamsResponse.data.data : []);
-                setPlayers(Array.isArray(playersResponse.data.data) ? playersResponse.data.data : []);
+                const playersData = Array.isArray(playersResponse.data.data) ? playersResponse.data.data : [];
+                setPlayers(playersData);
+                setFilteredPlayers(playersData);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setTeams([]);
@@ -53,10 +57,21 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     const fetchPlayers = async () => {
         try {
             const response = await apiBirthday.getAllPlayers();
-            setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
+            const playersData = Array.isArray(response.data.data) ? response.data.data : [];
+            setPlayers(playersData);
+            setFilteredPlayers(playersData);
         } catch (error) {
             console.error('Error fetching players:', error);
         }
+    };
+
+    const handleSearch = (e) => {
+        const term = e.target.value.toLowerCase();
+        setSearchTerm(term);
+        const filtered = players.filter(player => 
+            player.name.toLowerCase().includes(term)
+        );
+        setFilteredPlayers(filtered);
     };
 
     const handleInputChange = (e) => {
@@ -125,8 +140,17 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                             <h3>Jugadores Existentes</h3>
                             <button className="add-btn" onClick={() => setShowForm(true)}>Añadir Nuevo</button>
                         </div>
+                        <div className="search-container">
+                            <input
+                                type="text"
+                                placeholder="Buscar por nombre..."
+                                value={searchTerm}
+                                onChange={handleSearch}
+                                className="search-input"
+                            />
+                        </div>
                         <div className="players-grid">
-                            {players.map((player) => (
+                            {filteredPlayers.map((player) => (
                                 <div key={player._id} className="player-item">
                                     <h4>{player.name}</h4>
                                     <p>DNI: {player.dni}</p>
