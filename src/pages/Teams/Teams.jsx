@@ -16,23 +16,25 @@ const Teams = () => {
     const fetchTeams = async () => {
         try {
             const response = await apiTeam.getTeams();
-            setTeams(response.data);
+            setTeams(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error('Error fetching teams:', error);
+            setTeams([]);
         }
     };
 
     const fetchPlayers = async () => {
         try {
             const response = await apiBirthday.getBirthday();
-            setPlayers(response.data);
+            setPlayers(Array.isArray(response.data) ? response.data : []);
         } catch (error) {
             console.error('Error fetching players:', error);
+            setPlayers([]);
         }
     };
 
     const getPlayersByTeam = (teamId) => {
-        return players.filter(player => player.teamId === teamId);
+        return Array.isArray(players) ? players.filter(player => player.teamId === teamId) : [];
     };
 
     const toggleTeam = (teamId) => {
@@ -56,7 +58,7 @@ const Teams = () => {
         <div className="teams-container">
             <h1>Equipos</h1>
             <div className="teams-list">
-                {teams.map(team => (
+                {Array.isArray(teams) && teams.map(team => (
                     <div key={team.id} className="team-card">
                         <div 
                             className="team-header"
