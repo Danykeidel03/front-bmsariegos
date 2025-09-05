@@ -65,7 +65,7 @@ const Teams = () => {
                             onClick={() => toggleTeam(team._id)}
                         >
                             <img 
-                                src={team.image} 
+                                src="logo.png" 
                                 alt={team.name}
                                 className="team-logo"
                             />
