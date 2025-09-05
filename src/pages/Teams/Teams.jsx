@@ -16,7 +16,7 @@ const Teams = () => {
     const fetchTeams = async () => {
         try {
             const response = await apiTeam.getTeams();
-            setTeams(Array.isArray(response.data) ? response.data : []);
+            setTeams(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
             console.error('Error fetching teams:', error);
             setTeams([]);
@@ -25,16 +25,16 @@ const Teams = () => {
 
     const fetchPlayers = async () => {
         try {
-            const response = await apiBirthday.getBirthday();
-            setPlayers(Array.isArray(response.data) ? response.data : []);
+            const response = await apiBirthday.getAllPlayers();
+            setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
             console.error('Error fetching players:', error);
             setPlayers([]);
         }
     };
 
-    const getPlayersByTeam = (teamId) => {
-        return Array.isArray(players) ? players.filter(player => player.teamId === teamId) : [];
+    const getPlayersByTeam = (teamName) => {
+        return Array.isArray(players) ? players.filter(player => player.category === teamName) : [];
     };
 
     const toggleTeam = (teamId) => {
@@ -59,10 +59,10 @@ const Teams = () => {
             <h1>Equipos</h1>
             <div className="teams-list">
                 {Array.isArray(teams) && teams.map(team => (
-                    <div key={team.id} className="team-card">
+                    <div key={team._id} className="team-card">
                         <div 
                             className="team-header"
-                            onClick={() => toggleTeam(team.id)}
+                            onClick={() => toggleTeam(team._id)}
                         >
                             <img 
                                 src={team.image} 
@@ -70,23 +70,23 @@ const Teams = () => {
                                 className="team-logo"
                             />
                             <h2>{team.name}</h2>
-                            <span className={`arrow ${expandedTeam === team.id ? 'expanded' : ''}`}>
+                            <span className={`arrow ${expandedTeam === team._id ? 'expanded' : ''}`}>
                                 ▼
                             </span>
                         </div>
                         
-                        {expandedTeam === team.id && (
+                        {expandedTeam === team._id && (
                             <div className="players-list">
-                                {getPlayersByTeam(team.id).map(player => (
-                                    <div key={player.id} className="player-card">
+                                {getPlayersByTeam(team.name).map(player => (
+                                    <div key={player._id} className="player-card">
                                         <img 
-                                            src={player.image} 
+                                            src={player.photoName} 
                                             alt={player.name}
                                             className="player-photo"
                                         />
                                         <div className="player-info">
                                             <h3>{player.name}</h3>
-                                            <p>{calculateAge(player.birthDate)} años</p>
+                                            <p>{calculateAge(player.birthDay)} años</p>
                                         </div>
                                     </div>
                                 ))}
