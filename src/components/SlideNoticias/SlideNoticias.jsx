@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import './SlideNoticias.css';
 import apiNotice from "../../services/apiNotice";
 
@@ -44,7 +45,7 @@ export default function SlideNoticias() {
                     ))
                 )}
             </div>
-            {modal && (
+            {modal && createPortal(
                 <div onClick={() => setModal(null)} className="modalNotice">
                     <div className="overlayModal" />
                     <div onClick={(e) => e.stopPropagation()} className="infoNotice">
@@ -57,7 +58,8 @@ export default function SlideNoticias() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );
