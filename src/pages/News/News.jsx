@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './News.css';
 import apiNotice from '../../services/apiNotice';
 import SEO from '../../components/SEO/SEO';
@@ -69,7 +70,7 @@ const News = () => {
                     )}
                 </div>
 
-                {modal && (
+                {modal && createPortal(
                     <div onClick={() => setModal(null)} className="modal-notice">
                         <div className="overlay-modal" />
                         <div onClick={(e) => e.stopPropagation()} className="info-notice">
@@ -82,7 +83,8 @@ const News = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>,
+                    document.body
                 )}
             </div>
         </>
