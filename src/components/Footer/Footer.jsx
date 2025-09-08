@@ -30,9 +30,18 @@ const Footer = forwardRef(() => {
                     <p>+34 666 666 666</p>
                 </div>
                 <div className="rrss-logo">
-                    <img src="instagram.png" alt="Instagram" className="footer__icon" />
-                    <img src="tiktok.png" alt="TikTok" className="footer__icon" />
-                    <img src="youtube.png" alt="YouTube" className="footer__icon" />
+                    <a href="https://www.instagram.com/balonmanosariegos?igsh=MXJveWU0ZnljcTduYw==" target="_blank" rel="noopener noreferrer" className="no-underline">
+                        <img src="instagram.png" alt="Instagram" className="footer__icon" />
+                    </a>
+                    <a href="https://www.tiktok.com/@bmsariegos?_t=ZN-8zYVE2axXko&_r=1" target="_blank" rel="noopener noreferrer" className="no-underline">
+                        <img src="tiktok.png" alt="TikTok" className="footer__icon" />
+                    </a>
+                    <a href="https://youtube.com/@balonmanosariegos3521?si=IIi08w8o6mOhvQio" target="_blank" rel="noopener noreferrer" className="no-underline">
+                        <img src="youtube.png" alt="YouTube" className="footer__icon" />
+                    </a>
+                    <a href="https://x.com/bsariegos?s=21" target="_blank" rel="noopener noreferrer" className="no-underline">
+                        <img src="x.png" alt="X (Twitter)" className="footer__icon" />
+                    </a>
                 </div>
             </div>
         </footer>
