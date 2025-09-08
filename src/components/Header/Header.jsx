@@ -25,7 +25,7 @@ const Header = forwardRef(() => {
       </button>
       <div className={`menuOptions ${isMenuOpen ? 'active' : ''}`}>
         <ul>
-          <li>Socios</li>
+          <li><a href='https://docs.google.com/forms/d/e/1FAIpQLSfl0oxDg7twPZwtHJjXVFvkbbEabbiX0ISSD-j5fnmxwAMSnQ/viewform?pli=1'>Socios</a></li>
           <li>Entradas</li>
           <li><a href="/noticias">Noticias</a></li>
           <li><a href="/equipos">Equipos</a></li>
