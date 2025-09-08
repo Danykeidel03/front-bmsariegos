@@ -46,6 +46,17 @@
     gap: 10px;
 }
 
+.footer__list a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer__list a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
 .rrss-footer {
     display: flex;
     flex-direction: column;

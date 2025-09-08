@@ -17,10 +17,10 @@ const Footer = forwardRef(() => {
             <div className="footer__section info-footer">
                 <h3 className="footer__title">Información Adicional</h3>
                 <ul className="footer__list">
-                    <li>Contacto</li>
+                    <li><a href="/contacto">Contacto</a></li>
                     <li>Sobre Nosotros</li>
-                    <li>Política de Privacidad</li>
-                    <li>Términos y Condiciones</li>
+                    <li><a href="/politica-privacidad">Política de Privacidad</a></li>
+                    <li><a href="/terminos-condiciones">Términos y Condiciones</a></li>
                 </ul>
             </div>
 

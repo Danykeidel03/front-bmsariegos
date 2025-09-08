@@ -1,0 +1,57 @@
+.terms-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+.terms-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.terms-header h1 {
+    color: #119bc6;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.terms-content section {
+    margin-bottom: 30px;
+}
+
+.terms-content h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #119bc6;
+    padding-bottom: 5px;
+}
+
+.terms-content p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.terms-content ul {
+    color: #666;
+    padding-left: 20px;
+}
+
+.terms-content li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+    .terms-page {
+        padding: 20px 15px;
+    }
+    
+    .terms-header h1 {
+        font-size: 2rem;
+    }
+    
+    .terms-content h2 {
+        font-size: 1.3rem;
+    }
+}
