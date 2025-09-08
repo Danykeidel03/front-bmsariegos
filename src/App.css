@@ -25,6 +25,32 @@ span {
     font-family: inherit;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    transform: translateY(-1px);
+}
+
+a:not(.no-underline)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+a:not(.no-underline):hover::after {
+    width: 100%;
+}
+
 .main-content {
     min-height: 100vh;
     contain: layout;

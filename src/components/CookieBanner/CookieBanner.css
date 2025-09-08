@@ -27,12 +27,33 @@
 
 .cookie-content a {
     color: #fff;
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.cookie-content a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .cookie-content a:hover {
-    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.cookie-content a:hover::after {
+    width: 100%;
 }
 
 .cookie-accept {
