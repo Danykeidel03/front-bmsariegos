@@ -23,10 +23,6 @@
   text-decoration: none;
 }
 
-.header .menuOptions ul li a:hover {
-  text-decoration: underline;
-}
-
 .logoTeam img {
   width: 75px;
   height: auto;
