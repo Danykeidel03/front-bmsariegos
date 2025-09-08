@@ -27,7 +27,8 @@ const Footer = forwardRef(() => {
             <div className="footer__section rrss-footer">
                 <div className="info-club">
                     <p>Sariegos, León</p>
-                    <p>+34 666 666 666</p>
+                    <p>+34 608 10 83 20</p>
+                    <p>+34 695 04 87 96</p>
                 </div>
                 <div className="rrss-logo">
                     <a href="https://www.instagram.com/balonmanosariegos?igsh=MXJveWU0ZnljcTduYw==" target="_blank" rel="noopener noreferrer" className="no-underline">
