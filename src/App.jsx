@@ -9,6 +9,7 @@ import Terms from './pages/Terms/Terms';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import CookieBanner from './components/CookieBanner/CookieBanner';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 function AppRoutes() {
@@ -37,6 +38,7 @@ function AppContent() {
       <AppRoutes />
     </div>
     {!isAdminPage && <Footer/>}
+    <CookieBanner />
     </>
   );
 }
