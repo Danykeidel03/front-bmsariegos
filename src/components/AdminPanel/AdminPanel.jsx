@@ -6,6 +6,7 @@ import SponsorModal from '../SponsorModal/SponsorModal';
 import RivalModal from '../RivalModal/RivalModal';
 import TeamModal from '../TeamModal/TeamModal';
 import MatchModal from '../MatchModal/MatchModal';
+import HeaderImageModal from '../HeaderImageModal/HeaderImageModal';
 import apiNotice from '../../services/apiNotice';
 import apiBirthday from '../../services/apiBirthday';
 import apiSponsor from '../../services/apiSponsor';
@@ -19,6 +20,7 @@ const AdminPanel = ({ onLogout }) => {
     const [isRivalModalOpen, setIsRivalModalOpen] = useState(false);
     const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
     const [isMatchModalOpen, setIsMatchModalOpen] = useState(false);
+    const [isHeaderImageModalOpen, setIsHeaderImageModalOpen] = useState(false);
 
     const handleNewsSubmit = async (formData) => {
         const data = new FormData();
@@ -161,6 +163,12 @@ const AdminPanel = ({ onLogout }) => {
                     </div>
                     
                     <div className="admin-card">
+                        <h3>Imágenes del Slider</h3>
+                        <p>Gestionar imágenes de la cabecera principal</p>
+                        <button className="card-btn" onClick={() => setIsHeaderImageModalOpen(true)}>Gestionar</button>
+                    </div>
+                    
+                    <div className="admin-card">
                         <h3>Configuración del Sitio</h3>
                         <p>Ajustes generales y configuración</p>
                         <button className="card-btn">Configurar</button>
@@ -200,6 +208,11 @@ const AdminPanel = ({ onLogout }) => {
             <MatchModal 
                 isOpen={isMatchModalOpen}
                 onClose={() => setIsMatchModalOpen(false)}
+            />
+            
+            <HeaderImageModal 
+                isOpen={isHeaderImageModalOpen}
+                onClose={() => setIsHeaderImageModalOpen(false)}
             />
         </div>
     );

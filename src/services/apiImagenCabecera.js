@@ -12,14 +12,13 @@ const api = axios.create({
 })
 
 const objServices = {
-    createNotice: (noticeData) => api.post('/notice/', noticeData, {
+    createImagenCabecera: (imagenData) => api.post('/imagenes-cabecera/', imagenData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     }),
-    getNotices: () => api.get('/notice'),
-    getAllNotices: () => api.get('/notice/getAll'),
-    deleteNotice: (id) => api.delete(`/notice/${id}`)
+    getImagenesCabecera: () => api.get('/imagenes-cabecera/'),
+    deleteImagenCabecera: (id) => api.delete(`/imagenes-cabecera/${id}`)
 }
 
 export default objServices;

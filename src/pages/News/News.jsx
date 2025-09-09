@@ -22,7 +22,7 @@ const News = () => {
     useEffect(() => {
         const fetchNoticias = async () => {
             try {
-                const data = await apiNotice.getNotices();
+                const data = await apiNotice.getAllNotices();
                 setNoticias(data.data.data);
             } catch (error) {
                 console.error('Error al cargar noticias:', error);
