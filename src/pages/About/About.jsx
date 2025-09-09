@@ -69,6 +69,7 @@ const About = () => {
               <h3>Categorías Masculinas y Femeninas</h3>
               <div className="category-grid">
                 <div className="category-item">
+                  <OptimizedImage src="cadete-masculino-segundo-año.webp" alt="Cadete Masculino" className="category-image" />
                   <h4>Infantil</h4>
                   <p>Nacid@s 2013-2012</p>
                   <div className="training-info">
@@ -77,10 +78,12 @@ const About = () => {
                   </div>
                 </div>
                 <div className="category-item">
+                  <OptimizedImage src="Copia-de-cadete-femenino.webp" alt="Cadete Femenino" className="category-image" />
                   <h4>Cadete</h4>
                   <p>Nacid@s 2011-2010</p>
                 </div>
                 <div className="category-item">
+                  <OptimizedImage src="foto-de-familia.webp" alt="Foto de Familia" className="category-image" />
                   <h4>Juvenil</h4>
                   <p>Nacid@s 2009-2008</p>
                 </div>
@@ -89,29 +92,36 @@ const About = () => {
                   <p>Nacid@s 2008 en adelante</p>
                 </div>
               </div>
-              <p className="training-start"><strong>Comienzo de entrenamientos:</strong> Agosto</p>
+              <div className="training-start">Comienzo de entrenamientos: Agosto</div>
             </div>
 
             <div className="categories-section">
               <h3>Categorías Mixtas</h3>
               <div className="category-grid">
                 <div className="category-item">
+                  <OptimizedImage src="alevin-_1.webp" alt="Alevines" className="category-image" />
                   <h4>Alevines</h4>
                   <p>Nacidos 2014-2015</p>
-                  <p><strong>Entrenamientos:</strong> Martes y Jueves 16:00-17:00</p>
+                  <div className="training-info">
+                    <p>Entrenamientos: Martes y Jueves 16:00-17:00</p>
+                  </div>
                 </div>
                 <div className="category-item">
                   <h4>Benjamines</h4>
                   <p>Nacidos 2016-2017</p>
-                  <p><strong>Entrenamientos:</strong> Lunes y Miércoles 16:00-17:00</p>
+                  <div className="training-info">
+                    <p>Entrenamientos: Lunes y Miércoles 16:00-17:00</p>
+                  </div>
                 </div>
                 <div className="category-item">
                   <h4>Prebenjamines</h4>
                   <p>Nacidos 2018-2019</p>
-                  <p><strong>Entrenamientos:</strong> Lunes y Miércoles 16:00-17:00</p>
+                  <div className="training-info">
+                    <p>Entrenamientos: Lunes y Miércoles 16:00-17:00</p>
+                  </div>
                 </div>
               </div>
-              <p className="training-start"><strong>Comienzo de entrenamientos:</strong> Octubre</p>
+              <div className="training-start">Comienzo de entrenamientos: Octubre</div>
             </div>
           </section>
 
