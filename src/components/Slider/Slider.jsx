@@ -16,9 +16,14 @@ const MySlider = () => {
                 const response = await apiImagenCabecera.getImagenesCabecera();
                 console.log('getImagenesCabecera response:', response);
                 console.log('response.data:', response.data);
-                setImagenes(response.data.data || []);
+                console.log('response.data.data:', response.data.data);
+                console.log('Array length:', response.data.data?.length);
+                const imagenesData = response.data.data || response.data || [];
+                console.log('imagenesData:', imagenesData);
+                setImagenes(imagenesData);
             } catch (error) {
                 console.error('Error al cargar imágenes del slider:', error);
+                console.error('Error details:', error.response?.data);
             } finally {
                 setLoading(false);
             }
@@ -29,6 +34,9 @@ const MySlider = () => {
     if (loading) {
         return <div className="slider-loading">Cargando...</div>;
     }
+
+    console.log('Final imagenes state:', imagenes);
+    console.log('imagenes.length:', imagenes.length);
 
     if (imagenes.length === 0) {
         return (
