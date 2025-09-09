@@ -13,17 +13,22 @@ const MySlider = () => {
     useEffect(() => {
         const fetchImagenes = async () => {
             try {
+                console.log('Fetching imagenes cabecera...');
                 const response = await apiImagenCabecera.getImagenesCabecera();
-                console.log('getImagenesCabecera response:', response);
+                console.log('Full response:', response);
                 console.log('response.data:', response.data);
                 console.log('response.data.data:', response.data.data);
-                console.log('Array length:', response.data.data?.length);
                 const imagenesData = response.data.data || response.data || [];
                 console.log('imagenesData:', imagenesData);
+                console.log('imagenesData length:', imagenesData.length);
+                if (imagenesData.length > 0) {
+                    console.log('First image:', imagenesData[0]);
+                    console.log('Image properties:', Object.keys(imagenesData[0]));
+                }
                 setImagenes(imagenesData);
             } catch (error) {
                 console.error('Error al cargar imágenes del slider:', error);
-                console.error('Error details:', error.response?.data);
+                console.error('Error response:', error.response);
             } finally {
                 setLoading(false);
             }
@@ -35,16 +40,19 @@ const MySlider = () => {
         return <div className="slider-loading">Cargando...</div>;
     }
 
-    console.log('Final imagenes state:', imagenes);
+    console.log('Rendering with imagenes:', imagenes);
     console.log('imagenes.length:', imagenes.length);
 
     if (imagenes.length === 0) {
+        console.log('No images found, showing fallback');
         return (
             <div className="slider-fallback">
                 <img src="/slider1.webp" alt="Slider" className='imgSlider' />
             </div>
         );
     }
+
+    console.log('Rendering swiper with images');
 
     return (
         <Swiper
