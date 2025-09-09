@@ -60,14 +60,14 @@ const MySlider = () => {
                     {imagen.urlImagen ? (
                         <a href={imagen.urlImagen} target="_blank" rel="noopener noreferrer">
                             <img 
-                                src={imagen.photoName} 
+                                src={imagen.imgCabecera} 
                                 alt={`Slide ${index + 1}`} 
                                 className='imgSlider'
                             />
                         </a>
                     ) : (
                         <img 
-                            src={imagen.photoName} 
+                            src={imagen.imgCabecera} 
                             alt={`Slide ${index + 1}`} 
                             className='imgSlider'
                         />
