@@ -98,24 +98,19 @@ const About = () => {
                 <div className="category-item">
                   <h4>Alevines</h4>
                   <p>Nacidos 2014-2015</p>
-                  <div className="training-info">
-                    <p>Entrenamientos: Martes y Jueves 16:00-17:00</p>
-                  </div>
                 </div>
                 <div className="category-item">
                   <h4>Benjamines</h4>
                   <p>Nacidos 2016-2017</p>
-                  <div className="training-info">
-                    <p>Entrenamientos: Lunes y Miércoles 16:00-17:00</p>
-                  </div>
                 </div>
                 <div className="category-item">
                   <h4>Prebenjamines</h4>
                   <p>Nacidos 2018-2019</p>
-                  <div className="training-info">
-                    <p>Entrenamientos: Lunes y Miércoles 16:00-17:00</p>
-                  </div>
                 </div>
+              </div>
+              <div className="training-info">
+                <p><strong>Alevines:</strong> Martes y Jueves 16:00-17:00</p>
+                <p><strong>Benjamines y Prebenjamines:</strong> Lunes y Miércoles 16:00-17:00</p>
               </div>
               <div className="training-start">Comienzo de entrenamientos: Octubre</div>
             </div>
