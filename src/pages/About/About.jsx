@@ -20,7 +20,7 @@ const About = () => {
             className="about-hero-image"
           />
           <div className="about-hero-content">
-            <h1>💙🤾♂️ ¡VEN A VIVIR EL BALONMANO CON EL BM SARIEGOS! 🤾♀️🤍</h1>
+            <h1>💙🤾 ¡VEN A VIVIR EL BALONMANO CON EL BM SARIEGOS! 🤾🤍</h1>
           </div>
         </div>
 
@@ -86,8 +86,9 @@ const About = () => {
                 </div>
               </div>
               <div className="training-info">
-                <p><strong>Masculino:</strong> Martes 17:00-18:15 (Sariegos) y Viernes 16:00-18:00 (Villaobispo)</p>
-                <p><strong>Femenino:</strong> Lunes 18:10-19:20 y Miércoles 17:00-18:10 (Sariegos)</p>
+                <p><strong>Horarios Infantil - Masculino:</strong> Martes 17:00-18:15 (Sariegos) y Viernes 16:00-18:00 (Villaobispo)</p>
+                <p><strong>Horarios Infantil - Femenino:</strong> Lunes 18:10-19:20 y Miércoles 17:00-18:10 (Sariegos)</p>
+                <p><em>Para horarios de otras categorías, contáctanos</em></p>
               </div>
               <div className="training-start">Comienzo de entrenamientos: Agosto</div>
             </div>
