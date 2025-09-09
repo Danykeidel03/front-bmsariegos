@@ -160,16 +160,18 @@
 }
 
 .training-info {
-  border-top: 1px solid #e5e7eb;
-  padding: 15px 20px 20px;
   background: #f8fafc;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+  border-left: 4px solid #1e40af;
 }
 
 .training-info p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #374151;
-  margin: 5px 0;
-  line-height: 1.4;
+  margin: 8px 0;
+  line-height: 1.5;
 }
 
 .training-start {

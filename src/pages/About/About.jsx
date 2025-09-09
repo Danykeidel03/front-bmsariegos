@@ -71,10 +71,6 @@ const About = () => {
                 <div className="category-item">
                   <h4>Infantil</h4>
                   <p>Nacid@s 2013-2012</p>
-                  <div className="training-info">
-                    <p><strong>Masculino:</strong> Martes 17:00-18:15 (Sariegos) y Viernes 16:00-18:00 (Villaobispo)</p>
-                    <p><strong>Femenino:</strong> Lunes 18:10-19:20 y Miércoles 17:00-18:10 (Sariegos)</p>
-                  </div>
                 </div>
                 <div className="category-item">
                   <h4>Cadete</h4>
@@ -88,6 +84,10 @@ const About = () => {
                   <h4>Senior</h4>
                   <p>Nacid@s 2008 en adelante</p>
                 </div>
+              </div>
+              <div className="training-info">
+                <p><strong>Masculino:</strong> Martes 17:00-18:15 (Sariegos) y Viernes 16:00-18:00 (Villaobispo)</p>
+                <p><strong>Femenino:</strong> Lunes 18:10-19:20 y Miércoles 17:00-18:10 (Sariegos)</p>
               </div>
               <div className="training-start">Comienzo de entrenamientos: Agosto</div>
             </div>
