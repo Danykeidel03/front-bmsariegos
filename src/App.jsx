@@ -4,6 +4,7 @@ import Contact from './pages/Contact/Contact';
 import Admin from './pages/Admin/Admin';
 import News from './pages/News/News';
 import Teams from './pages/Teams/Teams';
+import About from './pages/About/About';
 import Privacy from './pages/Privacy/Privacy';
 import Terms from './pages/Terms/Terms';
 import NotFound from './pages/NotFound/NotFound';
@@ -19,6 +20,7 @@ function AppRoutes() {
       <Route path="/contacto" element={<Contact />} />
       <Route path="/noticias" element={<News />} />
       <Route path="/equipos" element={<Teams />} />
+      <Route path="/quienes-somos" element={<About />} />
       <Route path="/politica-privacidad" element={<Privacy />} />
       <Route path="/terminos-condiciones" element={<Terms />} />
       <Route path="/adminBalonmano" element={<Admin />} />

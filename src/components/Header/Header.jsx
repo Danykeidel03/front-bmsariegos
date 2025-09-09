@@ -27,6 +27,7 @@ const Header = forwardRef(() => {
         <ul>
           <li><a href='https://docs.google.com/forms/d/e/1FAIpQLSfl0oxDg7twPZwtHJjXVFvkbbEabbiX0ISSD-j5fnmxwAMSnQ/viewform?pli=1'>Socios</a></li>
           <li>Entradas</li>
+          <li><a href="/quienes-somos">Quiénes Somos</a></li>
           <li><a href="/noticias">Noticias</a></li>
           <li><a href="/equipos">Equipos</a></li>
           <li><a href="/contacto">Contacto</a></li>
