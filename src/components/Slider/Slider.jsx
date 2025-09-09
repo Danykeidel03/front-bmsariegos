@@ -4,7 +4,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './Slider.css';
-import apiImagenCabecera from 'src/services/apiImagenCabecera';
+import apiImagenCabecera from '../../services/apiImagenCabecera';
 
 const MySlider = () => {
     const [imagenes, setImagenes] = useState([]);

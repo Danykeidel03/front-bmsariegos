@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './HeaderImageModal.css';
-import apiImagenCabecera from 'src/services/apiImagenCabecera';
+import apiImagenCabecera from '../../services/apiImagenCabecera';
 import Swal from 'sweetalert2';
 
 const HeaderImageModal = ({ isOpen, onClose }) => {
