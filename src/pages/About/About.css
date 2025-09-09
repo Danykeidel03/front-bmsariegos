@@ -92,63 +92,58 @@
 }
 
 .categories-section {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .categories-section h3 {
   color: #1e40af;
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-.category-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 15px;
+.category-list {
+  display: block;
 }
 
 .category-item {
-  background: #f8fafc;
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #1e40af;
-  flex: 1;
-  min-width: 200px;
+  margin-bottom: 20px;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
 .category-item h4 {
   color: #1e40af;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  display: inline;
 }
 
 .category-item p {
-  margin: 5px 0;
+  display: inline;
+  margin: 0;
   color: #374151;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .training-info {
-  margin-top: 10px;
+  margin-top: 8px;
+  margin-left: 20px;
 }
 
 .training-info p {
-  font-size: 0.85rem;
-  margin: 3px 0;
+  font-size: 0.9rem;
+  margin: 2px 0;
   color: #6b7280;
 }
 
 .training-start {
-  font-size: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
   color: #1e40af;
-  background: #e0f2fe;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 15px;
-  font-weight: 500;
+  margin-top: 20px;
+  font-weight: 600;
 }
 
 .about-cta {
@@ -182,12 +177,8 @@
     grid-template-columns: 1fr;
   }
   
-  .category-grid {
-    flex-direction: column;
-  }
-  
-  .category-item {
-    min-width: auto;
+  .training-info {
+    margin-left: 10px;
   }
   
   .categories-section {
