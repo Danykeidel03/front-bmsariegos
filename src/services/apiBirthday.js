@@ -15,7 +15,8 @@ const objServices = {
     getBirthday: () => api.get('/birthday'),
     getAllPlayers: () => api.get('/birthday/getAllbirthday'),
     createBirthday: (formData) => api.post('/birthday', formData),
-    updateBirthday: (id, formData) => api.put(`/birthday/${id}`, formData)
+    updateBirthday: (id, formData) => api.put(`/birthday/${id}`, formData),
+    deleteBirthday: (id) => api.delete(`/birthday/${id}`)
 }
 
 export default objServices;
