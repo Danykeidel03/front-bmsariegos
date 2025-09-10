@@ -112,15 +112,18 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
                     ) : (
                         <div className="images-grid">
                             {imagenes.map((imagen) => (
-                                <div key={imagen.id} className="image-item">
-                                    <img src={imagen.photoName} alt="Slider" />
+                                <div key={imagen._id} className="image-item">
+                                    <img 
+                                        src={imagen.imgCabecera} 
+                                        alt="Slider" 
+                                    />
                                     <div className="image-actions">
                                         {imagen.urlImagen && (
                                             <a href={imagen.urlImagen} target="_blank" rel="noopener noreferrer">
                                                 Ver enlace
                                             </a>
                                         )}
-                                        <button onClick={() => handleDelete(imagen.id)}>Eliminar</button>
+                                        <button onClick={() => handleDelete(imagen._id)}>Eliminar</button>
                                     </div>
                                 </div>
                             ))}

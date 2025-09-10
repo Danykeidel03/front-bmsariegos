@@ -9,8 +9,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         name: '',
         dni: '',
         birthDay: '',
-        category: '',
-        photo: null
+        category: ''
     });
     const [teams, setTeams] = useState([]);
     const [players, setPlayers] = useState([]);
@@ -48,8 +47,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             name: player.name,
             dni: player.dni,
             birthDay: player.birthDay.split('T')[0],
-            category: player.category,
-            photo: null
+            category: player.category
         });
         setShowForm(true);
     };
@@ -82,11 +80,27 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         }));
     };
 
-    const handleFileChange = (e) => {
-        setFormData(prev => ({
-            ...prev,
-            photo: e.target.files[0]
-        }));
+
+
+    const handleDelete = async (playerId) => {
+        const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede deshacer',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await apiBirthday.deleteBirthday(playerId);
+                Swal.fire('Eliminado', 'Jugador eliminado correctamente', 'success');
+                await fetchPlayers();
+            } catch (error) {
+                Swal.fire('Error', 'No se pudo eliminar el jugador', 'error');
+            }
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -94,14 +108,12 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         
         try {
             if (editingPlayer) {
-                const data = new FormData();
-                data.append('name', formData.name);
-                data.append('dni', formData.dni);
-                data.append('birthDay', formData.birthDay);
-                data.append('category', formData.category);
-                if (formData.photo) {
-                    data.append('photo', formData.photo);
-                }
+                const data = {
+                    name: formData.name,
+                    dni: formData.dni,
+                    birthDay: formData.birthDay,
+                    category: formData.category
+                };
                 
                 await apiBirthday.updateBirthday(editingPlayer._id, data);
                 Swal.fire('Éxito', 'Jugador actualizado correctamente', 'success');
@@ -113,8 +125,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                 name: '',
                 dni: '',
                 birthDay: '',
-                category: '',
-                photo: null
+                category: ''
             });
             setEditingPlayer(null);
             setShowForm(false);
@@ -152,17 +163,24 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         <div className="players-grid">
                             {filteredPlayers.map((player) => (
                                 <div key={player._id} className="player-item">
-                                    <img src={player.photoName} alt={player.name} className="player-photo" />
                                     <div className="player-info">
                                         <h4>{player.name}</h4>
                                         <p>DNI: {player.dni}</p>
                                         <p>Categoría: {player.category}</p>
-                                        <button 
-                                            className="edit-btn" 
-                                            onClick={() => handleEdit(player)}
-                                        >
-                                            Editar
-                                        </button>
+                                        <div className="player-actions">
+                                            <button 
+                                                className="edit-btn" 
+                                                onClick={() => handleEdit(player)}
+                                            >
+                                                Editar
+                                            </button>
+                                            <button 
+                                                className="delete-btn" 
+                                                onClick={() => handleDelete(player._id)}
+                                            >
+                                                Eliminar
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -224,17 +242,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         </select>
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="photo">Foto:</label>
-                        <input
-                            type="file"
-                            id="photo"
-                            name="photo"
-                            onChange={handleFileChange}
-                            accept="image/*"
-                            required
-                        />
-                    </div>
+
 
                         <div className="form-actions">
                             <button type="button" onClick={() => {
@@ -244,8 +252,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                                     name: '',
                                     dni: '',
                                     birthDay: '',
-                                    category: '',
-                                    photo: null
+                                    category: ''
                                 });
                             }} className="cancel-btn">
                                 Cancelar
