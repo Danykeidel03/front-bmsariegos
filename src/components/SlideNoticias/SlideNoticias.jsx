@@ -45,7 +45,7 @@ export default function SlideNoticias() {
                             alt={noticia.title}
                             width={356}
                             height={200}
-                            sizes="(max-width: 768px) 100vw, 356px"
+                            sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 356px"
                             quality="70"
                             crop="fill"
                         />

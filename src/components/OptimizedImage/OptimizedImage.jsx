@@ -31,7 +31,13 @@ const OptimizedImage = ({
   const generateSrcSet = (originalSrc) => {
     if (!width || !originalSrc) return '';
     
-    const widths = [width, width * 2, width * 3].filter(w => w <= 2048);
+    const mobileWidth = Math.min(width, 480);
+    const tabletWidth = Math.min(width, 768);
+    const desktopWidth = width;
+    
+    const widths = [mobileWidth, tabletWidth, desktopWidth, desktopWidth * 2]
+      .filter((w, i, arr) => arr.indexOf(w) === i && w <= 2048);
+    
     return widths.map(w => `${getOptimizedSrc(originalSrc, w)} ${w}w`).join(', ');
   };
 
