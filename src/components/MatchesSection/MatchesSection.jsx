@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import OptimizedImage from '../OptimizedImage/OptimizedImage';
 import './MatchesSection.css';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
@@ -62,7 +63,7 @@ const MatchesSection = () => {
                             
                             <div className="match-teams">
                                 <div className="team">
-                                    <img src="/logo.png" alt="BM Sariegos" className="team-logo" />
+                                    <OptimizedImage src="/logo.png" alt="BM Sariegos" className="team-logo" width={25} height={30} />
                                     <span>Sariegos</span>
                                 </div>
                                 
@@ -70,7 +71,7 @@ const MatchesSection = () => {
                                 
                                 <div className="team">
                                     {match.rivalTeam?.photoName ? (
-                                        <img src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo" />
+                                        <OptimizedImage src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo" width={25} height={30} />
                                     ) : (
                                         <div className="no-logo">?</div>
                                     )}

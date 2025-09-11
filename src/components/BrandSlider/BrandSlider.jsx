@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import SEOLink from '../SEOLink/SEOLink';
 import './BrandSlider.css';
 import apiSponsor from '../../services/apiSponsor';
 
@@ -40,9 +41,16 @@ const BrandSlider = () => {
         <div className="logo-slider">
             <div className="logos-slide">
                 {sponsors.map((sponsor, index) => (
-                    <a key={index} className='logoLink'>
+                    <SEOLink 
+                        key={index} 
+                        className='logoLink'
+                        href={sponsor.website}
+                        external={!!sponsor.website}
+                        ariaLabel={`Visitar sitio web de ${sponsor.name}`}
+                    >
                         <img src={sponsor.photoName} alt={sponsor.name} loading="lazy" />
-                    </a>
+                        <span className="sr-only">{sponsor.name}</span>
+                    </SEOLink>
                 ))}
             </div>
         </div>

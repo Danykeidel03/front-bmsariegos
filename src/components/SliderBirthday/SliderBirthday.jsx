@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import CloudinaryImage from '../CloudinaryImage/CloudinaryImage';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -58,7 +59,14 @@ const SliderBirthday = () => {
                                 </div>
                             </div>
                             <div className='imgBirth'>
-                                <img src={`${day.photoName}`} alt={day.name} />
+                                <CloudinaryImage 
+                                    src={day.photoName} 
+                                    alt={day.name}
+                                    width={120}
+                                    height={180}
+                                    quality="75"
+                                    crop="fill"
+                                />
                             </div>
                         </div>
                     </SwiperSlide>

@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react';
+import OptimizedImage from '../OptimizedImage/OptimizedImage';
 import './Header.css';
 
 const Header = forwardRef(() => {
@@ -8,12 +9,14 @@ const Header = forwardRef(() => {
     <div className="header">
       <div className='logoTeam'>
         <a href="/">
-          <img
+          <OptimizedImage
             src="logo.png"
-            alt="Logo"
+            alt="Logo BM Sariegos"
             className="header__logo"
-            width="48px"
-            height="48px"
+            width={140}
+            height={140}
+            priority={true}
+            quality={85}
           />
         </a>
       </div>
@@ -26,7 +29,7 @@ const Header = forwardRef(() => {
       <div className={`menuOptions ${isMenuOpen ? 'active' : ''}`}>
         <ul>
           <li><a href='https://docs.google.com/forms/d/e/1FAIpQLSfl0oxDg7twPZwtHJjXVFvkbbEabbiX0ISSD-j5fnmxwAMSnQ/viewform?pli=1'>Socios</a></li>
-          <li>Entradas</li>
+          <li><a href="#entradas" aria-label="Información sobre entradas">Entradas</a></li>
           <li><a href="/quienes-somos">Quiénes Somos</a></li>
           <li><a href="/noticias">Noticias</a></li>
           <li><a href="/equipos">Equipos</a></li>

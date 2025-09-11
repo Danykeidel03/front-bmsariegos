@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import CloudinaryImage from '../CloudinaryImage/CloudinaryImage';
 import './SlideNoticias.css';
 import apiNotice from "../../services/apiNotice";
 
@@ -39,7 +40,15 @@ export default function SlideNoticias() {
                 ) : (
                     noticias.map((noticia, idx) => (
                     <div className="noticeCard" key={idx} onClick={() => handleNoticiaClick(noticia)}>
-                        <img src={noticia.photoName} alt={noticia.title} />
+                        <CloudinaryImage 
+                            src={noticia.photoName} 
+                            alt={noticia.title}
+                            width={356}
+                            height={200}
+                            sizes="(max-width: 768px) 100vw, 356px"
+                            quality="70"
+                            crop="fill"
+                        />
                         <h3>{noticia.title}</h3>
                     </div>
                     ))
@@ -51,7 +60,15 @@ export default function SlideNoticias() {
                     <div onClick={(e) => e.stopPropagation()} className="infoNotice">
                         <div className="infoNotice-content">
                             <button onClick={() => setModal(null)} aria-label="Cerrar">X</button>
-                            <img src={modal.photoName} alt={modal.title} />
+                            <CloudinaryImage 
+                                src={modal.photoName} 
+                                alt={modal.title}
+                                width={800}
+                                height={600}
+                                sizes="(max-width: 768px) 90vw, 800px"
+                                priority={true}
+                                quality="80"
+                            />
                             <div className="content">
                                 <h2>{modal.title}</h2>
                                 <p dangerouslySetInnerHTML={{ __html: modal.descripcion.replace(/\n/g, '<br>') }}></p>
