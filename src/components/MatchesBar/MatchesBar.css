@@ -13,9 +13,6 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 }
 
 .matches-bar-content::-webkit-scrollbar {
@@ -168,6 +165,20 @@
         padding: 8px 0;
     }
 
+    .matches-bar .container {
+        padding: 0 20px;
+    }
+
+    .matches-bar-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .matches-list {
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+
     .match-item {
         min-width: 200px;
         padding: 6px 12px;
@@ -181,9 +192,7 @@
     .view-all-btn {
         padding: 6px 12px;
         font-size: 0.75rem;
-    }
-
-    .matches-bar-content{
-        flex-direction: column;
+        width: 100%;
+        text-align: center;
     }
 }
