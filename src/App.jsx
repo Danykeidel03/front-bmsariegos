@@ -7,6 +7,7 @@ import Teams from './pages/Teams/Teams';
 import About from './pages/About/About';
 import Privacy from './pages/Privacy/Privacy';
 import Terms from './pages/Terms/Terms';
+import Matches from './pages/Matches/Matches';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -20,6 +21,7 @@ function AppRoutes() {
       <Route path="/contacto" element={<Contact />} />
       <Route path="/noticias" element={<News />} />
       <Route path="/equipos" element={<Teams />} />
+      <Route path="/partidos" element={<Matches />} />
       <Route path="/quienes-somos" element={<About />} />
       <Route path="/politica-privacidad" element={<Privacy />} />
       <Route path="/terminos-condiciones" element={<Terms />} />
