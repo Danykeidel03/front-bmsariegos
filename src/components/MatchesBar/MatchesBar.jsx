@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import OptimizedImage from '../OptimizedImage/OptimizedImage';
 import './MatchesBar.css';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
@@ -80,12 +81,12 @@ const MatchesBar = () => {
                                     <div className="match-category">{match.ownTeam?.category}</div>
                                     <div className="teams">
                                         <div className="team">
-                                            <img src="/logo.png" alt="BM Sariegos" className="team-logo" />
+                                            <OptimizedImage src="/logo.png" alt="BM Sariegos" className="team-logo" width={25} height={30} />
                                             <span className="team-name">BM SARIEGOS</span>
                                         </div>
                                         <div className="team">
                                             {match.rivalTeam?.photoName ? (
-                                                <img src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo" />
+                                                <OptimizedImage src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo" width={25} height={30} />
                                             ) : (
                                                 <div className="no-logo">?</div>
                                             )}

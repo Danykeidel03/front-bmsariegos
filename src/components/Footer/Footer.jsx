@@ -1,16 +1,18 @@
 import React, { forwardRef } from 'react';
+import OptimizedImage from '../OptimizedImage/OptimizedImage';
 import './Footer.css';
 
 const Footer = forwardRef(() => {
     return (
         <footer className="footer">
             <div className="footer__section logo-footer">
-                <img
+                <OptimizedImage
                     src="logo.png"
-                    alt="Logo"
+                    alt="Logo BM Sariegos"
                     className="footer__logo-main"
-                    width="140"
-                    height="140"
+                    width={140}
+                    height={140}
+                    quality={85}
                 />
             </div>
 
@@ -32,16 +34,16 @@ const Footer = forwardRef(() => {
                 </div>
                 <div className="rrss-logo">
                     <a href="https://www.instagram.com/balonmanosariegos?igsh=MXJveWU0ZnljcTduYw==" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <img src="instagram.png" alt="Instagram" className="footer__icon" />
+                        <OptimizedImage src="instagram.png" alt="Instagram" className="footer__icon" width={32} height={32} />
                     </a>
                     <a href="https://www.tiktok.com/@bmsariegos?_t=ZN-8zYVE2axXko&_r=1" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <img src="tiktok.png" alt="TikTok" className="footer__icon" />
+                        <OptimizedImage src="tiktok.png" alt="TikTok" className="footer__icon" width={32} height={32} />
                     </a>
                     <a href="https://youtube.com/@balonmanosariegos3521?si=IIi08w8o6mOhvQio" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <img src="youtube.png" alt="YouTube" className="footer__icon" />
+                        <OptimizedImage src="youtube.png" alt="YouTube" className="footer__icon" width={32} height={32} />
                     </a>
                     <a href="https://x.com/bsariegos?s=21" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <img src="x.png" alt="X (Twitter)" className="footer__icon" />
+                        <OptimizedImage src="x.png" alt="X (Twitter)" className="footer__icon" width={32} height={32} />
                     </a>
                 </div>
             </div>
