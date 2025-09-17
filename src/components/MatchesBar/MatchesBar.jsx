@@ -55,7 +55,7 @@ const MatchesBar = () => {
     };
 
     return (
-        <div className="matches-bar">
+        <div className="matches-bar-component">
             <div className="container">
                 <div className="matches-bar-content">
                     <div 

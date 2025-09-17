@@ -9,7 +9,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         name: '',
         dni: '',
         birthDay: '',
-        category: ''
+        category: '',
+        photo: null
     });
     const [teams, setTeams] = useState([]);
     const [players, setPlayers] = useState([]);
@@ -47,7 +48,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             name: player.name,
             dni: player.dni,
             birthDay: player.birthDay.split('T')[0],
-            category: player.category
+            category: player.category,
+            photo: null
         });
         setShowForm(true);
     };
@@ -77,6 +79,23 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         setFormData(prev => ({
             ...prev,
             [name]: value
+        }));
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.size > 10485760) { // 10MB en bytes
+            Swal.fire({
+                icon: 'error',
+                title: 'Archivo muy grande',
+                text: 'La imagen no puede superar los 10MB'
+            });
+            e.target.value = '';
+            return;
+        }
+        setFormData(prev => ({
+            ...prev,
+            photo: file
         }));
     };
 
@@ -125,7 +144,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                 name: '',
                 dni: '',
                 birthDay: '',
-                category: ''
+                category: '',
+                photo: null
             });
             setEditingPlayer(null);
             setShowForm(false);
@@ -138,7 +158,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="modal-overlay">
+        <div className="birthday-modal modal-overlay">
             <div className="modal-content">
                 <div className="modal-header">
                     <h2>Gestión de Jugadores</h2>
@@ -242,7 +262,17 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         </select>
                     </div>
 
-
+                    <div className="form-group">
+                        <label htmlFor="photo">Foto:</label>
+                        <input
+                            type="file"
+                            id="photo"
+                            name="photo"
+                            onChange={handleFileChange}
+                            accept="image/*"
+                            required={!editingPlayer}
+                        />
+                    </div>
 
                         <div className="form-actions">
                             <button type="button" onClick={() => {

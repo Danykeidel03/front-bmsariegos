@@ -1,173 +1,237 @@
-.match-modal {
-    max-width: 900px;
+.match-modal .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.match-modal .modal-content {
+    background: white;
+    border-radius: 8px;
     width: 90%;
-    max-height: 80vh;
+    max-width: 900px;
+    max-height: 90vh;
     overflow-y: auto;
 }
 
-.match-sections {
+.match-modal .matches-section{
+    padding: 20px !important;
+}
+
+.match-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.match-modal .modal-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.match-modal .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.match-modal .modal-body {
+    padding: 20px;
+}
+
+.match-modal .match-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
 
-.create-section form {
+.match-modal .create-section h3,
+.match-modal .matches-section h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.match-modal .create-section form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.create-section input,
-.create-section select {
-    padding: 0.75rem;
+.match-modal .create-section input,
+.match-modal .create-section select {
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
-.matches-list {
+.match-modal .create-section input:focus,
+.match-modal .create-section select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.match-modal .form-group {
+    margin-bottom: 15px;
+}
+
+.match-modal .form-group input,
+.match-modal .form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.match-modal .matches-list {
     max-height: 400px;
     overflow-y: auto;
 }
 
-.match-item {
+.match-modal .game-item {
     background: #f8f9fa;
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    border: 1px solid #e0e0e0;
 }
 
-.match-content {
+.match-modal .game-content {
     display: flex;
-    width: 100%;
     gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.match-rival-image {
-    width: 20%;
+.match-modal .game-rival-image {
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
-.match-info {
-    width: 80%;
-}
-
-.match-info p {
-    margin: 0.25rem 0;
-    font-size: 0.9rem;
-}
-
-.rival-logo {
+.match-modal .rival-logo {
     width: 60px;
     height: 60px;
     object-fit: contain;
     border-radius: 8px;
 }
 
-.finalize-btn {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
+.match-modal .game-details {
+    flex: 1;
+}
+
+.match-modal .game-details p {
+    margin: 0.25rem 0;
     font-size: 0.9rem;
+    color: #333;
 }
 
-.finalize-btn:hover {
-    background: #218838;
-}
-
-.home-away-selector {
+.match-modal .home-away-selector {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
-.home-away-selector label {
+.match-modal .home-away-selector label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
+    font-size: 14px;
 }
 
-.match-actions {
+.match-modal .game-actions {
     display: flex;
     gap: 0.5rem;
 }
 
-.edit-btn {
-    background: #007bff;
-    color: white;
+.match-modal .edit-btn,
+.match-modal .finalize-btn,
+.match-modal .submit-btn,
+.match-modal .delete-btn {
+    padding: 8px 16px;
     border: none;
-    padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
-.edit-btn:hover {
-    background: #0056b3;
+.match-modal .edit-btn {
+    background-color: #ffc107;
+    color: #212529;
 }
 
-.edit-datetime {
+.match-modal .finalize-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.match-modal .submit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.match-modal .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.match-modal .edit-datetime {
     display: flex;
     gap: 0.5rem;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0.5rem 0;
 }
 
-.edit-datetime input {
-    padding: 0.25rem;
+.match-modal .edit-datetime input {
+    padding: 4px 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 12px;
 }
 
-.save-btn {
-    background: #28a745;
-    color: white;
+.match-modal .save-btn,
+.match-modal .cancel-btn {
+    padding: 4px 8px;
     border: none;
-    padding: 0.25rem 0.5rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 12px;
 }
 
-.save-btn:hover {
-    background: #218838;
-}
-
-.cancel-btn {
-    background: #6c757d;
+.match-modal .save-btn {
+    background-color: #28a745;
     color: white;
-    border: none;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
 }
 
-.cancel-btn:hover {
-    background: #545b62;
+.match-modal .cancel-btn {
+    background-color: #6c757d;
+    color: white;
 }
 
-.rival-selector {
+.match-modal .rival-selector {
     position: relative;
     width: 100%;
 }
 
-.rival-selector input {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.rival-dropdown {
+.match-modal .rival-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -181,28 +245,37 @@
     z-index: 1000;
 }
 
-.rival-option {
+.match-modal .rival-option {
     padding: 0.75rem;
     cursor: pointer;
     border-bottom: 1px solid #eee;
 }
 
-.rival-option:hover {
+.match-modal .rival-option:hover {
     background: #f8f9fa;
 }
 
-.rival-option:last-child {
-    border-bottom: none;
+.match-modal .search-container {
+    margin-bottom: 1rem;
+}
+
+.match-modal .search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.match-modal .search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 @media (max-width: 768px) {
-    .match-sections {
+    .match-modal .match-sections {
         grid-template-columns: 1fr;
-    }
-    
-    .match-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
     }
 }

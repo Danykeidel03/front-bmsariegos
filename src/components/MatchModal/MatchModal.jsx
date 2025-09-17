@@ -21,6 +21,8 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
     const [editDateTime, setEditDateTime] = useState({ date: '', time: '' });
     const [rivalSearch, setRivalSearch] = useState('');
     const [showRivalDropdown, setShowRivalDropdown] = useState(false);
+    const [matchSearch, setMatchSearch] = useState('');
+    const [filteredMatches, setFilteredMatches] = useState([]);
     const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
@@ -64,6 +66,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
             });
             
             setMatches(matchesWithInfo);
+            setFilteredMatches(matchesWithInfo);
         } catch (error) {
             console.error('Error al cargar partidos:', error);
         }
@@ -166,11 +169,41 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
         }
     };
 
+    const handleDelete = async (matchId) => {
+        const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede deshacer',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await apiMatch.deleteMatch(matchId);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                    text: 'Partido eliminado correctamente'
+                });
+                loadMatches();
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo eliminar el partido'
+                });
+            }
+        }
+    };
+
     if (!isOpen) return null;
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content match-modal">
+        <div className="match-modal">
+            <div className="modal-overlay">
+            <div className="modal-content">
                 <div className="modal-header">
                     <h2>Gestión de Partidos</h2>
                     <button className="close-btn" onClick={onClose}>×</button>
@@ -276,11 +309,29 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
 
                         <div className="matches-section">
                             <h3>Partidos Programados</h3>
+                            <div className="search-container">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar partidos..."
+                                    value={matchSearch}
+                                    onChange={(e) => {
+                                        const term = e.target.value.toLowerCase();
+                                        setMatchSearch(term);
+                                        const filtered = matches.filter(match => 
+                                            match.rivalTeam?.name?.toLowerCase().includes(term) ||
+                                            match.ownTeam?.name?.toLowerCase().includes(term) ||
+                                            match.location?.toLowerCase().includes(term)
+                                        );
+                                        setFilteredMatches(filtered);
+                                    }}
+                                    className="search-input"
+                                />
+                            </div>
                             <div className="matches-list">
-                                {matches.map(match => (
-                                    <div key={match._id} className="match-item">
-                                        <div className="match-content">
-                                            <div className="match-rival-image">
+                                {filteredMatches.map(match => (
+                                    <div key={match._id} className="game-item">
+                                        <div className="game-content">
+                                            <div className="game-rival-image">
                                                 {match.rivalTeam?.photoName && (
                                                     <img 
                                                         src={match.rivalTeam.photoName} 
@@ -289,7 +340,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                                                     />
                                                 )}
                                             </div>
-                                            <div className="match-info">
+                                            <div className="game-details">
                                                 <p><strong>Equipo:</strong> {match.ownTeam?.name || 'N/A'}</p>
                                                 <p><strong>Rival:</strong> {match.rivalTeam?.name || 'N/A'}</p>
                                                 <p><strong>Tipo:</strong> {match.isHome ? 'Local' : 'Suplente'}</p>
@@ -318,22 +369,30 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                                                 {match.result && <p><strong>Resultado:</strong> {match.result}</p>}
                                             </div>
                                         </div>
-                                        {!match.completed && (
-                                            <div className="match-actions">
-                                                <button 
-                                                    className="edit-btn"
-                                                    onClick={() => handleEditDateTime(match._id)}
-                                                >
-                                                    Editar Fecha
-                                                </button>
-                                                <button 
-                                                    className="finalize-btn"
-                                                    onClick={() => handleFinalize(match._id)}
-                                                >
-                                                    Finalizar
-                                                </button>
-                                            </div>
-                                        )}
+                                        <div className="game-actions">
+                                            {match.completed !== 1 && (
+                                                <>
+                                                    <button 
+                                                        className="edit-btn"
+                                                        onClick={() => handleEditDateTime(match._id)}
+                                                    >
+                                                        Editar Fecha
+                                                    </button>
+                                                    <button 
+                                                        className="finalize-btn"
+                                                        onClick={() => handleFinalize(match._id)}
+                                                    >
+                                                        Finalizar
+                                                    </button>
+                                                </>
+                                            )}
+                                            <button 
+                                                className="delete-btn"
+                                                onClick={() => handleDelete(match._id)}
+                                            >
+                                                Eliminar
+                                            </button>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -341,6 +400,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

@@ -4,6 +4,7 @@
     white-space: nowrap;
     position: relative;
     margin-top: 25px;
+    display: flex;
 }
 
 .logo-slider:hover .logos-slide {
@@ -11,8 +12,10 @@
 }
 
 .logos-slide {
-    display: inline-block;
+    display: flex;
     animation: 180s slide infinite linear;
+    justify-content: center;
+    align-items: center;
 }
 
 .logos-slide img {

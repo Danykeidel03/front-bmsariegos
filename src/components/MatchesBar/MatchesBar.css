@@ -1,29 +1,29 @@
-.matches-bar {
+.matches-bar-component {
     background: white;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.matches-bar .container {
+.matches-bar-component .container {
     margin: 0 auto;
     padding: 0 20px 0 0;
 }
 
-.matches-bar-content {
+.matches-bar-component .matches-bar-content {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.matches-bar-content::-webkit-scrollbar {
+.matches-bar-component .matches-bar-content::-webkit-scrollbar {
     display: none;
 }
 
-.matches-bar h3 {
+.matches-bar-component h3 {
     display: none;
 }
 
-.matches-list {
+.matches-bar-component .matches-list {
     display: flex;
     flex: 1;
     overflow-x: auto;
@@ -33,20 +33,20 @@
     user-select: none;
 }
 
-.matches-list::-webkit-scrollbar {
+.matches-bar-component .matches-list::-webkit-scrollbar {
     display: none;
 }
 
-.matches-list:active {
+.matches-bar-component .matches-list:active {
     cursor: grabbing;
 }
 
-.match-info .info {
+.matches-bar-component .match-info .info {
     display: flex;
     gap: 30px;
 }
 
-.matches-list .match-item {
+.matches-bar-component .matches-list .match-item {
     display: flex;
     align-items: center;
     min-width: 240px;
@@ -59,11 +59,11 @@
     gap: 0;
 }
 
-.match-item:last-child {
+.matches-bar-component .match-item:last-child {
     border-right: none;
 }
 
-.matches-list .match-item .match-info {
+.matches-bar-component .matches-list .match-item .match-info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,14 +73,14 @@
     padding: 0 20px;
 }
 
-.match-category {
+.matches-bar-component .match-category {
     font-size: 0.75rem;
     font-weight: 600;
     color: #007bff;
     text-align: center;
 }
 
-.teams {
+.matches-bar-component .teams {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +88,7 @@
     width: 100%;
 }
 
-.match-info .team {
+.matches-bar-component .match-info .team {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -96,14 +96,14 @@
     justify-content: space-between;
 }
 
-.match-info .team .team-logo {
+.matches-bar-component .match-info .team .team-logo {
     width: 30px;
     height: 30px;
     object-fit: contain;
     margin-right: 20px;
 }
 
-.no-logo {
+.matches-bar-component .no-logo {
     width: 18px;
     height: 18px;
     background: #ddd;
@@ -115,7 +115,7 @@
     color: #666;
 }
 
-.match-info .team-name {
+.matches-bar-component .match-info .team-name {
     font-size: 10px;
     font-weight: 500;
     color: #333;
@@ -126,25 +126,26 @@
     max-width: 100%;
 }
 
-.match-datetime {
+.matches-bar-component .match-datetime {
     display: flex;
     align-items: center;
     gap: 30px;
+    padding-bottom: 10px;
 }
 
-.match-date {
+.matches-bar-component .match-date {
     font-size: 0.7rem;
     font-weight: 500;
     color: #666;
 }
 
-.match-time {
+.matches-bar-component .match-time {
     font-size: 0.7rem;
     font-weight: 600;
     color: #333;
 }
 
-.view-all-btn {
+.matches-bar-component .view-all-btn {
     background: #007bff;
     color: white;
     padding: 8px 15px;
@@ -156,40 +157,40 @@
     transition: background 0.3s ease;
 }
 
-.view-all-btn:hover {
+.matches-bar-component .view-all-btn:hover {
     background: #0056b3;
 }
 
 @media (max-width: 768px) {
-    .matches-bar {
+    .matches-bar-component {
         padding: 8px 0;
     }
 
-    .matches-bar .container {
+    .matches-bar-component .container {
         padding: 0 20px;
     }
 
-    .matches-bar-content {
+    .matches-bar-component .matches-bar-content {
         flex-direction: column;
         gap: 10px;
     }
 
-    .matches-list {
+    .matches-bar-component .matches-list {
         -webkit-overflow-scrolling: touch;
         width: 100%;
     }
 
-    .match-item {
+    .matches-bar-component .match-item {
         min-width: 200px;
         padding: 6px 12px;
     }
 
-    .match-info {
+    .matches-bar-component .match-info {
         gap: 8px;
         font-size: 0.8rem;
     }
 
-    .view-all-btn {
+    .matches-bar-component .view-all-btn {
         padding: 6px 12px;
         font-size: 0.75rem;
         width: 100%;
