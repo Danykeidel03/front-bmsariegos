@@ -14,7 +14,8 @@ const api = axios.create({
 const objServices = {
     getTeams: () => api.get('/team'),
     createTeam: (teamData) => api.post('/team', teamData),
-    deleteTeam: (teamId) => api.delete(`/team/${teamId}`)
+    deleteTeam: (teamId) => api.delete(`/team/${teamId}`),
+    updateTeamName: (teamId, name) => api.put(`/team/${teamId}/name`, { name })
 }
 
 export default objServices;

@@ -10,6 +10,8 @@ const TeamModal = ({ isOpen, onClose }) => {
         category: '',
         division: ''
     });
+    const [editingTeam, setEditingTeam] = useState(null);
+    const [editName, setEditName] = useState('');
 
     useEffect(() => {
         if (isOpen) {
@@ -77,6 +79,38 @@ const TeamModal = ({ isOpen, onClose }) => {
         }
     };
 
+    const handleEditName = (team) => {
+        setEditingTeam(team._id);
+        setEditName(team.name);
+    };
+
+    const handleSaveName = async (teamId) => {
+        try {
+            await apiTeam.updateTeamName(teamId, editName);
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Nombre actualizado exitosamente'
+            });
+            setEditingTeam(null);
+            setEditName('');
+            fetchTeams();
+        } catch (error) {
+            console.log(error);
+            const errorMessage = error.response?.status === 404 ? 'Equipo no encontrado' : 'Error del servidor';
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: errorMessage
+            });
+        }
+    };
+
+    const handleCancelEdit = () => {
+        setEditingTeam(null);
+        setEditName('');
+    };
+
     if (!isOpen) return null;
 
     return (
@@ -137,15 +171,50 @@ const TeamModal = ({ isOpen, onClose }) => {
                         teams.map(team => (
                             <div key={team._id} className="team-item">
                                 <div className="team-info">
-                                    <strong>{team.name}</strong>
-                                    <span>{team.category} - {team.division}</span>
+                                    {editingTeam === team._id ? (
+                                        <div className="edit-name">
+                                            <input
+                                                type="text"
+                                                value={editName}
+                                                onChange={(e) => setEditName(e.target.value)}
+                                                className="edit-input"
+                                            />
+                                            <button 
+                                                className="save-btn"
+                                                onClick={() => handleSaveName(team._id)}
+                                            >
+                                                Guardar
+                                            </button>
+                                            <button 
+                                                className="cancel-btn"
+                                                onClick={handleCancelEdit}
+                                            >
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <strong>{team.name}</strong>
+                                            <span>{team.category} - {team.division}</span>
+                                        </>
+                                    )}
                                 </div>
-                                <button 
-                                    className="delete-btn"
-                                    onClick={() => handleDelete(team._id)}
-                                >
-                                    Eliminar
-                                </button>
+                                <div className="team-actions">
+                                    {editingTeam !== team._id && (
+                                        <button 
+                                            className="edit-btn"
+                                            onClick={() => handleEditName(team)}
+                                        >
+                                            Editar
+                                        </button>
+                                    )}
+                                    <button 
+                                        className="delete-btn"
+                                        onClick={() => handleDelete(team._id)}
+                                    >
+                                        Eliminar
+                                    </button>
+                                </div>
                             </div>
                         ))
                     )}
