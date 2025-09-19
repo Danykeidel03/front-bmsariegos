@@ -1,92 +1,15 @@
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background-color: white;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
 .modal-header h2 {
     color: #119bc6;
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.close-btn:hover {
-    color: #333;
 }
 
 .news-form {
     padding: 20px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-    font-family: inherit;
-    box-sizing: border-box;
-}
-
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #119bc6;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
 }
 
 .form-actions {
@@ -193,4 +116,53 @@
 
 .delete-btn:hover {
     background-color: #c82333;
+}
+
+/* Responsive styles for NewsModal */
+@media (max-width: 768px) {
+    .list-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .add-btn {
+        width: 100%;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .notices-grid {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-form {
+        padding: 15px;
+    }
+    
+    .news-list {
+        padding: 15px;
+    }
+    
+    .notice-item {
+        padding: 12px;
+    }
+    
+    .notice-item h4 {
+        font-size: 14px;
+    }
+    
+    .notice-item p {
+        font-size: 13px;
+    }
 }

@@ -20,6 +20,7 @@
     justify-content: center;
     margin: 25px 0;
     position: relative;
+    padding: 0 20px;
 }
 
 .noticesContainer {
@@ -74,10 +75,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    padding: 20px;
 }
 
 .modalNotice .overlayModal {
-    position: absolute;
+    position: fixed;
     inset: 0;
     background-color: var(--shadow-modal);
 }
@@ -87,14 +90,14 @@
     z-index: 10000;
     width: 100%;
     max-width: 900px;
-    margin: 20px;
+    margin: auto;
 }
 
 .infoNotice-content {
     display: flex;
     background-color: white;
     border-radius: var(--border-radius-xl);
-    height: 500px;
+    max-height: calc(100vh - 40px);
     position: relative;
     overflow: hidden;
 }
@@ -141,11 +144,31 @@
     overflow-y: auto;
     margin: 0;
     line-height: 1.5;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+.infoNotice-content .content p::-webkit-scrollbar {
+    width: 6px;
+}
+
+.infoNotice-content .content p::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.infoNotice-content .content p::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.infoNotice-content .content p::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
 }
 
 @media (max-width: 1300px) {
     .noticesContainer {
         max-width: 90%;
+        gap: 30px;
     }
 
     .noticeCard {
@@ -158,19 +181,52 @@
 
     .noticeCard h3 {
         height: calc(100% - 200px);
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .slideNotices {
+        padding: 0 15px;
+    }
+    
+    .noticesContainer {
+        gap: 20px;
+    }
+    
+    .noticeCard h3 {
+        font-size: 14px;
+        padding: 12px;
     }
 }
 
 @media (max-width: 768px) {
+    .slideNotices {
+        margin: 20px 0;
+        padding: 0 10px;
+    }
+    
     .noticesContainer {
         flex-direction: column;
         align-items: center;
         gap: 20px;
+        max-width: 100%;
     }
 
     .noticeCard {
-        width: 80%;
-        max-width: 400px;
+        width: 100%;
+        max-width: 500px;
+        min-height: 280px;
+    }
+    
+    .noticeCard img {
+        height: 200px;
+    }
+    
+    .noticeCard h3 {
+        font-size: 16px;
+        padding: 15px;
+        line-height: 1.3;
     }
 
     .infoNotice {
@@ -182,36 +238,88 @@
     }
 }
 
+@media (max-width: 480px) {
+    .slideNotices {
+        padding: 0 5px;
+    }
+    
+    .noticeCard {
+        max-width: 100%;
+        min-height: 260px;
+    }
+    
+    .noticeCard img {
+        height: 180px;
+    }
+    
+    .noticeCard h3 {
+        font-size: 15px;
+        padding: 12px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+    }
+}
+
 @media (max-width: 650px) {
+    .modalNotice {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .infoNotice {
+        margin: 0;
+        width: 100%;
+    }
+    
     .infoNotice-content {
         flex-direction: column;
+        max-height: calc(100vh - 40px);
         height: auto;
-        max-height: 90vh;
     }
 
     .infoNotice-content img {
         width: 100%;
         height: 200px;
         border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+        flex-shrink: 0;
     }
 
     .infoNotice-content .content {
-        padding: var(--spacing-md);
+        padding: 20px;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .infoNotice-content .content h2 {
-        font-size: 16px;
+        font-size: 18px;
         text-align: center;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        flex-shrink: 0;
     }
 
     .infoNotice-content .content p {
-        font-size: 14px;
+        font-size: 15px;
+        line-height: 1.5;
+        flex: 1;
+        overflow-y: auto;
     }
 
     .infoNotice-content button {
-        background-color: white;
-        padding: 8px 10px;
-        font-size: 12px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px 12px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 }

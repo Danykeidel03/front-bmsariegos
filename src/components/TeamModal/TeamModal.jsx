@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/modals-responsive.css';
 import './TeamModal.css';
 import Swal from 'sweetalert2';
 import apiTeam from '../../services/apiTeam';
@@ -12,6 +13,7 @@ const TeamModal = ({ isOpen, onClose }) => {
     });
     const [editingTeam, setEditingTeam] = useState(null);
     const [editName, setEditName] = useState('');
+    const [hasOrderChanges, setHasOrderChanges] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
@@ -111,6 +113,46 @@ const TeamModal = ({ isOpen, onClose }) => {
         setEditName('');
     };
 
+    const moveTeamUp = (index) => {
+        if (index === 0) return;
+        const newTeams = [...teams];
+        [newTeams[index], newTeams[index - 1]] = [newTeams[index - 1], newTeams[index]];
+        setTeams(newTeams);
+        setHasOrderChanges(true);
+    };
+
+    const moveTeamDown = (index) => {
+        if (index === teams.length - 1) return;
+        const newTeams = [...teams];
+        [newTeams[index], newTeams[index + 1]] = [newTeams[index + 1], newTeams[index]];
+        setTeams(newTeams);
+        setHasOrderChanges(true);
+    };
+
+    const saveOrder = async () => {
+        const teamOrders = teams.map((team, index) => ({
+            id: team._id,
+            order: index + 1
+        }));
+
+        try {
+            await apiTeam.reorderTeams(teamOrders);
+            setHasOrderChanges(false);
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Orden actualizado correctamente'
+            });
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo actualizar el orden'
+            });
+        }
+    };
+
     if (!isOpen) return null;
 
     return (
@@ -164,12 +206,35 @@ const TeamModal = ({ isOpen, onClose }) => {
                 </form>
 
                 <div className="teams-list">
-                    <h3>Equipos Existentes</h3>
+                    <div className="teams-header">
+                        <h3>Equipos Existentes</h3>
+                        {hasOrderChanges && (
+                            <button className="save-order-btn" onClick={saveOrder}>
+                                Guardar Orden
+                            </button>
+                        )}
+                    </div>
                     {!Array.isArray(teams) || teams.length === 0 ? (
                         <p>No hay equipos creados</p>
                     ) : (
-                        teams.map(team => (
+                        teams.map((team, index) => (
                             <div key={team._id} className="team-item">
+                                <div className="order-controls">
+                                    <button 
+                                        className="arrow-btn"
+                                        onClick={() => moveTeamUp(index)}
+                                        disabled={index === 0}
+                                    >
+                                        ↑
+                                    </button>
+                                    <button 
+                                        className="arrow-btn"
+                                        onClick={() => moveTeamDown(index)}
+                                        disabled={index === teams.length - 1}
+                                    >
+                                        ↓
+                                    </button>
+                                </div>
                                 <div className="team-info">
                                     {editingTeam === team._id ? (
                                         <div className="edit-name">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/modals-responsive.css';
 import './BirthdayModal.css';
 import apiTeam from '../../services/apiTeam';
 import apiBirthday from '../../services/apiBirthday';

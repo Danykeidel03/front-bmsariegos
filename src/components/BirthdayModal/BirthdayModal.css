@@ -1,48 +1,13 @@
-.birthday-modal .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
 .birthday-modal .modal-content {
-    background: white;
-    border-radius: 8px;
-    width: 90%;
     max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
 }
 
 .birthday-modal .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #eee;
     background: #f8f9fa;
 }
 
 .birthday-modal .modal-header h2 {
-    margin: 0;
     color: #007bff;
-    font-size: 1.5rem;
-}
-
-.birthday-modal .close-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    padding: 5px;
-    border-radius: 4px;
 }
 
 .birthday-modal .close-btn:hover {
@@ -237,4 +202,61 @@
 
 .birthday-modal .submit-btn:hover {
     background-color: #0056b3;
+}
+
+/* Responsive styles for BirthdayModal */
+@media (max-width: 768px) {
+    .birthday-modal .list-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .birthday-modal .add-btn {
+        width: 100%;
+    }
+    
+    .birthday-modal .player-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .birthday-modal .edit-btn,
+    .birthday-modal .delete-btn {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .birthday-modal .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .birthday-modal .cancel-btn,
+    .birthday-modal .submit-btn {
+        width: 100%;
+    }
+    
+    .birthday-modal .players-grid {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .birthday-modal .players-list,
+    .birthday-modal .birthday-form {
+        padding: 15px;
+    }
+    
+    .birthday-modal .player-item {
+        padding: 12px;
+    }
+    
+    .birthday-modal .player-info h4 {
+        font-size: 14px;
+    }
+    
+    .birthday-modal .player-info p {
+        font-size: 13px;
+    }
 }

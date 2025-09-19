@@ -15,7 +15,8 @@ const objServices = {
     getTeams: () => api.get('/team'),
     createTeam: (teamData) => api.post('/team', teamData),
     deleteTeam: (teamId) => api.delete(`/team/${teamId}`),
-    updateTeamName: (teamId, name) => api.put(`/team/${teamId}/name`, { name })
+    updateTeamName: (teamId, name) => api.put(`/team/${teamId}/name`, { name }),
+    reorderTeams: (teamOrders) => api.put('/team/reorder', { teamOrders })
 }
 
 export default objServices;

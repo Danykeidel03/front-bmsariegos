@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../styles/modals-responsive.css';
 import './HeaderImageModal.css';
 import apiImagenCabecera from '../../services/apiImagenCabecera';
 import Swal from 'sweetalert2';

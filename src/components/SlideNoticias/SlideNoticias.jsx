@@ -11,13 +11,19 @@ export default function SlideNoticias() {
 
     const handleNoticiaClick = (noticia) => {
         setModal(noticia);
-        setTimeout(() => {
-            window.scrollTo({
-                top: window.innerHeight / 4,
-                behavior: 'smooth'
-            });
-        }, 50);
+        document.body.style.overflow = 'hidden';
     };
+    
+    const closeModal = () => {
+        setModal(null);
+        document.body.style.overflow = 'unset';
+    };
+    
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
 
     useEffect(() => {
         const fetchNoticias = async () => {
@@ -55,11 +61,11 @@ export default function SlideNoticias() {
                 )}
             </div>
             {modal && createPortal(
-                <div onClick={() => setModal(null)} className="modalNotice">
+                <div onClick={closeModal} className="modalNotice">
                     <div className="overlayModal" />
                     <div onClick={(e) => e.stopPropagation()} className="infoNotice">
                         <div className="infoNotice-content">
-                            <button onClick={() => setModal(null)} aria-label="Cerrar">X</button>
+                            <button onClick={closeModal} aria-label="Cerrar">X</button>
                             <CloudinaryImage 
                                 src={modal.photoName} 
                                 alt={modal.title}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import '../../styles/modals-responsive.css';
 import './MatchModal.css';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';

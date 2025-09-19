@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../styles/modals-responsive.css';
 import './SponsorModal.css';
 
 const SponsorModal = ({ isOpen, onClose, onSubmit }) => {
