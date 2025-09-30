@@ -38,17 +38,6 @@ a:hover {
     transform: translateY(-1px);
 }
 
-a:not(.no-underline)::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: currentColor;
-    transition: width 0.3s ease;
-}
-
 a:not(.no-underline):hover::after {
     width: 100%;
 }
