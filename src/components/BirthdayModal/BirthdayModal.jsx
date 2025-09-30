@@ -85,11 +85,11 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        if (file && file.size > 10485760) { // 10MB en bytes
+        if (file && file.size > 2097152) { // 2MB en bytes
             Swal.fire({
                 icon: 'error',
                 title: 'Archivo muy grande',
-                text: 'La imagen no puede superar los 10MB'
+                text: 'La imagen no puede superar los 2MB'
             });
             e.target.value = '';
             return;
