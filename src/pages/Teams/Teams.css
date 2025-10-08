@@ -229,7 +229,7 @@
 }
 
 .team-match .own-team{
-    text-decoration: dashed;
+    font-weight: bold;
 }
 
 .team-logo-match {
