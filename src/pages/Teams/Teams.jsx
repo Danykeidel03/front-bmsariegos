@@ -209,7 +209,7 @@ const Teams = () => {
                                                                 className={`table-row ${equipo.nombre.includes(team.name) ? 'highlight' : ''}`}
                                                             >
                                                                 <span>{equipo.posicion}</span>
-                                                                <span style={equipo.nombre.toLowerCase().includes('sariegos') ? {fontWeight: 'bold'} : {}}>{cleanTeamName(equipo.nombre)}</span>
+                                                                <span style={equipo.nombre.toLowerCase().includes('sariegos') || equipo.nombre === 'CASA DEL PUEBLO BMS ZARDINO' ? {fontWeight: 'bold'} : {}}>{cleanTeamName(equipo.nombre)}</span>
                                                                 <span>{equipo.partidosJugados}</span>
                                                                 <span>{equipo.ganados}</span>
                                                                 <span>{equipo.empatados}</span>
