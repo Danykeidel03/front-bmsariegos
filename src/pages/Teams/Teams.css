@@ -228,7 +228,7 @@
     flex: 1;
 }
 
-.team-match span:first-child{
+.team-match .own-team{
     text-decoration: dashed;
 }
 

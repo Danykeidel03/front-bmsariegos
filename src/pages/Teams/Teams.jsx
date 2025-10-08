@@ -243,7 +243,7 @@ const Teams = () => {
                                                             <div className="teams-match">
                                                                 <div className="team-match">
                                                                     <OptimizedImage src="/logo.png" alt="BM Sariegos" className="team-logo-match" width={25} height={30} />
-                                                                    <span>Sariegos</span>
+                                                                    <span className='own-team'>Sariegos</span>
                                                                 </div>
                                                                 
                                                                 <div className="vs">VS</div>
