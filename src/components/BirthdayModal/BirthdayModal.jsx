@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import '../../styles/modals-responsive.css';
 import './BirthdayModal.css';
 import apiTeam from '../../services/apiTeam';
@@ -19,6 +21,11 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [editingPlayer, setEditingPlayer] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [showCropper, setShowCropper] = useState(false);
+    const [crop, setCrop] = useState({ aspect: 1, width: 50, height: 50, unit: '%', x: 25, y: 25 });
+    const [completedCrop, setCompletedCrop] = useState(null);
+    const imgRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -111,22 +118,55 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         });
     };
 
-    const handleFileChange = async (e) => {
+    const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
         
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            setImagePreview(e.target.result);
+            setCrop({ aspect: 1, width: 50, height: 50, unit: '%', x: 25, y: 25 });
+            setShowCropper(true);
+        };
+        reader.readAsDataURL(file);
+    };
+    
+    const getCroppedImg = (image, crop) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+        
+        return new Promise((resolve) => {
+            canvas.toBlob(resolve, 'image/jpeg', 0.92);
+        });
+    };
+    
+    const handleCropComplete = async () => {
+        if (!completedCrop || !imgRef.current) return;
+        
         try {
-            const compressedFile = await compressImage(file);
-            setFormData(prev => ({
-                ...prev,
-                photo: compressedFile
-            }));
+            const croppedFile = await getCroppedImg(imgRef.current, completedCrop);
+            setFormData(prev => ({ ...prev, photo: croppedFile }));
+            setShowCropper(false);
         } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo procesar la imagen'
-            });
+            Swal.fire('Error', 'No se pudo recortar la imagen', 'error');
         }
     };
 
@@ -214,6 +254,15 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         <div className="players-grid">
                             {filteredPlayers.map((player) => (
                                 <div key={player._id} className="player-item">
+                                    {player.photoName && (
+                                        <div className="player-photo-container">
+                                            <img 
+                                                src={player.photoName} 
+                                                alt={player.name}
+                                                className="player-photo-modal"
+                                            />
+                                        </div>
+                                    )}
                                     <div className="player-info">
                                         <h4>{player.name}</h4>
                                         <p>DNI: {player.dni}</p>
@@ -303,7 +352,39 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                             accept="image/*"
                             required={!editingPlayer}
                         />
+                        {formData.photo && (
+                            <div className="photo-preview">
+                                <img src={URL.createObjectURL(formData.photo)} alt="Preview" style={{width: '120px', height: '120px', objectFit: 'cover', borderRadius: '50%', border: '2px solid #ddd'}} />
+                                <p style={{fontSize: '12px', color: '#666', marginTop: '5px'}}>Vista previa</p>
+                            </div>
+                        )}
                     </div>
+                    
+                    {showCropper && (
+                        <div className="crop-modal">
+                            <div className="crop-container">
+                                <h3>Recortar imagen</h3>
+                                <ReactCrop
+                                    crop={crop}
+                                    onChange={(newCrop) => setCrop(newCrop)}
+                                    onComplete={(c) => setCompletedCrop(c)}
+                                    aspect={1}
+                                    circularCrop
+                                >
+                                    <img
+                                        ref={imgRef}
+                                        src={imagePreview}
+                                        alt="Crop"
+                                        style={{ maxWidth: '100%', maxHeight: '400px' }}
+                                    />
+                                </ReactCrop>
+                                <div className="crop-actions">
+                                    <button type="button" onClick={() => setShowCropper(false)}>Cancelar</button>
+                                    <button type="button" onClick={handleCropComplete}>Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                         <div className="form-actions">
                             <button type="button" onClick={() => {

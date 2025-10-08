@@ -1,7 +1,3 @@
-.birthday-modal .modal-content {
-    max-width: 800px;
-}
-
 .birthday-modal .modal-header {
     background: #f8f9fa;
 }
@@ -67,9 +63,10 @@
 }
 
 .birthday-modal .players-grid {
-    display: grid;
-    gap: 15px;
-    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 500px;
     overflow-y: auto;
 }
 
@@ -95,6 +92,7 @@
     margin: 4px 0;
     color: #666;
     font-size: 14px;
+    text-align: center;
 }
 
 .birthday-modal .player-actions {
@@ -211,52 +209,185 @@
         gap: 15px;
         align-items: stretch;
     }
-    
+
     .birthday-modal .add-btn {
         width: 100%;
     }
-    
+
     .birthday-modal .player-actions {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .birthday-modal .edit-btn,
     .birthday-modal .delete-btn {
         width: 100%;
         padding: 10px;
     }
-    
+
     .birthday-modal .form-actions {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .birthday-modal .cancel-btn,
     .birthday-modal .submit-btn {
         width: 100%;
     }
-    
+
     .birthday-modal .players-grid {
         max-height: 300px;
     }
 }
 
 @media (max-width: 480px) {
+
     .birthday-modal .players-list,
     .birthday-modal .birthday-form {
         padding: 15px;
     }
-    
+
     .birthday-modal .player-item {
         padding: 12px;
     }
-    
+
     .birthday-modal .player-info h4 {
         font-size: 14px;
     }
-    
+
     .birthday-modal .player-info p {
         font-size: 13px;
     }
+}
+
+.crop-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.crop-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.crop-container h3 {
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.ReactCrop {
+    margin: 20px auto;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.ReactCrop__image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.ReactCrop__crop-selection {
+    border: 3px solid #007bff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 9999em rgba(0, 0, 0, 0.5);
+}
+
+.ReactCrop__drag-handle {
+    background: #007bff;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+}
+
+.crop-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.crop-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.crop-actions button:first-child {
+    background: #6c757d;
+    color: white;
+}
+
+.crop-actions button:last-child {
+    background: #007bff;
+    color: white;
+}
+
+.photo-preview {
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo-preview img {
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.birthday-modal .player-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    gap: 15px;
+}
+
+.player-photo-container {
+    flex-shrink: 0;
+}
+
+.player-photo-modal {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.birthday-modal .player-info {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.birthday-modal .player-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+    margin-top: 0;
 }
