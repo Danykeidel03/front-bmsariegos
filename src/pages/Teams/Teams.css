@@ -228,6 +228,10 @@
     flex: 1;
 }
 
+.team-match span:first-child{
+    text-decoration: dashed;
+}
+
 .team-logo-match {
     width: 40px;
     height: 40px;
