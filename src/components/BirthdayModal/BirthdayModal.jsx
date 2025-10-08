@@ -83,21 +83,51 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         }));
     };
 
-    const handleFileChange = (e) => {
+    const compressImage = (file) => {
+        return new Promise((resolve) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = () => {
+                // Redimensionar manteniendo proporción
+                const maxDimension = 1200;
+                let { width, height } = img;
+                
+                if (width > maxDimension || height > maxDimension) {
+                    const ratio = Math.min(maxDimension / width, maxDimension / height);
+                    width *= ratio;
+                    height *= ratio;
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                canvas.toBlob(resolve, 'image/jpeg', 0.92);
+            };
+            
+            img.src = URL.createObjectURL(file);
+        });
+    };
+
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        if (file && file.size > 2097152) { // 2MB en bytes
+        if (!file) return;
+        
+        try {
+            const compressedFile = await compressImage(file);
+            setFormData(prev => ({
+                ...prev,
+                photo: compressedFile
+            }));
+        } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Archivo muy grande',
-                text: 'La imagen no puede superar los 2MB'
+                title: 'Error',
+                text: 'No se pudo procesar la imagen'
             });
-            e.target.value = '';
-            return;
         }
-        setFormData(prev => ({
-            ...prev,
-            photo: file
-        }));
     };
 
 
