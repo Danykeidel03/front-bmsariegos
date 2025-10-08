@@ -96,19 +96,12 @@ const Teams = () => {
         const now = new Date();
         return matches
             .filter(match => 
-                !match.completed && 
+                match.completed === 0 && 
                 new Date(match.date) >= now &&
-                match.ownTeam === teamId
+                match.ownTeam._id === teamId
             )
             .sort((a, b) => new Date(a.date) - new Date(b.date))
-            .slice(0, 5)
-            .map(match => {
-                const rivalInfo = rivals.find(rival => rival._id === match.rivalTeam);
-                return {
-                    ...match,
-                    rivalTeam: rivalInfo || match.rivalTeam
-                };
-            });
+            .slice(0, 5);
     };
 
     const formatDate = (dateString) => {
@@ -234,6 +227,7 @@ const Teams = () => {
                                     <div className="partidos-container">
                                         {(() => {
                                             const upcomingMatches = getUpcomingMatchesByTeam(team._id);
+                                            
                                             if (upcomingMatches.length === 0) {
                                                 return <p>No hay próximos partidos</p>;
                                             }
@@ -241,26 +235,32 @@ const Teams = () => {
                                                 <div className="partidos-list">
                                                     {upcomingMatches.map(match => (
                                                         <div key={match._id} className="partido-item">
+                                                            <div className="match-header">
+                                                                <span className="match-date">{formatDate(match.date)}</span>
+                                                                <span className="match-time">{match.time.slice(0, 5)}</span>
+                                                            </div>
+                                                            
                                                             <div className="teams-match">
                                                                 <div className="team-match">
-                                                                    <OptimizedImage src="/logo.png" alt="BM Sariegos" className="team-logo-match" width={30} height={30} />
-                                                                    <span>BM SARIEGOS</span>
+                                                                    <OptimizedImage src="/logo.png" alt="BM Sariegos" className="team-logo-match" width={25} height={30} />
+                                                                    <span>Sariegos</span>
                                                                 </div>
+                                                                
                                                                 <div className="vs">VS</div>
+                                                                
                                                                 <div className="team-match">
                                                                     {match.rivalTeam?.photoName ? (
-                                                                        <OptimizedImage src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo-match" width={30} height={30} />
+                                                                        <OptimizedImage src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo-match" width={25} height={30} />
                                                                     ) : (
                                                                         <div className="no-logo-match">?</div>
                                                                     )}
                                                                     <span>{match.rivalTeam?.name}</span>
                                                                 </div>
                                                             </div>
-                                                            <div className="match-details">
-                                                                <span className="match-date">{formatDate(match.date)}</span>
-                                                                <span className="match-time">{match.time.slice(0, 5)}</span>
-                                                                <span className="match-location">{match.location}</span>
-                                                            </div>
+                                                            
+                                                            <div className="match-category">{match.ownTeam?.category}</div>
+                                                            <div className="match-location">{match.location}</div>
+                                                            <div className="match-type">{match.isHome ? 'LOCAL' : 'VISITANTE'}</div>
                                                         </div>
                                                     ))}
                                                 </div>
