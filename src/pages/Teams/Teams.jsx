@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react';
 import apiTeam from '../../services/apiTeam';
 import apiBirthday from '../../services/apiBirthday';
 import apiClasificaciones from '../../services/apiClasificaciones';
+import apiMatch from '../../services/apiMatch';
+import apiRival from '../../services/apiRival';
+import OptimizedImage from '../../components/OptimizedImage/OptimizedImage';
 import './Teams.css';
 
 const Teams = () => {
     const [teams, setTeams] = useState([]);
     const [players, setPlayers] = useState([]);
     const [clasificaciones, setClasificaciones] = useState({});
+    const [matches, setMatches] = useState([]);
+    const [rivals, setRivals] = useState([]);
     const [expandedTeam, setExpandedTeam] = useState(null);
     const [activeTab, setActiveTab] = useState('players');
 
@@ -15,6 +20,8 @@ const Teams = () => {
         fetchTeams();
         fetchPlayers();
         fetchClasificaciones();
+        fetchMatches();
+        fetchRivals();
     }, []);
 
     const fetchTeams = async () => {
@@ -47,6 +54,26 @@ const Teams = () => {
         }
     };
 
+    const fetchMatches = async () => {
+        try {
+            const response = await apiMatch.getAllMatches();
+            setMatches(Array.isArray(response.data.data) ? response.data.data : []);
+        } catch (error) {
+            console.error('Error fetching matches:', error);
+            setMatches([]);
+        }
+    };
+
+    const fetchRivals = async () => {
+        try {
+            const response = await apiRival.getAllRivals();
+            setRivals(Array.isArray(response.data.data) ? response.data.data : []);
+        } catch (error) {
+            console.error('Error fetching rivals:', error);
+            setRivals([]);
+        }
+    };
+
     const getPlayersByTeam = (teamName) => {
         return Array.isArray(players) ? players.filter(player => player.category === teamName) : [];
     };
@@ -63,6 +90,30 @@ const Teams = () => {
 
     const cleanTeamName = (name) => {
         return name.replace(/^-\d+\s/, '');
+    };
+
+    const getUpcomingMatchesByTeam = (teamId) => {
+        const now = new Date();
+        return matches
+            .filter(match => 
+                !match.completed && 
+                new Date(match.date) >= now &&
+                match.ownTeam === teamId
+            )
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .slice(0, 5)
+            .map(match => {
+                const rivalInfo = rivals.find(rival => rival._id === match.rivalTeam);
+                return {
+                    ...match,
+                    rivalTeam: rivalInfo || match.rivalTeam
+                };
+            });
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
     };
 
     const calculateAge = (birthDate) => {
@@ -113,6 +164,12 @@ const Teams = () => {
                                         onClick={() => setActiveTab('clasificacion')}
                                     >
                                         Clasificación
+                                    </button>
+                                    <button 
+                                        className={`tab ${activeTab === 'partidos' ? 'active' : ''}`}
+                                        onClick={() => setActiveTab('partidos')}
+                                    >
+                                        Próximos Partidos
                                     </button>
                                 </div>
                                 
@@ -167,6 +224,45 @@ const Teams = () => {
                                                             </div>
                                                         ))}
                                                     </div>
+                                                </div>
+                                            );
+                                        })()}
+                                    </div>
+                                )}
+                                
+                                {activeTab === 'partidos' && (
+                                    <div className="partidos-container">
+                                        {(() => {
+                                            const upcomingMatches = getUpcomingMatchesByTeam(team._id);
+                                            if (upcomingMatches.length === 0) {
+                                                return <p>No hay próximos partidos</p>;
+                                            }
+                                            return (
+                                                <div className="partidos-list">
+                                                    {upcomingMatches.map(match => (
+                                                        <div key={match._id} className="partido-item">
+                                                            <div className="teams-match">
+                                                                <div className="team-match">
+                                                                    <OptimizedImage src="/logo.png" alt="BM Sariegos" className="team-logo-match" width={30} height={30} />
+                                                                    <span>BM SARIEGOS</span>
+                                                                </div>
+                                                                <div className="vs">VS</div>
+                                                                <div className="team-match">
+                                                                    {match.rivalTeam?.photoName ? (
+                                                                        <OptimizedImage src={match.rivalTeam.photoName} alt={match.rivalTeam.name} className="team-logo-match" width={30} height={30} />
+                                                                    ) : (
+                                                                        <div className="no-logo-match">?</div>
+                                                                    )}
+                                                                    <span>{match.rivalTeam?.name}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="match-details">
+                                                                <span className="match-date">{formatDate(match.date)}</span>
+                                                                <span className="match-time">{match.time.slice(0, 5)}</span>
+                                                                <span className="match-location">{match.location}</span>
+                                                            </div>
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             );
                                         })()}
