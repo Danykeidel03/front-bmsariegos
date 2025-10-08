@@ -45,6 +45,9 @@ const Footer = forwardRef(() => {
                     <a href="https://x.com/bsariegos?s=21" target="_blank" rel="noopener noreferrer" className="no-underline">
                         <OptimizedImage src="x.png" alt="X (Twitter)" className="footer__icon" width={32} height={32} />
                     </a>
+                    <a href="https://www.esportplus.tv/category/64d211b808340ccc0bf2e000/sub-category/68cbe353edc81caf2f5909c5/" target="_blank" rel="noopener noreferrer" className="no-underline">
+                        <OptimizedImage src="esportplus.png" alt="EsportPlus TV" className="footer__icon" width={32} height={32} />
+                    </a>
                 </div>
             </div>
         </footer>
