@@ -33,6 +33,7 @@ const Header = forwardRef(() => {
           <li><a href="/quienes-somos">Quiénes Somos</a></li>
           <li><a href="/noticias">Noticias</a></li>
           <li><a href="/equipos">Equipos</a></li>
+          {/* <li><a href="/equipaciones">Equipaciones</a></li> */}
           <li><a href="/contacto">Contacto</a></li>
         </ul>
       </div>

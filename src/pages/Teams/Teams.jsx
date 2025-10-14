@@ -92,15 +92,13 @@ const Teams = () => {
         return name.replace(/^-\d+\s/, '');
     };
 
-    const getUpcomingMatchesByTeam = (teamId) => {
-        const now = new Date();
+    const getCompletedMatchesByTeam = (teamId) => {
         return matches
             .filter(match => 
-                match.completed === 0 && 
-                new Date(match.date) >= now &&
+                match.completed === 1 &&
                 match.ownTeam._id === teamId
             )
-            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 5);
     };
 
@@ -162,7 +160,7 @@ const Teams = () => {
                                         className={`tab ${activeTab === 'partidos' ? 'active' : ''}`}
                                         onClick={() => setActiveTab('partidos')}
                                     >
-                                        Próximos Partidos
+                                        Resultados
                                     </button>
                                 </div>
                                 
@@ -226,18 +224,17 @@ const Teams = () => {
                                 {activeTab === 'partidos' && (
                                     <div className="partidos-container">
                                         {(() => {
-                                            const upcomingMatches = getUpcomingMatchesByTeam(team._id);
+                                            const completedMatches = getCompletedMatchesByTeam(team._id);
                                             
-                                            if (upcomingMatches.length === 0) {
-                                                return <p>No hay próximos partidos</p>;
+                                            if (completedMatches.length === 0) {
+                                                return <p>No hay resultados disponibles</p>;
                                             }
                                             return (
                                                 <div className="partidos-list">
-                                                    {upcomingMatches.map(match => (
+                                                    {completedMatches.map(match => (
                                                         <div key={match._id} className="partido-item">
                                                             <div className="match-header">
                                                                 <span className="match-date">{formatDate(match.date)}</span>
-                                                                <span className="match-time">{match.time.slice(0, 5)}</span>
                                                             </div>
                                                             
                                                             <div className="teams-match">
@@ -246,7 +243,7 @@ const Teams = () => {
                                                                     <span className='own-team'>Sariegos</span>
                                                                 </div>
                                                                 
-                                                                <div className="vs">VS</div>
+                                                                <div className="vs">{match.result}</div>
                                                                 
                                                                 <div className="team-match">
                                                                     {match.rivalTeam?.photoName ? (

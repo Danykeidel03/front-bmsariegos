@@ -8,6 +8,7 @@ import About from './pages/About/About';
 import Privacy from './pages/Privacy/Privacy';
 import Terms from './pages/Terms/Terms';
 import Matches from './pages/Matches/Matches';
+import Equipaciones from './pages/Equipaciones/Equipaciones';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -22,6 +23,7 @@ function AppRoutes() {
       <Route path="/noticias" element={<News />} />
       <Route path="/equipos" element={<Teams />} />
       <Route path="/partidos" element={<Matches />} />
+      {/* <Route path="/equipaciones" element={<Equipaciones />} /> */}
       <Route path="/quienes-somos" element={<About />} />
       <Route path="/politica-privacidad" element={<Privacy />} />
       <Route path="/terminos-condiciones" element={<Terms />} />
@@ -35,14 +37,23 @@ function AppContent() {
   const location = useLocation();
   const isAdminPage = location.pathname === '/adminBalonmano';
 
+  if (isAdminPage) {
+    return (
+      <>
+        <AppRoutes />
+        <CookieBanner />
+      </>
+    );
+  }
+
   return (
     <>
-    {!isAdminPage && <Header/>}
-    <div className="main-content">
-      <AppRoutes />
-    </div>
-    {!isAdminPage && <Footer/>}
-    <CookieBanner />
+      <Header/>
+      <div className="main-content">
+        <AppRoutes />
+      </div>
+      <Footer/>
+      <CookieBanner />
     </>
   );
 }

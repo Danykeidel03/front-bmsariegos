@@ -57,7 +57,7 @@ const News = () => {
                         </div>
                     ) : (
                         <div className="news-grid">
-                            {noticias.map((noticia, idx) => (
+                            {noticias.slice().reverse().map((noticia, idx) => (
                                 <div className="news-card" key={idx} onClick={() => handleNoticiaClick(noticia)}>
                                     <img src={noticia.photoName} alt={noticia.title} />
                                     <div className="news-content">

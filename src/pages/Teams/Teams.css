@@ -186,7 +186,7 @@
 
 .partidos-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
 }
 
@@ -198,6 +198,10 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .partido-item:hover {
@@ -226,6 +230,17 @@
     align-items: center;
     gap: 8px;
     flex: 1;
+    min-width: 0;
+}
+
+.team-match span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: center;
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.2;
 }
 
 .team-match .own-team{
@@ -255,8 +270,10 @@
 .vs {
     font-weight: bold;
     color: #007bff;
-    font-size: 18px;
-    margin: 0 10px;
+    font-size: 16px;
+    margin: 0 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .match-date {
@@ -365,8 +382,12 @@
     }
     
     .partidos-list {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 15px;
+    }
+    
+    .team-match span {
+        font-size: 12px;
     }
     
     .partido-item {
@@ -433,6 +454,10 @@
         gap: 12px;
     }
     
+    .team-match span {
+        font-size: 11px;
+    }
+    
     .partido-item {
         padding: 12px;
     }
@@ -444,7 +469,8 @@
     }
     
     .vs {
-        font-size: 16px;
+        font-size: 14px;
+        margin: 0 5px;
     }
     
     .match-category,
