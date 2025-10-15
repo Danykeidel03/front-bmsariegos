@@ -23,7 +23,7 @@ function AppRoutes() {
       <Route path="/noticias" element={<News />} />
       <Route path="/equipos" element={<Teams />} />
       <Route path="/partidos" element={<Matches />} />
-      <Route path="/equipaciones" element={<Equipaciones />} />
+      <Route path="/tienda" element={<Equipaciones />} />
       <Route path="/quienes-somos" element={<About />} />
       <Route path="/politica-privacidad" element={<Privacy />} />
       <Route path="/terminos-condiciones" element={<Terms />} />
