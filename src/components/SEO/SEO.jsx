@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
 const SEO = ({ 
-  title = 'Balonmano Sariegos - Club de Balonmano en León',
-  description = 'Club de Balonmano Sariegos en León. Noticias, partidos, equipos y toda la información del club. Únete a nuestra comunidad deportiva.',
-  keywords = 'balonmano, sariegos, león, club deportivo, handball, deporte, equipos, partidos, noticias',
+  title = 'Sariegos - Balonmano León - Balonmano Sariegos',
+  description = 'Sariegos - Balonmano León - Club Balonmano Sariegos. El mejor equipo de handball de Sariegos y León con noticias, partidos y toda la información del club.',
+  keywords = 'sariegos, sariegos león, balonmano león, balonmano leon, balonmano sariegos, sariegos balonmano, club sariegos, handball león, club balonmano león, equipo balonmano león',
   image = '/logo.png',
   url = window.location.href,
   type = 'website'

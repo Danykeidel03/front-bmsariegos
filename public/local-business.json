@@ -1,0 +1,35 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Club Balonmano Sariegos",
+  "alternateName": ["Sariegos Balonmano", "BM Sariegos", "Club Sariegos"],
+  "description": "Club de Balonmano de Sariegos, León - El equipo de handball más importante de Sariegos",
+  "url": "https://balonmanosariegos.com",
+  "telephone": "+34-XXX-XXX-XXX",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Pabellón Deportivo Municipal",
+    "addressLocality": "Sariegos",
+    "addressRegion": "Castilla y León",
+    "postalCode": "24391",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "42.6167",
+    "longitude": "-5.6167"
+  },
+  "openingHours": "Mo-Su 09:00-22:00",
+  "priceRange": "€",
+  "category": ["Sports Club", "Handball Team", "Youth Sports"],
+  "keywords": "sariegos, sariegos león, club sariegos, balonmano sariegos, sariegos balonmano, sariegos deporte",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Sariegos, León, Castilla y León"
+  },
+  "sameAs": [
+    "https://www.instagram.com/balonmanosariegos",
+    "https://www.youtube.com/@balonmanosariegos",
+    "https://www.tiktok.com/@balonmanosariegos"
+  ]
+}

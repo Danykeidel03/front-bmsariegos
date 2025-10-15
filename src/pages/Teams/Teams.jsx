@@ -196,7 +196,7 @@ const Teams = () => {
                                                         <div className="table-header">
                                                             <span>Pos</span>
                                                             <span>Equipo</span>
-                                                            <span>PJ</span>
+                                                            <span>PT</span>
                                                             <span>G</span>
                                                             <span>E</span>
                                                             <span>P</span>
