@@ -3,9 +3,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 15px 30px;
   position: relative;
   z-index: 3;
+  box-shadow: 0 4px 20px rgba(17, 155, 198, 0.3);
 }
 
 .header .menuOptions ul {
@@ -14,30 +15,61 @@
   display: flex;
   list-style: none;
   color: white;
-  gap: 25px;
-  font-size: 18px;
+  gap: 35px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .header .menuOptions ul li a {
   color: white;
   text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.header .menuOptions ul li a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.logoTeam {
+  transition: transform 0.3s ease;
+}
+
+.logoTeam:hover {
+  transform: scale(1.05);
 }
 
 .logoTeam img {
-  width: 75px;
+  width: 80px;
   height: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
 }
 
 .menuToggle {
   display: none;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.menuToggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 12px 20px;
+  }
+
   .menuToggle {
     display: block;
   }
@@ -48,8 +80,11 @@
     top: 100%;
     right: 0;
     background-color: #119bc6;
-    width: 200px;
+    width: 250px;
     transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-radius: 0 0 0 15px;
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
   }
 
   .menuOptions.active {
@@ -60,15 +95,34 @@
   .header .menuOptions ul {
     flex-direction: column;
     gap: 0;
+    padding: 10px 0;
   }
 
   .menuOptions ul li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-    padding: 15px 0;
+    padding: 0;
+  }
+
+  .menuOptions ul li a {
+    display: block;
+    padding: 18px 20px;
+    margin: 0;
+    border-radius: 0;
+    font-size: 15px;
+  }
+
+  .menuOptions ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: none;
+    padding-left: 30px;
   }
 
   .menuOptions ul li:last-child {
     border-bottom: none;
+  }
+
+  .logoTeam img {
+    width: 70px;
   }
 }
