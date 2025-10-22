@@ -21,7 +21,7 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
 
     const fetchNotices = async () => {
         try {
-            const response = await apiNotice.getNotices();
+            const response = await apiNotice.getAllNotices();
             setNotices(response.data.data || []);
         } catch (error) {
             console.error('Error fetching notices:', error);

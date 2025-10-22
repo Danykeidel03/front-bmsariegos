@@ -197,9 +197,9 @@ const Teams = () => {
                                                             <span>Pos</span>
                                                             <span>Equipo</span>
                                                             <span>PT</span>
+                                                            <span>J</span>
                                                             <span>G</span>
                                                             <span>E</span>
-                                                            <span>P</span>
                                                         </div>
                                                         {clasificacion.clasificacion.map(equipo => (
                                                             <div 
