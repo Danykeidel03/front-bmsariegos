@@ -132,7 +132,7 @@ const Teams = () => {
                             onClick={() => toggleTeam(team._id)}
                         >
                             <LocalOptimizedImage 
-                                src="logo.png" 
+                                src="logo-30.webp" 
                                 alt={team.name}
                                 className="team-logo"
                                 width={30}

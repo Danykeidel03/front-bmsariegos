@@ -10,7 +10,7 @@ export const useCloudinaryOptimization = () => {
       const {
         width = 800,
         height,
-        quality = 'auto',
+        quality = 40,
         format = 'auto',
         crop = 'limit',
         dpr = 'auto'

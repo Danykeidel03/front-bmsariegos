@@ -23,7 +23,7 @@ const OptimizedImage = ({
       if (parts.length === 2) {
         const transformations = [
           'f_auto',
-          `q_${q}`,
+          `q_${Math.min(q, 50)}`,
           `w_${w}`,
           'c_limit',
           'dpr_auto'

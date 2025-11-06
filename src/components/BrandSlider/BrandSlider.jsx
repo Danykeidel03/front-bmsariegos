@@ -54,7 +54,7 @@ const BrandSlider = () => {
                             alt={sponsor.name} 
                             width={184}
                             height={123}
-                            quality={50}
+                            quality={30}
                             sizes="184px"
                         />
                         <span className="sr-only">{sponsor.name}</span>

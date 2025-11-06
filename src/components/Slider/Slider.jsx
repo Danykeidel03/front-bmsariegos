@@ -36,10 +36,10 @@ const MySlider = () => {
                     src="/slider1.webp" 
                     alt="Slider" 
                     className='imgSlider'
-                    width={933}
-                    height={700}
+                    width={721}
+                    height={721}
                     priority={true}
-                    sizes="(max-width: 768px) 100vw, 933px"
+                    sizes="(max-width: 768px) 100vw, 721px"
                 />
             </div>
         );
@@ -62,11 +62,11 @@ const MySlider = () => {
                                 src={imagen.imgCabecera} 
                                 alt={`Slide ${index + 1}`} 
                                 className='imgSlider'
-                                width={933}
-                                height={700}
+                                width={721}
+                                height={721}
                                 priority={index === 0}
-                                quality={60}
-                                sizes="(max-width: 768px) 100vw, 933px"
+                                quality={40}
+                                sizes="(max-width: 768px) 100vw, 721px"
                             />
                         </a>
                     ) : (
@@ -74,11 +74,11 @@ const MySlider = () => {
                             src={imagen.imgCabecera} 
                             alt={`Slide ${index + 1}`} 
                             className='imgSlider'
-                            width={933}
-                            height={700}
+                            width={721}
+                            height={721}
                             priority={index === 0}
-                            quality={60}
-                            sizes="(max-width: 768px) 100vw, 933px"
+                            quality={40}
+                            sizes="(max-width: 768px) 100vw, 721px"
                         />
                     )}
                 </SwiperSlide>
