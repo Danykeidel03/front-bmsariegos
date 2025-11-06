@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
+import OptimizedImage from '../OptimizedImage/OptimizedImage';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './Slider.css';
@@ -31,7 +32,15 @@ const MySlider = () => {
     if (imagenes.length === 0) {
         return (
             <div className="slider-fallback">
-                <img src="/slider1.webp" alt="Slider" className='imgSlider' />
+                <OptimizedImage 
+                    src="/slider1.webp" 
+                    alt="Slider" 
+                    className='imgSlider'
+                    width={1200}
+                    height={600}
+                    priority={true}
+                    sizes="100vw"
+                />
             </div>
         );
     }
@@ -49,17 +58,27 @@ const MySlider = () => {
                 <SwiperSlide key={imagen._id}>
                     {imagen.urlImagen ? (
                         <a href={imagen.urlImagen} target="_blank" rel="noopener noreferrer">
-                            <img 
+                            <OptimizedImage 
                                 src={imagen.imgCabecera} 
                                 alt={`Slide ${index + 1}`} 
                                 className='imgSlider'
+                                width={1200}
+                                height={600}
+                                priority={index === 0}
+                                quality={75}
+                                sizes="100vw"
                             />
                         </a>
                     ) : (
-                        <img 
+                        <OptimizedImage 
                             src={imagen.imgCabecera} 
                             alt={`Slide ${index + 1}`} 
                             className='imgSlider'
+                            width={1200}
+                            height={600}
+                            priority={index === 0}
+                            quality={75}
+                            sizes="100vw"
                         />
                     )}
                 </SwiperSlide>

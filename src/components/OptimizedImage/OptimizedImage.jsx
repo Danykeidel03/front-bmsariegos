@@ -21,7 +21,14 @@ const OptimizedImage = ({
     if (originalSrc.includes('res.cloudinary.com')) {
       const parts = originalSrc.split('/upload/');
       if (parts.length === 2) {
-        return `${parts[0]}/upload/f_auto,q_${q},w_${w},c_limit/${parts[1]}`;
+        const transformations = [
+          'f_auto',
+          `q_${q}`,
+          `w_${w}`,
+          'c_limit',
+          'dpr_auto'
+        ].join(',');
+        return `${parts[0]}/upload/${transformations}/${parts[1]}`;
       }
     }
     
@@ -31,7 +38,13 @@ const OptimizedImage = ({
   const generateSrcSet = (originalSrc) => {
     if (!width || !originalSrc) return '';
     
-    const widths = [width, width * 2, width * 3].filter(w => w <= 2048);
+    const widths = [
+      Math.round(width * 0.5),
+      width,
+      Math.round(width * 1.5),
+      Math.round(width * 2)
+    ].filter(w => w >= 100 && w <= 2048);
+    
     return widths.map(w => `${getOptimizedSrc(originalSrc, w)} ${w}w`).join(', ');
   };
 

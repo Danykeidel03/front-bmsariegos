@@ -5,6 +5,7 @@ import apiClasificaciones from '../../services/apiClasificaciones';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
 import OptimizedImage from '../../components/OptimizedImage/OptimizedImage';
+import LocalOptimizedImage from '../../components/LocalOptimizedImage/LocalOptimizedImage';
 import './Teams.css';
 
 const Teams = () => {
@@ -130,10 +131,14 @@ const Teams = () => {
                             className="team-header"
                             onClick={() => toggleTeam(team._id)}
                         >
-                            <img 
+                            <LocalOptimizedImage 
                                 src="logo.png" 
                                 alt={team.name}
                                 className="team-logo"
+                                width={30}
+                                height={30}
+                                quality={75}
+                                sizes="30px"
                             />
                             <h2>{team.name}</h2>
                             <span className={`arrow ${expandedTeam === team._id ? 'expanded' : ''}`}>
@@ -168,10 +173,14 @@ const Teams = () => {
                                     <div className="players-list">
                                         {getPlayersByTeam(team.name).map(player => (
                                             <div key={player._id} className="player-card">
-                                                <img 
+                                                <OptimizedImage 
                                                     src={player.photoName} 
                                                     alt={player.name}
                                                     className="player-photo"
+                                                    width={60}
+                                                    height={60}
+                                                    quality={75}
+                                                    sizes="60px"
                                                 />
                                                 <div className="player-info">
                                                     <h3>{player.name}</h3>

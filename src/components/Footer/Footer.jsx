@@ -1,18 +1,19 @@
 import React, { forwardRef } from 'react';
-import OptimizedImage from '../OptimizedImage/OptimizedImage';
+import LocalOptimizedImage from '../LocalOptimizedImage/LocalOptimizedImage';
 import './Footer.css';
 
 const Footer = forwardRef(() => {
     return (
         <footer className="footer">
             <div className="footer__section logo-footer">
-                <OptimizedImage
+                <LocalOptimizedImage
                     src="logo.png"
                     alt="Logo BM Sariegos"
                     className="footer__logo-main"
                     width={140}
                     height={140}
-                    quality={85}
+                    quality={75}
+                    sizes="140px"
                 />
             </div>
 
@@ -34,19 +35,19 @@ const Footer = forwardRef(() => {
                 </div>
                 <div className="rrss-logo">
                     <a href="https://www.instagram.com/balonmanosariegos?igsh=MXJveWU0ZnljcTduYw==" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <OptimizedImage src="instagram.png" alt="Instagram" className="footer__icon" width={32} height={32} />
+                        <LocalOptimizedImage src="instagram.png" alt="Instagram" className="footer__icon" width={32} height={32} quality={70} sizes="32px" />
                     </a>
                     <a href="https://www.tiktok.com/@bmsariegos?_t=ZN-8zYVE2axXko&_r=1" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <OptimizedImage src="tiktok.png" alt="TikTok" className="footer__icon" width={32} height={32} />
+                        <LocalOptimizedImage src="tiktok.png" alt="TikTok" className="footer__icon" width={32} height={32} quality={70} sizes="32px" />
                     </a>
                     <a href="https://youtube.com/@balonmanosariegos3521?si=IIi08w8o6mOhvQio" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <OptimizedImage src="youtube.png" alt="YouTube" className="footer__icon" width={32} height={32} />
+                        <LocalOptimizedImage src="youtube.png" alt="YouTube" className="footer__icon" width={32} height={32} quality={70} sizes="32px" />
                     </a>
                     <a href="https://x.com/bsariegos?s=21" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <OptimizedImage src="x.png" alt="X (Twitter)" className="footer__icon" width={32} height={32} />
+                        <LocalOptimizedImage src="x.png" alt="X (Twitter)" className="footer__icon" width={32} height={32} quality={70} sizes="32px" />
                     </a>
                     <a href="https://www.esportplus.tv/category/64d211b808340ccc0bf2e000/sub-category/68cbe353edc81caf2f5909c5/" target="_blank" rel="noopener noreferrer" className="no-underline">
-                        <OptimizedImage src="esportplus.png" alt="EsportPlus TV" className="footer__icon" width={32} height={32} />
+                        <LocalOptimizedImage src="esportplus.png" alt="EsportPlus TV" className="footer__icon" width={32} height={32} quality={70} sizes="32px" />
                     </a>
                 </div>
             </div>

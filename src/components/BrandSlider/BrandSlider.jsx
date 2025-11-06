@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import SEOLink from '../SEOLink/SEOLink';
+import OptimizedImage from '../OptimizedImage/OptimizedImage';
 import './BrandSlider.css';
 import apiSponsor from '../../services/apiSponsor';
 
@@ -48,7 +49,14 @@ const BrandSlider = () => {
                         external={!!sponsor.website}
                         ariaLabel={`Visitar sitio web de ${sponsor.name}`}
                     >
-                        <img src={sponsor.photoName} alt={sponsor.name} loading="lazy" />
+                        <OptimizedImage 
+                            src={sponsor.photoName} 
+                            alt={sponsor.name} 
+                            width={184}
+                            height={123}
+                            quality={70}
+                            sizes="(max-width: 768px) 50vw, 184px"
+                        />
                         <span className="sr-only">{sponsor.name}</span>
                     </SEOLink>
                 ))}
