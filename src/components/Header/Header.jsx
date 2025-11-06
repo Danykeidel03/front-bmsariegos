@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react';
-import OptimizedImage from '../OptimizedImage/OptimizedImage';
+import LocalOptimizedImage from '../LocalOptimizedImage/LocalOptimizedImage';
 import './Header.css';
 
 const Header = forwardRef(() => {
@@ -9,14 +9,15 @@ const Header = forwardRef(() => {
     <div className="header">
       <div className='logoTeam'>
         <a href="/">
-          <OptimizedImage
-            src="logo.png"
+          <LocalOptimizedImage
+            src="logo-123.webp"
             alt="Logo BM Sariegos"
             className="header__logo"
-            width={140}
-            height={140}
+            width={123}
+            height={123}
             priority={true}
-            quality={85}
+            quality={75}
+            sizes="123px"
           />
         </a>
       </div>

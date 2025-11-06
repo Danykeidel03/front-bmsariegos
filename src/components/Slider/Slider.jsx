@@ -32,14 +32,14 @@ const MySlider = () => {
     if (imagenes.length === 0) {
         return (
             <div className="slider-fallback">
-                <OptimizedImage 
+                <LocalOptimizedImage 
                     src="/slider1.webp" 
                     alt="Slider" 
                     className='imgSlider'
-                    width={1200}
-                    height={600}
+                    width={933}
+                    height={700}
                     priority={true}
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw, 933px"
                 />
             </div>
         );
@@ -62,11 +62,11 @@ const MySlider = () => {
                                 src={imagen.imgCabecera} 
                                 alt={`Slide ${index + 1}`} 
                                 className='imgSlider'
-                                width={1200}
-                                height={600}
+                                width={933}
+                                height={700}
                                 priority={index === 0}
-                                quality={75}
-                                sizes="100vw"
+                                quality={60}
+                                sizes="(max-width: 768px) 100vw, 933px"
                             />
                         </a>
                     ) : (
@@ -74,11 +74,11 @@ const MySlider = () => {
                             src={imagen.imgCabecera} 
                             alt={`Slide ${index + 1}`} 
                             className='imgSlider'
-                            width={1200}
-                            height={600}
+                            width={933}
+                            height={700}
                             priority={index === 0}
-                            quality={75}
-                            sizes="100vw"
+                            quality={60}
+                            sizes="(max-width: 768px) 100vw, 933px"
                         />
                     )}
                 </SwiperSlide>

@@ -54,8 +54,8 @@ const BrandSlider = () => {
                             alt={sponsor.name} 
                             width={184}
                             height={123}
-                            quality={70}
-                            sizes="(max-width: 768px) 50vw, 184px"
+                            quality={50}
+                            sizes="184px"
                         />
                         <span className="sr-only">{sponsor.name}</span>
                     </SEOLink>
