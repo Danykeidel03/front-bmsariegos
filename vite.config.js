@@ -5,13 +5,17 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    cssCodeSplit: false,
+    cssCodeSplit: true,
     minify: 'terser',
+    chunkSizeWarningLimit: 1000,
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        passes: 2
+        passes: 3,
+        pure_funcs: ['console.log', 'console.info'],
+        reduce_vars: true,
+        unused: true
       },
       mangle: {
         safari10: true
@@ -19,7 +23,12 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'router': ['react-router-dom'],
+          'swiper': ['swiper'],
+          'utils': ['axios', 'sweetalert2']
+        }
       }
     }
   },
