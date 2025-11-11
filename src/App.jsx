@@ -17,19 +17,21 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contacto" element={<Contact />} />
-      <Route path="/noticias" element={<News />} />
-      <Route path="/equipos" element={<Teams />} />
-      <Route path="/partidos" element={<Matches />} />
-      <Route path="/tienda" element={<Equipaciones />} />
-      <Route path="/quienes-somos" element={<About />} />
-      <Route path="/politica-privacidad" element={<Privacy />} />
-      <Route path="/terminos-condiciones" element={<Terms />} />
-      <Route path="/adminBalonmano" element={<Admin />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Suspense fallback={<div style={{height:'200px'}}></div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contacto" element={<Contact />} />
+        <Route path="/noticias" element={<News />} />
+        <Route path="/equipos" element={<Teams />} />
+        <Route path="/partidos" element={<Matches />} />
+        <Route path="/tienda" element={<Equipaciones />} />
+        <Route path="/quienes-somos" element={<About />} />
+        <Route path="/politica-privacidad" element={<Privacy />} />
+        <Route path="/terminos-condiciones" element={<Terms />} />
+        <Route path="/adminBalonmano" element={<Admin />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 
