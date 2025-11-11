@@ -35,12 +35,26 @@
     
     <title>Sariegos | Balonmano León | Balonmano Sariegos | Club BM</title>
     
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsOrganization",
+      "name": "Club Balonmano Sariegos",
+      "description": "Club de Balonmano Sariegos en León",
+      "url": "https://balonmanosariegos.com",
+      "logo": "https://balonmanosariegos.com/logo.png",
+      "sport": ["Handball", "Balonmano"]
+    }
+    </script>
+    
 
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
     <script>
-      setTimeout(()=>{const s=document.createElement('script');s.type='module';s.src='/src/main.jsx';document.head.appendChild(s);const l=document.createElement('link');l.rel='stylesheet';l.href='/src/App.css';l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);const sd=document.createElement('script');sd.type='application/ld+json';sd.textContent=JSON.stringify({"@context":"https://schema.org","@type":"SportsOrganization","name":"Club Balonmano Sariegos","description":"Club de Balonmano Sariegos en León","url":"https://balonmanosariegos.com","logo":"https://balonmanosariegos.com/logo.png","sport":["Handball","Balonmano"]});document.head.appendChild(sd);},100);
+      const l=document.createElement('link');l.rel='stylesheet';l.href='/src/App.css';l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);
     </script>
   </body>
 </html>
