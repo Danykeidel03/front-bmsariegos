@@ -83,7 +83,7 @@ const MySlider = () => {
                         />
                     )}
                 </SwiperSlide>
-            ))
+            ))}
         </Swiper>
     );
 };
