@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="🏆 Sariegos - Balonmano León - Club Balonmano Sariegos - El mejor equipo de handball de Sariegos • Noticias, partidos y resultados • Balonmano femenino y masculino León • Cantera deportiva" />
     <meta name="keywords" content="sariegos, sariegos león, club sariegos, balonmano león, balonmano leon, handball león, balonmano sariegos, sariegos balonmano, club balonmano león, equipo balonmano león, partidos balonmano león, noticias balonmano león, balonmano femenino león, balonmano masculino león, sariegos deporte, handball sariegos, bm sariegos, club deportivo sariegos" />
     <meta name="author" content="Balonmano Sariegos" />
@@ -34,20 +34,11 @@
     <link rel="icon" type="image/x-icon" href="/logo.ico" />
     <link rel="apple-touch-icon" href="/logo.png" />
     
-    <!-- Critical CSS inline -->
-    <style>
-      *{box-sizing:border-box}header,body{margin:0;padding:0}body{font-family:system-ui,-apple-system,sans-serif;line-height:1.4}p,a,h1,h2,h3,ul,li,div,span{font-family:inherit}a{color:inherit;text-decoration:none;position:relative;transition:all .3s ease}.main-content{min-height:100vh;contain:layout}img{max-width:100%;height:auto;display:block}.imgSlider{width:100%;height:80vh;object-fit:cover;background:#f0f0f0}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}a:focus-visible{outline:2px solid #0066cc;outline-offset:2px}@media (max-width:767px){.imgSlider{height:50vh;max-height:400px}}
-    </style>
+    <style>*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif}img{max-width:100%;height:auto;display:block}.imgSlider{width:100%;height:50vh;object-fit:cover;background:#f0f0f0}@media (min-width:768px){.imgSlider{height:80vh}}</style>
     
     <!-- Preloads -->
     <link rel="preload" href="/slider1.webp" as="image" fetchpriority="high" />
-    <link rel="preload" href="/slider2.webp" as="image" />
-    <link rel="preconnect" href="https://back-bmsariegos-production.up.railway.app" />
     <link rel="preconnect" href="https://res.cloudinary.com" />
-    <link rel="dns-prefetch" href="//back-bmsariegos-production.up.railway.app" />
-    <link rel="dns-prefetch" href="//res.cloudinary.com" />
-    <link rel="modulepreload" href="/src/main.jsx" />
-    <link rel="modulepreload" href="/src/App.jsx" />
     
     <!-- Canonical -->
     <link rel="canonical" href="https://balonmanosariegos.com" />
@@ -97,22 +88,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // Load non-critical CSS asynchronously
-      function loadCSS(href) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        link.media = 'print';
-        link.onload = function() { this.media = 'all'; };
-        document.head.appendChild(link);
-      }
-      
-      // Load after initial render
-      requestAnimationFrame(() => {
-        loadCSS('/src/App.css');
-        loadCSS('/src/styles/modals-responsive.css');
-      });
-    </script>
   </body>
 </html>
