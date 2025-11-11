@@ -34,11 +34,12 @@
     <link rel="icon" type="image/x-icon" href="/logo.ico" />
     <link rel="apple-touch-icon" href="/logo.png" />
     
-    <style>*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif}img{max-width:100%;height:auto;display:block}.imgSlider{width:100%;height:50vh;object-fit:cover;background:#f0f0f0}@media (min-width:768px){.imgSlider{height:80vh}}</style>
+    <style>*{box-sizing:border-box}header,body{margin:0;padding:0}body{font-family:system-ui,-apple-system,sans-serif;line-height:1.4}p,a,h1,h2,h3,ul,li,div,span{font-family:inherit}a{color:inherit;text-decoration:none}.main-content{min-height:100vh}img{max-width:100%;height:auto;display:block}.imgSlider{width:100%;height:50vh;object-fit:cover;background:#f0f0f0}@media (min-width:768px){.imgSlider{height:80vh}}</style>
     
     <!-- Preloads -->
     <link rel="preload" href="/slider1.webp" as="image" fetchpriority="high" />
     <link rel="preconnect" href="https://res.cloudinary.com" />
+    <link rel="preconnect" href="https://back-bmsariegos-production.up.railway.app" />
     
     <!-- Canonical -->
     <link rel="canonical" href="https://balonmanosariegos.com" />
@@ -88,5 +89,8 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const link=document.createElement('link');link.rel='stylesheet';link.href='/src/App.css';link.media='print';link.onload=function(){this.media='all'};document.head.appendChild(link);
+    </script>
   </body>
 </html>

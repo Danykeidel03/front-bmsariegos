@@ -31,15 +31,20 @@ a {
     color: inherit;
     text-decoration: none;
     position: relative;
-    transition: all 0.3s ease;
 }
 
-a:hover {
-    transform: translateY(-1px);
-}
-
-a:not(.no-underline):hover::after {
-    width: 100%;
+@media (min-width: 768px) {
+    a {
+        transition: all 0.3s ease;
+    }
+    
+    a:hover {
+        transform: translateY(-1px);
+    }
+    
+    a:not(.no-underline):hover::after {
+        width: 100%;
+    }
 }
 
 .main-content {

@@ -8,7 +8,7 @@ const OptimizedImage = ({
   width, 
   height,
   sizes = "(max-width: 768px) 100vw, 50vw",
-  quality = 80,
+  quality = 60,
   ...props 
 }) => {
   const [loaded, setLoaded] = useState(false);
@@ -23,7 +23,7 @@ const OptimizedImage = ({
       if (parts.length === 2) {
         const transformations = [
           'f_auto',
-          `q_${Math.min(q, 50)}`,
+          `q_${Math.min(q, 40)}`,
           `w_${w}`,
           'c_limit',
           'dpr_auto'
