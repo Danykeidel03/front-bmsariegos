@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    cssCodeSplit: false,
+    cssCodeSplit: true,
     minify: 'terser',
     terserOptions: {
       compress: {
@@ -15,11 +15,32 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          swiper: ['swiper'],
-          api: ['axios'],
-          ui: ['sweetalert2']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('react-router')) {
+              return 'router';
+            }
+            if (id.includes('swiper')) {
+              return 'swiper';
+            }
+            if (id.includes('axios')) {
+              return 'api';
+            }
+            return 'vendor';
+          }
+          if (id.includes('src/pages/')) {
+            const page = id.split('/pages/')[1].split('/')[0];
+            return `page-${page}`;
+          }
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'assets/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
         }
       }
     }

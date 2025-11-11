@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import OptimizedImage from '../OptimizedImage/OptimizedImage';
+import LocalOptimizedImage from '../LocalOptimizedImage/LocalOptimizedImage';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './Slider.css';
