@@ -52,8 +52,11 @@ const MySlider = () => {
             spaceBetween={0}
             slidesPerView={1}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 5000 }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
             loop={true}
+            lazy={true}
+            preloadImages={false}
+            updateOnWindowResize={true}
         >
             {imagenes.map((imagen, index) => (
                 <SwiperSlide key={imagen._id}>
@@ -66,7 +69,7 @@ const MySlider = () => {
                                 width={721}
                                 height={721}
                                 priority={index === 0}
-                                quality={index === 0 ? 60 : 30}
+                                quality={index === 0 ? 50 : 25}
                                 sizes="(max-width: 768px) 100vw, 721px"
                             />
                         </a>
@@ -78,7 +81,7 @@ const MySlider = () => {
                             width={721}
                             height={721}
                             priority={index === 0}
-                            quality={index === 0 ? 60 : 30}
+                            quality={index === 0 ? 50 : 25}
                             sizes="(max-width: 768px) 100vw, 721px"
                         />
                     )}
