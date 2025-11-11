@@ -20,10 +20,10 @@
     <link rel="icon" type="image/x-icon" href="/logo.ico" />
     <link rel="apple-touch-icon" href="/logo.png" />
     
-    <style>*{box-sizing:border-box}header,body{margin:0;padding:0}body{font-family:system-ui,-apple-system,sans-serif;line-height:1.4;background:#fff}p,a,h1,h2,h3,ul,li,div,span{font-family:inherit}a{color:inherit;text-decoration:none}.main-content{min-height:100vh}img{max-width:100%;height:auto;display:block}.imgSlider{width:100%;height:50vh;object-fit:cover;background:#f0f0f0}@media (min-width:768px){.imgSlider{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}}@keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}@media (min-width:768px){.imgSlider{height:80vh}}</style>
+    <style>*{box-sizing:border-box}header,body{margin:0;padding:0}body{font-family:system-ui,-apple-system,sans-serif;line-height:1.4;background:#fff}p,a,h1,h2,h3,ul,li,div,span{font-family:inherit}a{color:inherit;text-decoration:none}.main-content{min-height:100vh}img{max-width:100%;height:auto;display:block}.imgSlider{width:100%;height:40vh;object-fit:cover;background:#f0f0f0}@media (min-width:768px){.imgSlider{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}}@keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}@media (min-width:768px){.imgSlider{height:80vh}}</style>
     
     <!-- Preloads -->
-    <link rel="preload" href="/slider1.webp" as="image" fetchpriority="high" />
+    <link rel="preload" href="/slider1.webp" as="image" fetchpriority="high" imagesizes="(max-width: 768px) 100vw, 721px" />
     <link rel="modulepreload" href="/src/pages/Home/Home.jsx" />
     <link rel="dns-prefetch" href="//res.cloudinary.com" />
     <link rel="dns-prefetch" href="//back-bmsariegos-production.up.railway.app" />
@@ -54,8 +54,10 @@
 
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx" defer></script>
+    <div id="root">
+      <img src="/slider1.webp" alt="Balonmano Sariegos" style="width:100%;height:40vh;object-fit:cover;display:block" fetchpriority="high" />
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
     <script>
       const l=document.createElement('link');l.rel='stylesheet';l.href='/src/App.css';l.media='print';l.onload=function(){this.media='all'};document.head.appendChild(l);
     </script>

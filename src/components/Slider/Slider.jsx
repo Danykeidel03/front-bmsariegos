@@ -26,8 +26,16 @@ const MySlider = () => {
         fetchImagenes();
     }, []);
 
+    useEffect(() => {
+        // Ocultar imagen HTML cuando React carga
+        const htmlImg = document.querySelector('#root > img');
+        if (htmlImg && !loading) {
+            htmlImg.style.display = 'none';
+        }
+    }, [loading]);
+
     if (loading) {
-        return <div className="slider-loading">Cargando...</div>;
+        return null;
     }
 
     if (imagenes.length === 0) {
