@@ -66,7 +66,7 @@ const MySlider = () => {
                                 width={721}
                                 height={721}
                                 priority={index === 0}
-                                quality={40}
+                                quality={index === 0 ? 60 : 30}
                                 sizes="(max-width: 768px) 100vw, 721px"
                             />
                         </a>
@@ -78,12 +78,12 @@ const MySlider = () => {
                             width={721}
                             height={721}
                             priority={index === 0}
-                            quality={40}
+                            quality={index === 0 ? 60 : 30}
                             sizes="(max-width: 768px) 100vw, 721px"
                         />
                     )}
                 </SwiperSlide>
-            ))}
+            ))
         </Swiper>
     );
 };
