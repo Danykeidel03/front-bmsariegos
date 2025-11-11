@@ -60,10 +60,16 @@ img {
 
 .imgSlider {
     width: 100%;
-    height: 40vh;
+    height: 80vh;
     object-fit: cover;
     background: #f0f0f0;
-    max-height: 350px;
+}
+
+@media (max-width: 767px) {
+    .imgSlider {
+        height: 50vh;
+        max-height: 400px;
+    }
 }
 
 @media (min-width: 768px) {
