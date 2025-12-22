@@ -1,3 +1,15 @@
 # GitHub Pages configuration
 # Disable Jekyll processing
 skip_jekyll: true
+
+# Exclude everything except what needs to be served
+exclude:
+  - node_modules/
+  - src/
+  - scripts/
+  - package.json
+  - package-lock.json
+  - vite.config.js
+  - eslint.config.js
+  - index.html
+  - README.md
