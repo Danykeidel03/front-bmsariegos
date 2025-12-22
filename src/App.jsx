@@ -1,4 +1,5 @@
 import './App.css';
+import { Suspense } from 'react';
 import Home from './pages/Home/Home';
 import Contact from './pages/Contact/Contact';
 import Admin from './pages/Admin/Admin';
