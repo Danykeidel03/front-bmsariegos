@@ -13,7 +13,7 @@ const Teams = () => {
     const [players, setPlayers] = useState([]);
     const [clasificaciones, setClasificaciones] = useState({});
     const [matches, setMatches] = useState([]);
-    const [rivals, setRivals] = useState([]);
+    const [_rivals, setRivals] = useState([]);
     const [expandedTeam, setExpandedTeam] = useState(null);
     const [activeTab, setActiveTab] = useState('players');
 

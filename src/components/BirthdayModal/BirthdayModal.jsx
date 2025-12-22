@@ -90,7 +90,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         }));
     };
 
-    const compressImage = (file) => {
+    const _compressImage = (file) => {
         return new Promise((resolve) => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -165,7 +165,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             const croppedFile = await getCroppedImg(imgRef.current, completedCrop);
             setFormData(prev => ({ ...prev, photo: croppedFile }));
             setShowCropper(false);
-        } catch (error) {
+        } catch (_error) {
             Swal.fire('Error', 'No se pudo recortar la imagen', 'error');
         }
     };
@@ -187,7 +187,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                 await apiBirthday.deleteBirthday(playerId);
                 Swal.fire('Eliminado', 'Jugador eliminado correctamente', 'success');
                 await fetchPlayers();
-            } catch (error) {
+            } catch (_error) {
                 Swal.fire('Error', 'No se pudo eliminar el jugador', 'error');
             }
         }
@@ -221,7 +221,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             setEditingPlayer(null);
             setShowForm(false);
             await fetchPlayers();
-        } catch (error) {
+        } catch (_error) {
             Swal.fire('Error', 'No se pudo guardar el jugador', 'error');
         }
     };

@@ -13,7 +13,7 @@ const BrandSlider = () => {
             try {
                 const response = await apiSponsor.getSponsors();
                 setSponsors(Array.isArray(response.data.data) ? response.data.data : []);
-            } catch (error) {
+            } catch (_error) {
                 setSponsors([]);
             } finally {
                 setLoading(false);

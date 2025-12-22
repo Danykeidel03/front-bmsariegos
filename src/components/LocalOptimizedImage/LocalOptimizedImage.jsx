@@ -7,8 +7,8 @@ const LocalOptimizedImage = ({
   width, 
   height,
   priority = false,
-  quality = 80,
-  sizes = "100vw",
+  _quality = 80,
+  _sizes = "100vw",
   ...props 
 }) => {
   const [loaded, setLoaded] = useState(false);

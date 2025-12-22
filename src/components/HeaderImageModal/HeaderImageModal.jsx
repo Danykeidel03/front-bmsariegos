@@ -44,7 +44,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
             Swal.fire('Éxito', 'Imagen añadida correctamente', 'success');
             setFormData({ photo: null, urlImagen: '' });
             fetchImagenes();
-        } catch (error) {
+        } catch (_error) {
             Swal.fire('Error', 'No se pudo añadir la imagen', 'error');
         } finally {
             setLoading(false);
@@ -66,7 +66,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
                 await apiImagenCabecera.deleteImagenCabecera(id);
                 Swal.fire('Eliminado', 'Imagen eliminada correctamente', 'success');
                 fetchImagenes();
-            } catch (error) {
+            } catch (_error) {
                 Swal.fire('Error', 'No se pudo eliminar la imagen', 'error');
             }
         }

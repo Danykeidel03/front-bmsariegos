@@ -6,7 +6,7 @@ import apiRival from '../../services/apiRival';
 import apiTeam from '../../services/apiTeam';
 import Swal from 'sweetalert2';
 
-const MatchModal = ({ isOpen, onClose, onSubmit }) => {
+const MatchModal = ({ isOpen, onClose, _onSubmit }) => {
     const [matches, setMatches] = useState([]);
     const [rivals, setRivals] = useState([]);
     const [teams, setTeams] = useState([]);
@@ -68,8 +68,8 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
             
             setMatches(matchesWithInfo);
             setFilteredMatches(matchesWithInfo);
-        } catch (error) {
-            console.error('Error al cargar partidos:', error);
+        } catch (_error) {
+            console.error('Error al cargar partidos:', _error);
         }
     };
 
@@ -77,8 +77,8 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
         try {
             const response = await apiRival.getAllRivals();
             setRivals(response.data.data);
-        } catch (error) {
-            console.error('Error al cargar rivales:', error);
+        } catch (_error) {
+            console.error('Error al cargar rivales:', _error);
         }
     };
 
@@ -86,8 +86,8 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
         try {
             const response = await apiTeam.getTeams();
             setTeams(response.data.data);
-        } catch (error) {
-            console.error('Error al cargar equipos:', error);
+        } catch (_error) {
+            console.error('Error al cargar equipos:', _error);
         }
     };
 
@@ -103,7 +103,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
             setFormData({ rivalTeam: '', ownTeam: '', date: '', time: '', location: 'PABELLÓN MUNICIPAL DE SARIEGOS', isHome: true });
             setRivalSearch('');
             loadMatches();
-        } catch (error) {
+        } catch (_error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -131,7 +131,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
             });
             setEditingMatch(null);
             loadMatches();
-        } catch (error) {
+        } catch (_error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -160,7 +160,7 @@ const MatchModal = ({ isOpen, onClose, onSubmit }) => {
                     text: `Resultado: ${result}`
                 });
                 loadMatches();
-            } catch (error) {
+            } catch (_error) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

@@ -68,6 +68,7 @@ async function main() {
     console.log('\n✅ Optimización completada');
   } catch (error) {
     console.error('❌ Error durante la optimización:', error);
+    // eslint-disable-next-line no-undef
     process.exit(1);
   }
 }
