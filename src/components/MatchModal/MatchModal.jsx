@@ -6,7 +6,7 @@ import apiRival from '../../services/apiRival';
 import apiTeam from '../../services/apiTeam';
 import Swal from 'sweetalert2';
 
-const MatchModal = ({ isOpen, onClose, _onSubmit }) => {
+const MatchModal = ({ isOpen, onClose }) => {
     const [matches, setMatches] = useState([]);
     const [rivals, setRivals] = useState([]);
     const [teams, setTeams] = useState([]);
@@ -68,8 +68,8 @@ const MatchModal = ({ isOpen, onClose, _onSubmit }) => {
             
             setMatches(matchesWithInfo);
             setFilteredMatches(matchesWithInfo);
-        } catch (_error) {
-            console.error('Error al cargar partidos:', _error);
+        } catch {
+            console.error('Error al cargar partidos');
         }
     };
 
@@ -77,8 +77,8 @@ const MatchModal = ({ isOpen, onClose, _onSubmit }) => {
         try {
             const response = await apiRival.getAllRivals();
             setRivals(response.data.data);
-        } catch (_error) {
-            console.error('Error al cargar rivales:', _error);
+        } catch {
+            console.error('Error al cargar rivales');
         }
     };
 
@@ -86,8 +86,8 @@ const MatchModal = ({ isOpen, onClose, _onSubmit }) => {
         try {
             const response = await apiTeam.getTeams();
             setTeams(response.data.data);
-        } catch (_error) {
-            console.error('Error al cargar equipos:', _error);
+        } catch {
+            console.error('Error al cargar equipos');
         }
     };
 
@@ -189,7 +189,7 @@ const MatchModal = ({ isOpen, onClose, _onSubmit }) => {
                     text: 'Partido eliminado correctamente'
                 });
                 loadMatches();
-            } catch (error) {
+            } catch {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

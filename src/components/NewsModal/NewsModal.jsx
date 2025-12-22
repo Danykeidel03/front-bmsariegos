@@ -43,7 +43,7 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
                 await apiNotice.deleteNotice(id);
                 await fetchNotices();
                 Swal.fire('Eliminado', 'La noticia ha sido eliminada', 'success');
-            } catch (_error) {
+            } catch {
                 Swal.fire('Error', 'No se pudo eliminar la noticia', 'error');
             }
         }
