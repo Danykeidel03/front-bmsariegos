@@ -103,7 +103,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             setFormData({ rivalTeam: '', ownTeam: '', date: '', time: '', location: 'PABELLÓN MUNICIPAL DE SARIEGOS', isHome: true });
             setRivalSearch('');
             loadMatches();
-        } catch (_error) {
+        } catch {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -131,7 +131,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             });
             setEditingMatch(null);
             loadMatches();
-        } catch (_error) {
+        } catch {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -160,7 +160,7 @@ const MatchModal = ({ isOpen, onClose }) => {
                     text: `Resultado: ${result}`
                 });
                 loadMatches();
-            } catch (_error) {
+            } catch {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
