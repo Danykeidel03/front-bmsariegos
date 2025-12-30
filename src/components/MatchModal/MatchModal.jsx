@@ -69,7 +69,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             setMatches(matchesWithInfo);
             setFilteredMatches(matchesWithInfo);
         } catch {
-            console.error('Error al cargar partidos');
+            // Error silenciado
         }
     };
 
@@ -78,7 +78,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             const response = await apiRival.getAllRivals();
             setRivals(response.data.data);
         } catch {
-            console.error('Error al cargar rivales');
+            // Error silenciado
         }
     };
 
@@ -87,7 +87,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             const response = await apiTeam.getTeams();
             setTeams(response.data.data);
         } catch {
-            console.error('Error al cargar equipos');
+            // Error silenciado
         }
     };
 

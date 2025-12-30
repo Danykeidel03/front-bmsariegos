@@ -18,7 +18,7 @@ const MySlider = () => {
                 const response = await apiImagenCabecera.getImagenesCabecera();
                 setImagenes(response.data.data || []);
             } catch (error) {
-                console.error('Error al cargar imágenes del slider:', error);
+                // Error silenciado
             } finally {
                 setLoading(false);
             }

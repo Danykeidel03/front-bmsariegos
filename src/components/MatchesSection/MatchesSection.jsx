@@ -40,7 +40,7 @@ const MatchesSection = () => {
             
             setMatches(upcomingMatches);
         } catch (error) {
-            console.error('Error al cargar partidos:', error);
+            // Error silenciado - se maneja mostrando array vacío
         }
     };
 

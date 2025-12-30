@@ -1,13 +1,15 @@
 import axios from "axios";
 
-const URL_API = 'https://back-bmsariegos-production.up.railway.app';
+const URL_API = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 5000;
 
 const api = axios.create({
     baseURL: URL_API,
-    timeout: 10000,
+    timeout: API_TIMEOUT,
     withCredentials: true,
     headers: {
-        'x-api-key': 'bm-sariegos-internal-2024'
+        'x-api-key': API_KEY
     }
 })
 

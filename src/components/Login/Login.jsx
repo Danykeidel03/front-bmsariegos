@@ -12,9 +12,7 @@ const Login = ({ onLogin }) => {
         setLoading(true);
         
         try {
-            console.log(credentials);
             const response = await apiUser.loginUser(credentials);
-            console.log(response.data.code);
             onLogin(true);
         } catch (error) {
             if(error.status === 401){

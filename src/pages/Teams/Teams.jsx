@@ -30,7 +30,6 @@ const Teams = () => {
             const response = await apiTeam.getTeams();
             setTeams(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
-            console.error('Error fetching teams:', error);
             setTeams([]);
         }
     };
@@ -40,7 +39,6 @@ const Teams = () => {
             const response = await apiBirthday.getAllPlayers();
             setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
-            console.error('Error fetching players:', error);
             setPlayers([]);
         }
     };
@@ -50,7 +48,6 @@ const Teams = () => {
             const response = await apiClasificaciones.getClasificaciones();
             setClasificaciones(response.data || {});
         } catch (error) {
-            console.error('Error fetching clasificaciones:', error);
             setClasificaciones({});
         }
     };
@@ -60,7 +57,6 @@ const Teams = () => {
             const response = await apiMatch.getAllMatches();
             setMatches(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
-            console.error('Error fetching matches:', error);
             setMatches([]);
         }
     };
@@ -70,7 +66,6 @@ const Teams = () => {
             const response = await apiRival.getAllRivals();
             setRivals(Array.isArray(response.data.data) ? response.data.data : []);
         } catch (error) {
-            console.error('Error fetching rivals:', error);
             setRivals([]);
         }
     };

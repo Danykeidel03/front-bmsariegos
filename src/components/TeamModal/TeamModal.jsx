@@ -27,7 +27,6 @@ const TeamModal = ({ isOpen, onClose }) => {
             const teamsData = Array.isArray(response.data.data) ? response.data.data : [];
             setTeams(teamsData);
         } catch (error) {
-            console.log(error);
             setTeams([]);
         }
     };
@@ -53,7 +52,6 @@ const TeamModal = ({ isOpen, onClose }) => {
             setFormData({ name: '', category: '', division: '' });
             fetchTeams();
         } catch (error) {
-            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -72,7 +70,6 @@ const TeamModal = ({ isOpen, onClose }) => {
             });
             fetchTeams();
         } catch (error) {
-            console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',

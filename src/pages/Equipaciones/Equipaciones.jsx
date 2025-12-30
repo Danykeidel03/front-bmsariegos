@@ -33,7 +33,6 @@ const Equipaciones = () => {
     ];
 
     const handleComprar = (url) => {
-        console.log('Abriendo URL:', url);
         window.open(url, '_blank');
     };
 

@@ -23,7 +23,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
             const response = await apiImagenCabecera.getImagenesCabecera();
             setImagenes(response.data.data || []);
         } catch (error) {
-            console.error('Error al cargar imágenes:', error);
+            // Error silenciado
         }
     };
 

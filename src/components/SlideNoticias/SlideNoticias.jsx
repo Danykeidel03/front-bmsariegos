@@ -31,7 +31,7 @@ export default function SlideNoticias() {
                 const data = await apiNotice.getNotices();
                 setNoticias(data.data.data);
             } catch (error) {
-                console.error('Error al cargar noticias:', error);
+                // Error silenciado
             } finally {
                 setLoading(false);
             }

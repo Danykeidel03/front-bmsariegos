@@ -25,7 +25,7 @@ const News = () => {
                 const data = await apiNotice.getAllNotices();
                 setNoticias(data.data.data);
             } catch (error) {
-                console.error('Error al cargar noticias:', error);
+                // Error silenciado
             } finally {
                 setLoading(false);
             }

@@ -13,7 +13,7 @@ export default defineConfig({
         drop_console: true,
         drop_debugger: true,
         passes: 3,
-        pure_funcs: ['console.log', 'console.info'],
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
         reduce_vars: true,
         unused: true
       },
