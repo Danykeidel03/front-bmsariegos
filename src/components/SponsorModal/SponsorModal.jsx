@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
-import '../../styles/modals-responsive.css';
-import './SponsorModal.css';
+import React, { useState, useEffect } from 'react';
+import { loadCSS } from '../../utils/lazyLoadCSS';
 
 const SponsorModal = ({ isOpen, onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
         name: '',
         logo: null
     });
+    const [cssLoaded, setCssLoaded] = useState(false);
+
+    useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/SponsorModal/SponsorModal.css', 'sponsor-modal')
+            ]).then(() => setCssLoaded(true));
+        }
+    }, [isOpen, cssLoaded]);
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;

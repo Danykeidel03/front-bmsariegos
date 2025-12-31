@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../../styles/modals-responsive.css';
-import './MatchModal.css';
+import { loadCSS } from '../../utils/lazyLoadCSS';
+import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
 import apiTeam from '../../services/apiTeam';
-import Swal from 'sweetalert2';
 
 const MatchModal = ({ isOpen, onClose }) => {
     const [matches, setMatches] = useState([]);
@@ -24,15 +23,23 @@ const MatchModal = ({ isOpen, onClose }) => {
     const [showRivalDropdown, setShowRivalDropdown] = useState(false);
     const [matchSearch, setMatchSearch] = useState('');
     const [filteredMatches, setFilteredMatches] = useState([]);
+    const [cssLoaded, setCssLoaded] = useState(false);
     const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            // Cargar CSS del modal solo cuando se abre
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/MatchModal/MatchModal.css', 'match-modal')
+            ]).then(() => setCssLoaded(true));
+        }
         if (isOpen) {
             loadMatches();
             loadRivals();
             loadTeams();
         }
-    }, [isOpen]);
+    }, [isOpen, cssLoaded]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {

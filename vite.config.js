@@ -7,7 +7,7 @@ export default defineConfig({
     outDir: 'dist',
     cssCodeSplit: true,
     minify: 'terser',
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
     terserOptions: {
       compress: {
         drop_console: true,
@@ -15,20 +15,73 @@ export default defineConfig({
         passes: 3,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
         reduce_vars: true,
-        unused: true
+        unused: true,
+        dead_code: true,
+        conditionals: true,
+        evaluate: true,
+        booleans: true,
+        loops: true,
+        if_return: true,
+        join_vars: true
       },
       mangle: {
         safari10: true
+      },
+      format: {
+        comments: false
       }
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'swiper': ['swiper'],
-          'utils': ['axios', 'sweetalert2']
-        }
+        manualChunks: (id) => {
+          // Vendor chunks - React ecosystem
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor';
+          }
+          
+          // Router chunk
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'router';
+          }
+          
+          // Heavy libraries - lazy loaded
+          if (id.includes('node_modules/sweetalert2')) {
+            return 'sweetalert2';
+          }
+          
+          if (id.includes('node_modules/react-image-crop')) {
+            return 'react-image-crop';
+          }
+          
+          if (id.includes('node_modules/swiper')) {
+            return 'swiper';
+          }
+          
+          // Utilities chunk
+          if (id.includes('node_modules/axios')) {
+            return 'axios';
+          }
+          
+          // Pages - code split by route
+          if (id.includes('/src/pages/')) {
+            const page = id.split('/src/pages/')[1]?.split('/')[0];
+            if (page) return `page-${page}`;
+          }
+          
+          // Services
+          if (id.includes('/src/services/')) {
+            return 'services';
+          }
+          
+          // Components - split modals separately
+          if (id.includes('/src/components/') && id.includes('Modal')) {
+            return 'modals';
+          }
+        },
+        // Optimize chunk naming
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     }
   },
@@ -40,5 +93,9 @@ export default defineConfig({
     headers: {
       'Cache-Control': 'public, max-age=31536000'
     }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: ['sweetalert2', 'react-image-crop']
   }
 })

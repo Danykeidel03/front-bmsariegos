@@ -1,24 +1,41 @@
-import './App.css';
-import { Suspense } from 'react';
-import Home from './pages/Home/Home';
-import Contact from './pages/Contact/Contact';
-import Admin from './pages/Admin/Admin';
-import News from './pages/News/News';
-import Teams from './pages/Teams/Teams';
-import About from './pages/About/About';
-import Privacy from './pages/Privacy/Privacy';
-import Terms from './pages/Terms/Terms';
-import Matches from './pages/Matches/Matches';
-import Equipaciones from './pages/Equipaciones/Equipaciones';
-import NotFound from './pages/NotFound/NotFound';
+import './styles/critical.css';
+import { Suspense, useEffect, lazy } from 'react';
+import { loadCSSAsync } from './utils/lazyLoadCSS';
+import { warmupCache, preloadCriticalResources } from './utils/prefetch';
+import { Routes, Route, useLocation } from 'react-router-dom';
+
+// Componentes críticos - carga inmediata
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import CookieBanner from './components/CookieBanner/CookieBanner';
-import { Routes, Route, useLocation } from 'react-router-dom';
+
+// Lazy loading de páginas - se cargan solo cuando se navega a ellas
+const Home = lazy(() => import('./pages/Home/Home'));
+const Contact = lazy(() => import('./pages/Contact/Contact'));
+const Admin = lazy(() => import('./pages/Admin/Admin'));
+const News = lazy(() => import('./pages/News/News'));
+const Teams = lazy(() => import('./pages/Teams/Teams'));
+const About = lazy(() => import('./pages/About/About'));
+const Privacy = lazy(() => import('./pages/Privacy/Privacy'));
+const Terms = lazy(() => import('./pages/Terms/Terms'));
+const Matches = lazy(() => import('./pages/Matches/Matches'));
+const Equipaciones = lazy(() => import('./pages/Equipaciones/Equipaciones'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function AppRoutes() {
   return (
-    <Suspense fallback={<div style={{height:'200px'}}></div>}>
+    <Suspense fallback={
+      <div style={{
+        height: '200px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#119bc6',
+        fontSize: '18px'
+      }}>
+        Cargando...
+      </div>
+    }>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contacto" element={<Contact />} />
@@ -62,6 +79,17 @@ function AppContent() {
 }
 
 function App() {
+  useEffect(() => {
+    // Cargar CSS no crítico de forma asíncrona después del renderizado inicial
+    loadCSSAsync('/src/styles/non-critical.css');
+    
+    // Precargar recursos críticos
+    preloadCriticalResources();
+    
+    // Iniciar precarga inteligente de rutas comunes
+    warmupCache();
+  }, []);
+
   return (
     <AppContent />
   );

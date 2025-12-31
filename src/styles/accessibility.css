@@ -1,4 +1,4 @@
-/* Estilos de accesibilidad global */
+/* Estilos de accesibilidad esenciales */
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -11,18 +11,12 @@
   border: 0 !important;
 }
 
-/* Enlaces accesibles */
-a:not([href]) {
-  cursor: default;
-  text-decoration: none;
-}
-
-a[href="#"] {
-  cursor: pointer;
-}
-
 /* Focus visible para navegación por teclado */
-a:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 2px solid #0066cc;
   outline-offset: 2px;
 }

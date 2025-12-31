@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/modals-responsive.css';
-import './TeamModal.css';
-import Swal from 'sweetalert2';
+import { loadCSS } from '../../utils/lazyLoadCSS';
+import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiTeam from '../../services/apiTeam';
 
 const TeamModal = ({ isOpen, onClose }) => {
@@ -14,12 +13,19 @@ const TeamModal = ({ isOpen, onClose }) => {
     const [editingTeam, setEditingTeam] = useState(null);
     const [editName, setEditName] = useState('');
     const [hasOrderChanges, setHasOrderChanges] = useState(false);
+    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/TeamModal/TeamModal.css', 'team-modal')
+            ]).then(() => setCssLoaded(true));
+        }
         if (isOpen) {
             fetchTeams();
         }
-    }, [isOpen]);
+    }, [isOpen, cssLoaded]);
 
     const fetchTeams = async () => {
         try {

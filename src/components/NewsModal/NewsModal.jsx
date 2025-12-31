@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/modals-responsive.css';
-import './NewsModal.css';
+import { loadCSS } from '../../utils/lazyLoadCSS';
+import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiNotice from '../../services/apiNotice';
-import Swal from 'sweetalert2';
 
 const NewsModal = ({ isOpen, onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -12,12 +11,20 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
     });
     const [notices, setNotices] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            // Cargar CSS del modal solo cuando se abre
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/NewsModal/NewsModal.css', 'news-modal')
+            ]).then(() => setCssLoaded(true));
+        }
         if (isOpen) {
             fetchNotices();
         }
-    }, [isOpen]);
+    }, [isOpen, cssLoaded]);
 
     const fetchNotices = async () => {
         try {
@@ -29,11 +36,10 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
     };
 
     const handleDelete = async (id) => {
-        const result = await Swal.fire({
+        const result = await showConfirm({
             title: '¿Estás seguro?',
             text: 'Esta acción no se puede deshacer',
             icon: 'warning',
-            showCancelButton: true,
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar'
         });
@@ -42,9 +48,9 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
             try {
                 await apiNotice.deleteNotice(id);
                 await fetchNotices();
-                Swal.fire('Eliminado', 'La noticia ha sido eliminada', 'success');
+                showAlert('Eliminado', 'La noticia ha sido eliminada', 'success');
             } catch {
-                Swal.fire('Error', 'No se pudo eliminar la noticia', 'error');
+                showAlert('Error', 'No se pudo eliminar la noticia', 'error');
             }
         }
     };

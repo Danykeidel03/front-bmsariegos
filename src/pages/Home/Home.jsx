@@ -1,11 +1,16 @@
 import './Home.css'
-import MySlider from '../../components/Slider/Slider'
-import BrandSlider from '../../components/BrandSlider/BrandSlider';
-import SliderBirthday from '../../components/SliderBirthday/SliderBirthday';
-import SlideNoticias from '../../components/SlideNoticias/SlideNoticias';
-import MatchesBar from '../../components/MatchesBar/MatchesBar';
-import SocialLinks from '../../components/SocialLinks/SocialLinks';
+import { lazy, Suspense } from 'react';
 import SEO from '../../components/SEO/SEO';
+
+// Componentes críticos - carga inmediata
+import MatchesBar from '../../components/MatchesBar/MatchesBar';
+import MySlider from '../../components/Slider/Slider';
+
+// Componentes below-the-fold - carga diferida
+const SlideNoticias = lazy(() => import('../../components/SlideNoticias/SlideNoticias'));
+const SliderBirthday = lazy(() => import('../../components/SliderBirthday/SliderBirthday'));
+const BrandSlider = lazy(() => import('../../components/BrandSlider/BrandSlider'));
+const SocialLinks = lazy(() => import('../../components/SocialLinks/SocialLinks'));
 
 const Home = () => {
     return (
@@ -18,10 +23,12 @@ const Home = () => {
             <div className='page-main'>
                 <MatchesBar/>
                 <MySlider></MySlider>
-                <SlideNoticias/>
-                <SliderBirthday/>
-                <BrandSlider/>
-                <SocialLinks/>
+                <Suspense fallback={<div style={{minHeight: '200px'}}></div>}>
+                    <SlideNoticias/>
+                    <SliderBirthday/>
+                    <BrandSlider/>
+                    <SocialLinks/>
+                </Suspense>
             </div>
         </>
     );

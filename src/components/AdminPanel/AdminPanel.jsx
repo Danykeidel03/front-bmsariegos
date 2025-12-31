@@ -11,7 +11,7 @@ import apiNotice from '../../services/apiNotice';
 import apiBirthday from '../../services/apiBirthday';
 import apiSponsor from '../../services/apiSponsor';
 import apiRival from '../../services/apiRival';
-import Swal from 'sweetalert2';
+import { showAlert } from '../../utils/lazyLoadLibraries';
 
 const AdminPanel = ({ onLogout }) => {
     const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
-import Swal from 'sweetalert2';
+import { showAlert } from '../../utils/lazyLoadLibraries';
 import SEO from '../../components/SEO/SEO';
 
 const Contact = () => {

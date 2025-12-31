@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import apiUser from '../../services/apiUser';
-import Swal from 'sweetalert2';
+import { showAlert } from '../../utils/lazyLoadLibraries';
 
 const Login = ({ onLogin }) => {
     const [credentials, setCredentials] = useState({ mail: '', pass: '' });

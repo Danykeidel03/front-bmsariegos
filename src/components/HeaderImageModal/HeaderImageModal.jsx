@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/modals-responsive.css';
-import './HeaderImageModal.css';
+import { loadCSS } from '../../utils/lazyLoadCSS';
+import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiImagenCabecera from '../../services/apiImagenCabecera';
-import Swal from 'sweetalert2';
 
 const HeaderImageModal = ({ isOpen, onClose }) => {
     const [imagenes, setImagenes] = useState([]);
@@ -11,12 +10,19 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
         urlImagen: ''
     });
     const [loading, setLoading] = useState(false);
+    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/HeaderImageModal/HeaderImageModal.css', 'header-image-modal')
+            ]).then(() => setCssLoaded(true));
+        }
         if (isOpen) {
             fetchImagenes();
         }
-    }, [isOpen]);
+    }, [isOpen, cssLoaded]);
 
     const fetchImagenes = async () => {
         try {
