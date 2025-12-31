@@ -4,6 +4,7 @@ import BrandSlider from '../../components/BrandSlider/BrandSlider';
 import SliderBirthday from '../../components/SliderBirthday/SliderBirthday';
 import SlideNoticias from '../../components/SlideNoticias/SlideNoticias';
 import MatchesBar from '../../components/MatchesBar/MatchesBar';
+import SocialLinks from '../../components/SocialLinks/SocialLinks';
 import SEO from '../../components/SEO/SEO';
 
 const Home = () => {
@@ -17,9 +18,10 @@ const Home = () => {
             <div className='page-main'>
                 <MatchesBar/>
                 <MySlider></MySlider>
-                <BrandSlider/>
-                <SliderBirthday/>
                 <SlideNoticias/>
+                <SliderBirthday/>
+                <BrandSlider/>
+                <SocialLinks/>
             </div>
         </>
     );

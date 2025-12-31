@@ -1,24 +1,43 @@
 .contact-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 40px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-width: 100%;
+    margin: 0;
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    min-height: 100vh;
 }
 
 .contact-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
     color: #119bc6;
-    margin-bottom: 30px;
-    font-weight: 600;
+    margin-bottom: 20px;
+    font-weight: 800;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.contact-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #119bc6, #0d7ba8);
+    border-radius: 2px;
 }
 
 .contact-form {
+    max-width: 700px;
+    margin: 50px auto 0;
+    background: white;
+    padding: 50px;
+    border-radius: 24px;
+    box-shadow: 0 15px 50px rgba(17, 155, 198, 0.15);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 .form-group {
@@ -28,56 +47,128 @@
 
 .form-label {
     font-size: 16px;
-    color: #333;
-    margin-bottom: 8px;
-    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .form-input,
 .form-textarea {
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-    font-family: sans-serif;
-    transition: border-color 0.2s ease;
+    padding: 16px 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+    background: #f9fafb;
 }
 
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
     border-color: #119bc6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(17, 155, 198, 0.1);
+    transform: translateY(-2px);
 }
 
 .form-textarea {
-    min-height: 120px;
+    min-height: 150px;
     resize: vertical;
+    line-height: 1.6;
 }
 
 .submit-btn {
-    background-color: #119bc6;
+    background: linear-gradient(135deg, #119bc6 0%, #0d7ba8 100%);
     color: white;
-    padding: 15px 30px;
+    padding: 18px 50px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
     align-self: center;
-    min-width: 200px;
+    min-width: 250px;
+    box-shadow: 0 8px 25px rgba(17, 155, 198, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .submit-btn:hover {
-    background-color: #0e7a9a;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(17, 155, 198, 0.4);
 }
 
-@media (max-width: 767px) {
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
     .contact-container {
-        margin: 25px 20px;
-        padding: 20px;
+        padding: 50px 20px;
     }
     
     .contact-title {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
+    }
+    
+    .contact-form {
+        padding: 35px 25px;
+        gap: 25px;
+    }
+    
+    .form-label {
+        font-size: 15px;
+    }
+    
+    .form-input,
+    .form-textarea {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+    
+    .submit-btn {
+        min-width: 100%;
+        font-size: 16px;
+        padding: 16px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        padding: 30px 15px;
+    }
+    
+    .contact-title {
+        font-size: 1.8rem;
+    }
+    
+    .contact-form {
+        padding: 25px 20px;
+        gap: 20px;
+        border-radius: 16px;
+    }
+    
+    .form-label {
+        font-size: 14px;
+    }
+    
+    .form-input,
+    .form-textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+    
+    .form-textarea {
+        min-height: 120px;
+    }
+    
+    .submit-btn {
+        font-size: 15px;
+        padding: 14px 30px;
+        border-radius: 40px;
     }
 }

@@ -1,10 +1,12 @@
 .logo-slider {
     overflow: hidden;
-    padding: 0;
+    padding: 60px 0;
     white-space: nowrap;
     position: relative;
-    margin-top: 25px;
+    margin-top: 0;
     display: flex;
+    margin-bottom: 0;
+    background: #119bc6;
 }
 
 .logo-slider:hover .logos-slide {
@@ -19,11 +21,14 @@
 }
 
 .logos-slide img {
-    width: auto;
-    height: auto;
-    margin: 0 40px;
-    max-height: 140px;
-    max-width: 300px;
+    width: 200px;
+    height: 100px;
+    margin: 0 30px;
+    object-fit: contain;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .logoLink:hover img {
@@ -60,9 +65,30 @@
     }
 }
 
-@media (max-width: 700px){
+@media (max-width: 768px) {
+    .logo-slider {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 15px 0;
+    }
+
     .logos-slide img {
-        max-height: 70px;
-        max-width: 150px;
+        margin: 0 20px;
+        max-height: 80px;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-slider {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 0;
+    }
+
+    .logos-slide img {
+        margin: 0 15px;
+        max-height: 60px;
+        max-width: 140px;
     }
 }

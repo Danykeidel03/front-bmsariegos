@@ -52,21 +52,22 @@ const SliderBirthday = () => {
                 {birthDaysList.map((day, index) => (
                     <SwiperSlide key={index}>
                         <div className='cardBirthday'>
+                            <div className='imgBirth'>
+                                <CloudinaryImage 
+                                    src={day.photoName} 
+                                    alt={day.name}
+                                    width={400}
+                                    height={400}
+                                    quality={85}
+                                    sizes="(max-width: 768px) 300px, 380px"
+                                    crop="fill"
+                                />
+                            </div>
                             <div className='birthInfo'>
                                 <div className='name'>{day.name}</div>
                                 <div className='date'>
                                     {day.daysUntil ? `Quedan ${day.daysUntil} días para tu cumpleaños` : `Felices ${calculateAge(day.birthDay)} años!!`}
                                 </div>
-                            </div>
-                            <div className='imgBirth'>
-                                <CloudinaryImage 
-                                    src={day.photoName} 
-                                    alt={day.name}
-                                    width={120}
-                                    height={180}
-                                    quality="75"
-                                    crop="fill"
-                                />
                             </div>
                         </div>
                     </SwiperSlide>

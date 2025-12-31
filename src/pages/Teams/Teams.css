@@ -1,57 +1,106 @@
 .teams-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 0;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #f0f9ff 0%, #ffffff 100%);
+    min-height: 100vh;
 }
 
 .teams-container h1 {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #119bc6;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.teams-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(to right, #119bc6, #0d7ba8);
+    border-radius: 2px;
 }
 
 .teams-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .team-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    border: none;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 30px rgba(17, 155, 198, 0.15);
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.team-card:hover {
+    box-shadow: 0 12px 40px rgba(17, 155, 198, 0.25);
+    transform: translateY(-3px);
 }
 
 .team-header {
     display: flex;
     align-items: center;
-    padding: 20px;
-    background: #f8f9fa;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #119bc6 0%, #0d7ba8 100%);
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    pointer-events: none;
 }
 
 .team-header:hover {
-    background: #e9ecef;
+    background: linear-gradient(135deg, #0e8daa 0%, #0a6a8a 100%);
 }
 
 .team-logo {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     object-fit: cover;
     margin-right: 20px;
+    border-radius: 10px;
+    background: white;
+    padding: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .team-header h2 {
     flex: 1;
     margin: 0;
-    color: #333;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .arrow {
-    font-size: 20px;
-    transition: transform 0.3s;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+    color: white;
+    font-weight: bold;
 }
 
 .arrow.expanded {
@@ -70,84 +119,123 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    justify-content: flex-end;
+    padding: 0;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #119bc6 0%, #0d7ba8 100%);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    height: 380px;
+    position: relative;
+    cursor: pointer;
 }
 
 .player-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
 }
 
 .player-photo {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    border: 3px solid #f0f0f0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: brightness(1.1) contrast(1.05);
 }
 
 .player-info {
     text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 20px 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
 }
 
 .player-info h3 {
-    margin: 0 0 8px 0;
-    color: #333;
+    margin: 0;
+    color: white;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .player-info p {
-    margin: 2px 0;
-    color: #666;
-    font-size: 14px;
-    line-height: 1.4;
+    margin: 5px 0 0 0;
+    color: #e0f7ff;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 @media (max-width: 768px) {
     .teams-container {
-        padding: 10px;
+        padding: 40px 15px;
+    }
+    
+    .teams-container h1 {
+        font-size: 2.2rem;
+    }
+    
+    .teams-list {
+        gap: 20px;
+    }
+    
+    .team-card {
+        border-radius: 16px;
     }
     
     .team-header {
-        padding: 15px;
+        padding: 20px;
     }
     
     .team-logo {
-        width: 30px;
-        height: 30px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .team-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .arrow {
+        font-size: 20px;
     }
     
     .players-list {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 15px;
         padding: 15px;
     }
     
     .player-card {
-        padding: 15px;
+        padding: 0;
+        height: 320px;
+    }
+
+    .player-photo {
+        height: 100%;
     }
     
-    .player-photo {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 10px;
+    .player-info {
+        padding: 15px 12px;
     }
     
     .player-info h3 {
         font-size: 16px;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
     
     .player-info p {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
@@ -402,6 +490,41 @@
 }
 
 @media (max-width: 480px) {
+    .teams-container {
+        padding: 30px 10px;
+    }
+    
+    .teams-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .teams-list {
+        gap: 15px;
+    }
+    
+    .team-card {
+        border-radius: 12px;
+    }
+
+    .team-header {
+        padding: 15px;
+    }
+
+    .team-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+    }
+
+    .team-header h2 {
+        font-size: 1rem;
+    }
+    
+    .arrow {
+        font-size: 18px;
+    }
+
     .players-list {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -409,22 +532,35 @@
     }
     
     .player-card {
-        padding: 12px;
+        height: 250px;
+        border-radius: 12px;
     }
-    
+
     .player-photo {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 8px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        border-radius: 12px;
+        filter: brightness(1.1) contrast(1.05);
     }
     
+    .player-info {
+        padding: 12px 10px;
+        border-radius: 0 0 12px 12px;
+    }
+
     .player-info h3 {
-        font-size: 14px;
-        margin-bottom: 4px;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        margin: 0;
     }
-    
+
     .player-info p {
-        font-size: 12px;
+        font-size: 11px;
+        margin-top: 2px;
     }
     
     .tab {

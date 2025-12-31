@@ -10,6 +10,7 @@ export default function SlideNoticias() {
     const [loading, setLoading] = useState(true);
 
     const handleNoticiaClick = (noticia) => {
+        console.log('Modal completo:', noticia);
         setModal(noticia);
         document.body.style.overflow = 'hidden';
     };
@@ -31,7 +32,7 @@ export default function SlideNoticias() {
                 const data = await apiNotice.getNotices();
                 setNoticias(data.data.data);
             } catch (error) {
-                // Error silenciado
+                console.error('Error:', error);
             } finally {
                 setLoading(false);
             }
@@ -40,6 +41,10 @@ export default function SlideNoticias() {
     }, []);
     return (
         <div className="slideNotices">
+            <div className="slideNotices-header">
+                <h1>ACTUALIDAD</h1>
+                <a href="/noticias" className="view-all-news">Ver todas las noticias →</a>
+            </div>
             <div className="noticesContainer">
                 {loading ? (
                     <p>Cargando noticias...</p>

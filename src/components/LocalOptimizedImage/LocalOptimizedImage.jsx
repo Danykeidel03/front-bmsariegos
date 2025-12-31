@@ -70,7 +70,7 @@ const LocalOptimizedImage = ({
         onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
         style={{
-          opacity: loaded ? 1 : 0.8,
+          opacity: loaded ? 1 : 1,
           transition: 'opacity 0.3s ease',
           ...props.style
         }}
