@@ -54,6 +54,10 @@ const MatchesBar = () => {
         return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
     };
 
+    if (matches.length === 0) {
+        return null;
+    }
+
     return (
         <div className="matches-bar-component">
             <div className="container">
