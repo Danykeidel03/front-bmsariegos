@@ -90,6 +90,7 @@
   top: 0;
   left: 0;
   z-index: 1;
+  contain: layout style paint;
 }
 
 .imgBirth img {
@@ -98,6 +99,7 @@
   object-fit: cover;
   border-radius: 0;
   filter: brightness(1.1) contrast(1.05);
+  aspect-ratio: 1 / 1;
 }
 
 /* Swiper bullets */
