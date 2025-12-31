@@ -77,12 +77,14 @@ const OptimizedImage = ({
       width={width}
       height={height}
       loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
       decoding="async"
       onLoad={() => setLoaded(true)}
       onError={() => setError(true)}
       style={{
         opacity: loaded ? 1 : 1,
         transition: 'opacity 0.3s ease',
+        aspectRatio: width && height ? `${width}/${height}` : 'auto',
         ...props.style
       }}
       {...props}

@@ -40,7 +40,7 @@ const SliderBirthday = () => {
     }, []);
 
     return (
-        <div className='slideBirthday'>
+        <div className='slideBirthday' style={{minHeight: '450px'}}>
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={0}

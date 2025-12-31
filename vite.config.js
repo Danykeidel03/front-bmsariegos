@@ -2,7 +2,28 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'async-css',
+      enforce: 'post',
+      transformIndexHtml(html) {
+        // Transform CSS links to load asynchronously except critical ones
+        return html.replace(
+          /<link\s+rel="stylesheet"\s+(crossorigin(?:="[^"]*")?\s+)?href="([^"]+)">/g,
+          (match, crossorigin, href) => {
+            // Keep index CSS and react-vendor as critical
+            if (href.includes('index-') || href.includes('react-vendor') || href.includes('critical')) {
+              return match;
+            }
+            // Load others asynchronously with preload
+            const co = crossorigin ? crossorigin.trim() + ' ' : '';
+            return `<link rel="preload" ${co}href="${href}" as="style" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low"><noscript><link rel="stylesheet" ${co}href="${href}"></noscript>`;
+          }
+        );
+      }
+    }
+  ],
   build: {
     outDir: 'dist',
     cssCodeSplit: true,
