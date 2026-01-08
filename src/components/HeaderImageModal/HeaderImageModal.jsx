@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+import '../../styles/modals-responsive.css';
+import './HeaderImageModal.css';
 import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiImagenCabecera from '../../services/apiImagenCabecera';
 
@@ -10,19 +11,12 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
         urlImagen: ''
     });
     const [loading, setLoading] = useState(false);
-    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            Promise.all([
-                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/src/components/HeaderImageModal/HeaderImageModal.css', 'header-image-modal')
-            ]).then(() => setCssLoaded(true));
-        }
         if (isOpen) {
             fetchImagenes();
         }
-    }, [isOpen, cssLoaded]);
+    }, [isOpen]);
 
     const fetchImagenes = async () => {
         try {

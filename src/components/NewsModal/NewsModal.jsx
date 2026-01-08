@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+import '../../styles/modals-responsive.css';
+import './NewsModal.css';
 import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiNotice from '../../services/apiNotice';
 
@@ -11,20 +12,12 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
     });
     const [notices, setNotices] = useState([]);
     const [showForm, setShowForm] = useState(false);
-    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            // Cargar CSS del modal solo cuando se abre
-            Promise.all([
-                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/src/components/NewsModal/NewsModal.css', 'news-modal')
-            ]).then(() => setCssLoaded(true));
-        }
         if (isOpen) {
             fetchNotices();
         }
-    }, [isOpen, cssLoaded]);
+    }, [isOpen]);
 
     const fetchNotices = async () => {
         try {

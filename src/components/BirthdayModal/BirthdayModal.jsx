@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+import '../../styles/modals-responsive.css';
+import './BirthdayModal.css';
 import { showConfirm, showAlert, loadReactImageCrop } from '../../utils/lazyLoadLibraries';
 import apiTeam from '../../services/apiTeam';
 import apiBirthday from '../../services/apiBirthday';
@@ -22,17 +23,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     const [showCropper, setShowCropper] = useState(false);
     const [crop, setCrop] = useState({ aspect: 1, width: 50, height: 50, unit: '%', x: 25, y: 25 });
     const [completedCrop, setCompletedCrop] = useState(null);
-    const [cssLoaded, setCssLoaded] = useState(false);
     const imgRef = useRef(null);
-
-    useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            Promise.all([
-                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/src/components/BirthdayModal/BirthdayModal.css', 'birthday-modal')
-            ]).then(() => setCssLoaded(true));
-        }
-    }, [isOpen, cssLoaded]);
 
     useEffect(() => {
         const fetchData = async () => {

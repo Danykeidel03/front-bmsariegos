@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+import '../../styles/modals-responsive.css';
+import './TeamModal.css';
 import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiTeam from '../../services/apiTeam';
 
@@ -13,19 +14,12 @@ const TeamModal = ({ isOpen, onClose }) => {
     const [editingTeam, setEditingTeam] = useState(null);
     const [editName, setEditName] = useState('');
     const [hasOrderChanges, setHasOrderChanges] = useState(false);
-    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            Promise.all([
-                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/src/components/TeamModal/TeamModal.css', 'team-modal')
-            ]).then(() => setCssLoaded(true));
-        }
         if (isOpen) {
             fetchTeams();
         }
-    }, [isOpen, cssLoaded]);
+    }, [isOpen]);
 
     const fetchTeams = async () => {
         try {

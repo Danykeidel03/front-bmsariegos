@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+import '../../styles/modals-responsive.css';
+import './RivalModal.css';
 
 const RivalModal = ({ isOpen, onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
         name: '',
         photo: null
     });
-    const [cssLoaded, setCssLoaded] = useState(false);
-
-    useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            Promise.all([
-                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/src/components/RivalModal/RivalModal.css', 'rival-modal')
-            ]).then(() => setCssLoaded(true));
-        }
-    }, [isOpen, cssLoaded]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

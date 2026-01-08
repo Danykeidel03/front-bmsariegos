@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+import '../../styles/modals-responsive.css';
+import './MatchModal.css';
 import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
@@ -23,17 +24,9 @@ const MatchModal = ({ isOpen, onClose }) => {
     const [showRivalDropdown, setShowRivalDropdown] = useState(false);
     const [matchSearch, setMatchSearch] = useState('');
     const [filteredMatches, setFilteredMatches] = useState([]);
-    const [cssLoaded, setCssLoaded] = useState(false);
     const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            // Cargar CSS del modal solo cuando se abre
-            Promise.all([
-                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/src/components/MatchModal/MatchModal.css', 'match-modal')
-            ]).then(() => setCssLoaded(true));
-        }
         if (isOpen) {
             loadMatches();
             loadRivals();
