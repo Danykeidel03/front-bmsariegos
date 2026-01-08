@@ -32,7 +32,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             loadRivals();
             loadTeams();
         }
-    }, [isOpen, cssLoaded]);
+    }, [isOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
