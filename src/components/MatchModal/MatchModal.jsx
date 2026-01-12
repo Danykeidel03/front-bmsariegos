@@ -4,6 +4,7 @@ import { loadSweetAlert, showConfirm } from '../../utils/lazyLoadLibraries';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
 import apiTeam from '../../services/apiTeam';
+import 'MatchModal.css';
 
 const MatchModal = ({ isOpen, onClose }) => {
     const [matches, setMatches] = useState([]);
