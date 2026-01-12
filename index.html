@@ -76,10 +76,10 @@
         // Cargar CSS no crítico cuando el navegador esté idle
         if('requestIdleCallback' in window){
           requestIdleCallback(()=>{
-            loadCSS('/src/styles/non-critical.css','non-critical-css')
+            loadCSS('/styles/non-critical.css','non-critical-css')
           },{timeout:2000})
         }else{
-          setTimeout(()=>loadCSS('/src/styles/non-critical.css','non-critical-css'),1)
+          setTimeout(()=>loadCSS('/styles/non-critical.css','non-critical-css'),1)
         }
       })();
     </script>

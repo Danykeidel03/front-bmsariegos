@@ -81,7 +81,7 @@ function AppContent() {
 function App() {
   useEffect(() => {
     // Cargar CSS no crítico de forma asíncrona después del renderizado inicial
-    loadCSSAsync('/src/styles/non-critical.css');
+    loadCSSAsync('/styles/non-critical.css');
     
     // Precargar recursos críticos
     preloadCriticalResources();
