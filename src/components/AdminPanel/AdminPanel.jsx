@@ -11,7 +11,7 @@ import apiNotice from '../../services/apiNotice';
 import apiBirthday from '../../services/apiBirthday';
 import apiSponsor from '../../services/apiSponsor';
 import apiRival from '../../services/apiRival';
-import { showAlert } from '../../utils/lazyLoadLibraries';
+import { loadSweetAlert } from '../../utils/lazyLoadLibraries';
 
 const AdminPanel = ({ onLogout }) => {
     const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
@@ -30,9 +30,19 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiNotice.createNotice(data);
-            await showAlert('Éxito', 'Noticia creada correctamente', 'success');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Noticia creada correctamente'
+            });
         } catch (error) {
-            await showAlert('Error', 'No se pudo crear la noticia', 'error');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo crear la noticia'
+            });
         }
     };
 
@@ -46,10 +56,20 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiBirthday.createBirthday(data);
-            await showAlert('Éxito', 'Cumpleaños añadido correctamente', 'success');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Cumpleaños añadido correctamente'
+            });
         } catch (error) {
             console.log(error);
-            await showAlert('Error', 'No se pudo añadir el cumpleaños', 'error');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo añadir el cumpleaños'
+            });
         }
     };
 
@@ -62,10 +82,20 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiSponsor.createSponsor(data);
-            await showAlert('Éxito', 'Patrocinador añadido correctamente', 'success');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Patrocinador añadido correctamente'
+            });
         } catch (error) {
             console.log(error);
-            await showAlert('Error', 'No se pudo añadir el patrocinador', 'error');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo añadir el patrocinador'
+            });
         }
     };
 
@@ -76,10 +106,20 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiRival.createRival(data);
-            await showAlert('Éxito', 'Equipo rival creado correctamente', 'success');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Equipo rival creado correctamente'
+            });
         } catch (error) {
             console.log(error);
-            await showAlert('Error', 'No se pudo crear el equipo rival', 'error');
+            const Swal = await loadSweetAlert();
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo crear el equipo rival'
+            });
         }
     };
     return (

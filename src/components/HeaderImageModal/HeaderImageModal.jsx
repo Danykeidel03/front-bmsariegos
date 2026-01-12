@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/modals-responsive.css';
-import './HeaderImageModal.css';
-import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
+import { loadCSS } from '../../utils/lazyLoadCSS';
+import { loadSweetAlert, showConfirm } from '../../utils/lazyLoadLibraries';
 import apiImagenCabecera from '../../services/apiImagenCabecera';
 
 const HeaderImageModal = ({ isOpen, onClose }) => {
@@ -11,12 +10,19 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
         urlImagen: ''
     });
     const [loading, setLoading] = useState(false);
+    const [cssLoaded, setCssLoaded] = useState(false);
 
     useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/HeaderImageModal/HeaderImageModal.css', 'header-image-modal')
+            ]).then(() => setCssLoaded(true));
+        }
         if (isOpen) {
             fetchImagenes();
         }
-    }, [isOpen]);
+    }, [isOpen, cssLoaded]);
 
     const fetchImagenes = async () => {
         try {
@@ -30,6 +36,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.photo) {
+            const Swal = await loadSweetAlert();
             Swal.fire('Error', 'Selecciona una imagen', 'error');
             return;
         }
@@ -41,10 +48,12 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
         try {
             await apiImagenCabecera.createImagenCabecera(data);
+            const Swal = await loadSweetAlert();
             Swal.fire('Éxito', 'Imagen añadida correctamente', 'success');
             setFormData({ photo: null, urlImagen: '' });
             fetchImagenes();
         } catch {
+            const Swal = await loadSweetAlert();
             Swal.fire('Error', 'No se pudo añadir la imagen', 'error');
         } finally {
             setLoading(false);
@@ -52,6 +61,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
     };
 
     const handleDelete = async (id) => {
+        const Swal = await loadSweetAlert();
         const result = await Swal.fire({
             title: '¿Estás seguro?',
             text: 'Esta acción no se puede deshacer',

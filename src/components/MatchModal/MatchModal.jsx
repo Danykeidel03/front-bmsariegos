@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import '../../styles/modals-responsive.css';
-import './MatchModal.css';
-import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
+import { loadCSS } from '../../utils/lazyLoadCSS';
+import { loadSweetAlert, showConfirm } from '../../utils/lazyLoadLibraries';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
 import apiTeam from '../../services/apiTeam';
@@ -24,15 +23,23 @@ const MatchModal = ({ isOpen, onClose }) => {
     const [showRivalDropdown, setShowRivalDropdown] = useState(false);
     const [matchSearch, setMatchSearch] = useState('');
     const [filteredMatches, setFilteredMatches] = useState([]);
+    const [cssLoaded, setCssLoaded] = useState(false);
     const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
+        if (isOpen && !cssLoaded) {
+            // Cargar CSS del modal solo cuando se abre
+            Promise.all([
+                loadCSS('/src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/src/components/MatchModal/MatchModal.css', 'match-modal')
+            ]).then(() => setCssLoaded(true));
+        }
         if (isOpen) {
             loadMatches();
             loadRivals();
             loadTeams();
         }
-    }, [isOpen]);
+    }, [isOpen, cssLoaded]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -95,6 +102,7 @@ const MatchModal = ({ isOpen, onClose }) => {
         e.preventDefault();
         try {
             await apiMatch.createMatch(formData);
+            const Swal = await loadSweetAlert();
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
@@ -104,6 +112,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             setRivalSearch('');
             loadMatches();
         } catch {
+            const Swal = await loadSweetAlert();
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -124,6 +133,7 @@ const MatchModal = ({ isOpen, onClose }) => {
     const handleUpdateDateTime = async () => {
         try {
             await apiMatch.updateMatchDateTime(editingMatch, editDateTime);
+            const Swal = await loadSweetAlert();
             Swal.fire({
                 icon: 'success',
                 title: 'Fecha actualizada',
@@ -132,6 +142,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             setEditingMatch(null);
             loadMatches();
         } catch {
+            const Swal = await loadSweetAlert();
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -141,6 +152,7 @@ const MatchModal = ({ isOpen, onClose }) => {
     };
 
     const handleFinalize = async (matchId) => {
+        const Swal = await loadSweetAlert();
         const { value: result } = await Swal.fire({
             title: 'Finalizar Partido',
             input: 'text',
@@ -171,6 +183,7 @@ const MatchModal = ({ isOpen, onClose }) => {
     };
 
     const handleDelete = async (matchId) => {
+        const Swal = await loadSweetAlert();
         const result = await Swal.fire({
             title: '¿Estás seguro?',
             text: 'Esta acción no se puede deshacer',
