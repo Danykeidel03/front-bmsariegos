@@ -15,8 +15,8 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
     useEffect(() => {
         if (isOpen && !cssLoaded) {
             Promise.all([
-                loadCSS('public/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('public/styles/HeaderImageModal.css', 'header-image-modal')
+                loadCSS('/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/styles/HeaderImageModal.css', 'header-image-modal')
             ]).then(() => setCssLoaded(true));
         }
         if (isOpen) {

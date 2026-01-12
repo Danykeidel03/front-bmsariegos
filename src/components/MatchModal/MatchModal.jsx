@@ -30,7 +30,7 @@ const MatchModal = ({ isOpen, onClose }) => {
         if (isOpen && !cssLoaded) {
             // Cargar CSS del modal solo cuando se abre
             Promise.all([
-                loadCSS('public/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('/styles/modals-responsive.css', 'modals-responsive'),
                 loadCSS('src/components/MatchModal/MatchModal.css', 'match-modal')
             ]).then(() => setCssLoaded(true));
         }
