@@ -30,17 +30,9 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiNotice.createNotice(data);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Noticia creada correctamente'
-            });
+            await showAlert('Éxito', 'Noticia creada correctamente', 'success');
         } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo crear la noticia'
-            });
+            await showAlert('Error', 'No se pudo crear la noticia', 'error');
         }
     };
 
@@ -54,18 +46,10 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiBirthday.createBirthday(data);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Cumpleaños añadido correctamente'
-            });
+            await showAlert('Éxito', 'Cumpleaños añadido correctamente', 'success');
         } catch (error) {
             console.log(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo añadir el cumpleaños'
-            });
+            await showAlert('Error', 'No se pudo añadir el cumpleaños', 'error');
         }
     };
 
@@ -78,18 +62,10 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiSponsor.createSponsor(data);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Patrocinador añadido correctamente'
-            });
+            await showAlert('Éxito', 'Patrocinador añadido correctamente', 'success');
         } catch (error) {
             console.log(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo añadir el patrocinador'
-            });
+            await showAlert('Error', 'No se pudo añadir el patrocinador', 'error');
         }
     };
 
@@ -100,18 +76,10 @@ const AdminPanel = ({ onLogout }) => {
 
         try {
             await apiRival.createRival(data);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Equipo rival creado correctamente'
-            });
+            await showAlert('Éxito', 'Equipo rival creado correctamente', 'success');
         } catch (error) {
             console.log(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo crear el equipo rival'
-            });
+            await showAlert('Error', 'No se pudo crear el equipo rival', 'error');
         }
     };
     return (
