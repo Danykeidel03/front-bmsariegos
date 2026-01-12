@@ -14,10 +14,8 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         if (isOpen && !cssLoaded) {
-            Promise.all([
-                loadCSS('/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('/styles/HeaderImageModal.css', 'header-image-modal')
-            ]).then(() => setCssLoaded(true));
+            // Los estilos se cargan como archivos CSS normales en el HTML
+            setCssLoaded(true);
         }
         if (isOpen) {
             fetchImagenes();

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AdminPanel.css';
+import '/styles/MatchModal.css';
 import NewsModal from '../NewsModal/NewsModal';
 import BirthdayModal from '../BirthdayModal/BirthdayModal';
 import SponsorModal from '../SponsorModal/SponsorModal';
@@ -14,6 +15,15 @@ import apiRival from '../../services/apiRival';
 import { loadSweetAlert } from '../../utils/lazyLoadLibraries';
 
 const AdminPanel = ({ onLogout }) => {
+    useEffect(() => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/styles/MatchModal.css';
+        document.head.appendChild(link);
+        return () => {
+            document.head.removeChild(link);
+        };
+    }, []);
     const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
     const [isBirthdayModalOpen, setIsBirthdayModalOpen] = useState(false);
     const [isSponsorModalOpen, setIsSponsorModalOpen] = useState(false);
