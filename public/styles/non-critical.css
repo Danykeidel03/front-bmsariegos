@@ -1,5 +1,5 @@
 /* CSS No Crítico - Carga diferida */
-@import '../../src/styles/accessibility.css';
+@import '/styles/accessibility.css';
 
 /* Transiciones y efectos - No necesarios para el renderizado inicial */
 a {
