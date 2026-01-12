@@ -16,7 +16,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
         if (isOpen && !cssLoaded) {
             Promise.all([
                 loadCSS('public/styles/modals-responsive.css', 'modals-responsive'),
-                loadCSS('src/components/HeaderImageModal/HeaderImageModal.css', 'header-image-modal')
+                loadCSS('public/styles/HeaderImageModal.css', 'header-image-modal')
             ]).then(() => setCssLoaded(true));
         }
         if (isOpen) {
