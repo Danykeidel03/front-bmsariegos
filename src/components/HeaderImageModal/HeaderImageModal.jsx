@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { loadCSS } from '../../utils/lazyLoadCSS';
+
+import '../../styles/modals-responsive.css';
+import './HeaderImageModal.css';
 import { loadSweetAlert, showConfirm } from '../../utils/lazyLoadLibraries';
 import apiImagenCabecera from '../../services/apiImagenCabecera';
 
@@ -14,8 +16,10 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         if (isOpen && !cssLoaded) {
-            // Los estilos se cargan como archivos CSS normales en el HTML
-            setCssLoaded(true);
+            Promise.all([
+                loadCSS('src/styles/modals-responsive.css', 'modals-responsive'),
+                loadCSS('src/components/HeaderImageModal/HeaderImageModal.css', 'header-image-modal')
+            ]).then(() => setCssLoaded(true));
         }
         if (isOpen) {
             fetchImagenes();
