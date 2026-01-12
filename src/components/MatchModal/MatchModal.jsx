@@ -28,11 +28,6 @@ const MatchModal = ({ isOpen, onClose }) => {
     const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
-        if (isOpen && !cssLoaded) {
-            // Cargar CSS del modal solo cuando se abre
-            // Los estilos se cargan como archivos CSS normales en el HTML
-            setCssLoaded(true);
-        }
         if (isOpen) {
             loadMatches();
             loadRivals();
