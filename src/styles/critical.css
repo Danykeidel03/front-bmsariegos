@@ -44,7 +44,7 @@ img {
 .imgSlider {
     width: 100%;
     height: 40vh;
-    object-fit: contain;
+    object-fit: cover;
     background: #f0f0f0;
     max-height: 350px;
 }
