@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/modals-responsive.css';
 import './BirthdayModal.css';
-import { showConfirm, showAlert, loadReactImageCrop } from '../../utils/lazyLoadLibraries';
+import { showConfirm, showAlert, loadReactImageCrop, loadSweetAlert } from '../../utils/lazyLoadLibraries';
 import apiTeam from '../../services/apiTeam';
 import apiBirthday from '../../services/apiBirthday';
 
@@ -176,18 +176,17 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             setFormData(prev => ({ ...prev, photo: croppedFile }));
             setShowCropper(false);
         } catch {
-            Swal.fire('Error', 'No se pudo recortar la imagen', 'error');
+            await showAlert('Error', 'No se pudo recortar la imagen', 'error');
         }
     };
 
 
 
     const handleDelete = async (playerId) => {
-        const result = await Swal.fire({
+        const result = await showConfirm({
             title: '¿Estás seguro?',
             text: 'Esta acción no se puede deshacer',
             icon: 'warning',
-            showCancelButton: true,
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar'
         });
@@ -195,10 +194,10 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         if (result.isConfirmed) {
             try {
                 await apiBirthday.deleteBirthday(playerId);
-                Swal.fire('Eliminado', 'Jugador eliminado correctamente', 'success');
+                await showAlert('Eliminado', 'Jugador eliminado correctamente', 'success');
                 await fetchPlayers();
             } catch {
-                Swal.fire('Error', 'No se pudo eliminar el jugador', 'error');
+                await showAlert('Error', 'No se pudo eliminar el jugador', 'error');
             }
         }
     };
@@ -208,15 +207,21 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         
         try {
             if (editingPlayer) {
-                const data = {
-                    name: formData.name,
-                    dni: formData.dni,
-                    birthDay: formData.birthDay,
-                    category: formData.category
-                };
+                // Enviar siempre como FormData (foto opcional)
+                const data = new FormData();
+                data.append('name', formData.name);
+                data.append('dni', formData.dni);
+                data.append('birthDay', formData.birthDay);
+                data.append('category', formData.category);
+                
+                // Solo agregar foto si hay una nueva
+                if (formData.photo) {
+                    data.append('photo', formData.photo);
+                }
                 
                 await apiBirthday.updateBirthday(editingPlayer._id, data);
-                Swal.fire('Éxito', 'Jugador actualizado correctamente', 'success');
+                
+                await showAlert('Éxito', 'Jugador actualizado correctamente', 'success');
             } else {
                 await onSubmit(formData);
             }
@@ -231,8 +236,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             setEditingPlayer(null);
             setShowForm(false);
             await fetchPlayers();
-        } catch {
-            Swal.fire('Error', 'No se pudo guardar el jugador', 'error');
+        } catch (error) {
+            await showAlert('Error', 'No se pudo guardar el jugador', 'error');
         }
     };
 
@@ -353,7 +358,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="photo">Foto:</label>
+                        <label htmlFor="photo">Foto:{editingPlayer && ' (opcional)'}</label>
                         <input
                             type="file"
                             id="photo"

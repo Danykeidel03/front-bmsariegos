@@ -17,7 +17,16 @@ const objServices = {
     getBirthday: () => api.get('/birthday'),
     getAllPlayers: () => api.get('/birthday/getAllbirthday'),
     createBirthday: (formData) => api.post('/birthday', formData),
-    updateBirthday: (id, formData) => api.put(`/birthday/${id}`, formData),
+    updateBirthday: (id, data) => {
+        // Si es FormData, axios detecta automáticamente el Content-Type
+        // Si es objeto JSON, configuramos el Content-Type explícitamente
+        const config = data instanceof FormData ? {} : {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        return api.put(`/birthday/${id}`, data, config);
+    },
     deleteBirthday: (id) => api.delete(`/birthday/${id}`)
 }
 
