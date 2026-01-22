@@ -207,22 +207,26 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         
         try {
             if (editingPlayer) {
-                // Enviar siempre como FormData (foto opcional)
-                const data = new FormData();
-                data.append('name', formData.name);
-                data.append('dni', formData.dni);
-                data.append('birthDay', formData.birthDay);
-                data.append('category', formData.category);
-                
-                // Solo agregar foto si hay una nueva (asegura nombre para blobs cropeados)
-                if (formData.photo) {
-                    const fileName = formData.photo.name || 'photo.jpg';
-                    data.append('photo', formData.photo, fileName);
-                }
-                
-                await apiBirthday.updateBirthday(editingPlayer._id, data);
-                
-                await showAlert('Éxito', 'Jugador actualizado correctamente', 'success');
+                    // Si hay foto nueva -> multipart, si no -> JSON simple
+                    if (formData.photo) {
+                        const data = new FormData();
+                        data.append('name', formData.name);
+                        data.append('dni', formData.dni);
+                        data.append('birthDay', formData.birthDay);
+                        data.append('category', formData.category);
+                        const fileName = formData.photo.name || 'photo.jpg';
+                        data.append('photo', formData.photo, fileName);
+                        await apiBirthday.updateBirthday(editingPlayer._id, data);
+                    } else {
+                        const data = {
+                            name: formData.name,
+                            dni: formData.dni,
+                            birthDay: formData.birthDay,
+                            category: formData.category
+                        };
+                        await apiBirthday.updateBirthday(editingPlayer._id, data);
+                    }
+                    await showAlert('Éxito', 'Jugador actualizado correctamente', 'success');
             } else {
                 await onSubmit(formData);
             }
