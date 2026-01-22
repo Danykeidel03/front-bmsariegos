@@ -214,9 +214,10 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                 data.append('birthDay', formData.birthDay);
                 data.append('category', formData.category);
                 
-                // Solo agregar foto si hay una nueva
+                // Solo agregar foto si hay una nueva (asegura nombre para blobs cropeados)
                 if (formData.photo) {
-                    data.append('photo', formData.photo);
+                    const fileName = formData.photo.name || 'photo.jpg';
+                    data.append('photo', formData.photo, fileName);
                 }
                 
                 await apiBirthday.updateBirthday(editingPlayer._id, data);
@@ -237,6 +238,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             setShowForm(false);
             await fetchPlayers();
         } catch (error) {
+            console.error('Error al guardar:', error);
+            console.error('Respuesta del servidor:', error?.response?.data);
             await showAlert('Error', 'No se pudo guardar el jugador', 'error');
         }
     };
