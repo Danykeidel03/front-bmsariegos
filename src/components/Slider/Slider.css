@@ -1,6 +1,6 @@
 .imgSlider {
     width: 100%;
-    height: 80vh;
+    height: 100%h;
     object-fit: cover;
     will-change: transform;
 }
