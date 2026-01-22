@@ -5,6 +5,11 @@
     will-change: transform;
 }
 
+.hero-swiper {
+    width: 100%;
+    margin: 0 auto;
+}
+
 .swiper-lazy-preloader {
     width: 42px;
     height: 42px;

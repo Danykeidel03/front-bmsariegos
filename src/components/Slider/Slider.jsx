@@ -45,10 +45,10 @@ const MySlider = () => {
                     src="/slider1.webp" 
                     alt="Slider" 
                     className='imgSlider'
-                    width={721}
-                    height={721}
+                    width={2000}
+                    height={700}
                     priority={true}
-                    sizes="(max-width: 768px) 100vw, 721px"
+                    sizes="100vw"
                 />
             </div>
         );
@@ -56,6 +56,7 @@ const MySlider = () => {
 
     return (
         <Swiper
+            className="hero-swiper"
             modules={[Pagination, Autoplay]}
             spaceBetween={0}
             slidesPerView={1}
@@ -74,11 +75,11 @@ const MySlider = () => {
                                 src={imagen.imgCabecera} 
                                 alt={`Slide ${index + 1}`} 
                                 className='imgSlider'
-                                width={721}
-                                height={721}
+                                width={2000}
+                                height={700}
                                 priority={index === 0}
                                 quality={index === 0 ? 50 : 25}
-                                sizes="(max-width: 768px) 100vw, 721px"
+                                sizes="100vw"
                             />
                         </a>
                     ) : (
@@ -86,11 +87,11 @@ const MySlider = () => {
                             src={imagen.imgCabecera} 
                             alt={`Slide ${index + 1}`} 
                             className='imgSlider'
-                            width={721}
-                            height={721}
+                            width={2000}
+                            height={700}
                             priority={index === 0}
                             quality={index === 0 ? 50 : 25}
-                            sizes="(max-width: 768px) 100vw, 721px"
+                            sizes="100vw"
                         />
                     )}
                 </SwiperSlide>
