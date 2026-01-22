@@ -23,6 +23,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     const [showCropper, setShowCropper] = useState(false);
     const [crop, setCrop] = useState({ aspect: 1, width: 50, height: 50, unit: '%', x: 25, y: 25 });
     const [completedCrop, setCompletedCrop] = useState(null);
+    const [ReactCrop, setReactCrop] = useState(null);
     const imgRef = useRef(null);
 
     useEffect(() => {
@@ -116,9 +117,20 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         });
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+        
+        // Cargar ReactCrop si no está cargado
+        if (!ReactCrop) {
+            try {
+                const cropModule = await loadReactImageCrop();
+                setReactCrop(() => cropModule.default || cropModule.ReactCrop || cropModule);
+            } catch (error) {
+                console.error('Error loading ReactCrop:', error);
+                return;
+            }
+        }
         
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -358,7 +370,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
                         )}
                     </div>
                     
-                    {showCropper && (
+                    {showCropper && ReactCrop && (
                         <div className="crop-modal">
                             <div className="crop-container">
                                 <h3>Recortar imagen</h3>
