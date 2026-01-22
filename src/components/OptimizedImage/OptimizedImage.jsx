@@ -8,7 +8,7 @@ const OptimizedImage = ({
   width, 
   height,
   sizes = "(max-width: 768px) 100vw, 50vw",
-  quality = 60,
+  quality = 75,
   ...props 
 }) => {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +16,9 @@ const OptimizedImage = ({
 
   const getOptimizedSrc = (originalSrc, w, q = quality) => {
     if (!originalSrc) return '';
+
+    // Limitamos la compresión para evitar pixelado; rango 50-90 mantiene buen equilibrio
+    const safeQuality = Math.min(Math.max(q, 50), 90);
     
     // Si es de Cloudinary, aplicar transformaciones
     if (originalSrc.includes('res.cloudinary.com')) {
@@ -23,7 +26,7 @@ const OptimizedImage = ({
       if (parts.length === 2) {
         const transformations = [
           'f_auto',
-          `q_${Math.min(q, 40)}`,
+          `q_${safeQuality}`,
           `w_${w}`,
           'c_limit',
           'dpr_auto'

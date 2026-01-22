@@ -147,9 +147,12 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
         
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
-        
-        canvas.width = crop.width;
-        canvas.height = crop.height;
+
+        // Ajustamos el tamaño de salida al tamaño real del recorte en píxeles
+        const outputWidth = Math.max(1, Math.round(crop.width * scaleX));
+        const outputHeight = Math.max(1, Math.round(crop.height * scaleY));
+        canvas.width = outputWidth;
+        canvas.height = outputHeight;
         
         ctx.drawImage(
             image,
@@ -159,8 +162,8 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             crop.height * scaleY,
             0,
             0,
-            crop.width,
-            crop.height
+            outputWidth,
+            outputHeight
         );
         
         return new Promise((resolve) => {

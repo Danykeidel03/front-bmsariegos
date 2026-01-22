@@ -172,10 +172,10 @@ const Teams = () => {
                                                     src={player.photoName} 
                                                     alt={player.name}
                                                     className="player-photo"
-                                                    width={400}
-                                                    height={400}
+                                                    width={600}
+                                                    height={600}
                                                     quality={85}
-                                                    sizes="(max-width: 768px) 200px, 350px"
+                                                    sizes="(max-width: 768px) 90vw, 420px"
                                                     crop="fill"
                                                 />
                                                 <div className="player-info">
