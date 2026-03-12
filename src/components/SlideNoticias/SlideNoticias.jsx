@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import CloudinaryImage from '../CloudinaryImage/CloudinaryImage';
 import './SlideNoticias.css';
 import apiNotice from "../../services/apiNotice";
+import { sanitizeWithLineBreaks } from "../../utils/sanitize";
 
 export default function SlideNoticias() {
     const [modal, setModal] = useState(null);
@@ -82,7 +83,7 @@ export default function SlideNoticias() {
                             />
                             <div className="content">
                                 <h2>{modal.title}</h2>
-                                <p dangerouslySetInnerHTML={{ __html: modal.descripcion.replace(/\n/g, '<br>') }}></p>
+                                <p dangerouslySetInnerHTML={{ __html: sanitizeWithLineBreaks(modal.descripcion) }}></p>
                             </div>
                         </div>
                     </div>

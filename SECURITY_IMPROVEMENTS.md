@@ -1,8 +1,82 @@
-# 🔒 Mejoras de Seguridad Implementadas - Fase 1
+# 🔒 Mejoras de Seguridad Implementadas
 
-## Fecha: 30 de diciembre de 2025
+## Historial de Mejoras
+
+---
+
+## Fase 1.1 - Sanitización XSS y Corrección de Imports (Actual)
+
+### Fecha: Marzo 2026
 
 ### ✅ Cambios Realizados
+
+#### 1. Protección contra XSS (Cross-Site Scripting)
+
+**Problema crítico resuelto:** El uso de `dangerouslySetInnerHTML` sin sanitización permitía inyección de código malicioso.
+
+**Archivos corregidos:**
+- `src/components/SlideNoticias/SlideNoticias.jsx`
+- `src/pages/News/News.jsx`
+
+**Antes (VULNERABLE):**
+```javascript
+<p dangerouslySetInnerHTML={{ __html: modal.descripcion.replace(/\n/g, '<br>') }}></p>
+```
+
+**Ahora (SEGURO):**
+```javascript
+import { sanitizeWithLineBreaks } from '../../utils/sanitize';
+// ...
+<p dangerouslySetInnerHTML={{ __html: sanitizeWithLineBreaks(modal.descripcion) }}></p>
+```
+
+**Nueva utilidad creada:** `src/utils/sanitize.js`
+- `sanitizeHTML(html)` - Sanitiza HTML permitiendo solo tags seguros
+- `sanitizeWithLineBreaks(text)` - Sanitiza y convierte `\n` a `<br>`
+- `stripHTML(html)` - Elimina todos los tags HTML
+
+**Dependencia agregada:** `dompurify`
+
+#### 2. Corrección de `Swal` no definido
+
+**Problema:** Se usaba `Swal.fire()` sin importar SweetAlert2, causando `ReferenceError` en runtime.
+
+**Archivos corregidos:**
+- `src/pages/Contact/Contact.jsx`
+- `src/components/TeamModal/TeamModal.jsx`
+
+**Solución:** Usar la función `showAlert()` de `utils/lazyLoadLibraries.js` que:
+- Carga SweetAlert2 de forma lazy (mejor rendimiento)
+- Tiene fallback a `window.alert()` si falla la carga
+- Ya existía en el proyecto pero no se usaba consistentemente
+
+**Antes (ERROR):**
+```javascript
+Swal.fire({
+    icon: 'success',
+    title: 'Éxito',
+    text: 'Mensaje'
+});
+```
+
+**Ahora (CORRECTO):**
+```javascript
+import { showAlert } from '../../utils/lazyLoadLibraries';
+// ...
+await showAlert('Éxito', 'Mensaje', 'success');
+```
+
+#### 3. Limpieza de imports innecesarios
+
+Removidos imports de `React` que ya no son necesarios en React 17+:
+- `src/pages/Contact/Contact.jsx`
+- `src/pages/News/News.jsx`
+- `src/components/SlideNoticias/SlideNoticias.jsx`
+- `src/components/TeamModal/TeamModal.jsx`
+
+---
+
+## Fase 1.0 - Variables de Entorno (Anterior)
 
 #### 1. Variables de Entorno
 - ✅ Creado `.env` con configuración actual
@@ -146,9 +220,40 @@ Removidos todos los `console.log`, `console.error`, `console.info` en:
 
 ---
 
-**✅ Fase 1 - COMPLETADA**
+**✅ Fase 1.0 - COMPLETADA**
+**✅ Fase 1.1 - COMPLETADA**
+
+---
+
+## 🚨 Pendiente: API Key en Frontend
+
+### Problema conocido
+
+La API key sigue siendo visible en las DevTools del navegador ya que se envía en los headers de las peticiones. Esto es una **limitación arquitectónica** que requiere cambios en el backend.
+
+### Soluciones recomendadas (requieren backend):
+
+1. **Implementar un backend proxy (BFF - Backend For Frontend)**
+   - Las llamadas sensibles pasan por tu propio backend
+   - El frontend nunca ve la API key real
+
+2. **Autenticación JWT con refresh tokens**
+   - El usuario se autentica y recibe un token temporal
+   - El token expira y se renueva automáticamente
+
+3. **Limitar permisos de la API key**
+   - Asegurar que la API key solo permite operaciones de lectura pública
+   - Las operaciones de escritura (admin) requieren autenticación adicional
+
+### Mitigación actual:
+- ✅ API key movida a variables de entorno (no hardcodeada)
+- ✅ Terser elimina console.log en build
+- ⚠️ La key sigue siendo visible en Network tab (limitación del frontend)
+
+---
 
 Próximas fases recomendadas:
-- Fase 2: Arquitectura (centralizar axios, Context API)
-- Fase 3: Optimización (lazy loading, PropTypes)
-- Fase 4: Testing y CI/CD
+- Fase 2: Arquitectura (centralizar axios, eliminar código duplicado)
+- Fase 3: Manejo de errores (Error Boundaries, estados de carga)
+- Fase 4: Accesibilidad
+- Fase 5: Testing

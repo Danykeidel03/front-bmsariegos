@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../../styles/modals-responsive.css';
 import './TeamModal.css';
-import { showConfirm, showAlert } from '../../utils/lazyLoadLibraries';
+import { showAlert } from '../../utils/lazyLoadLibraries';
 import apiTeam from '../../services/apiTeam';
 
 const TeamModal = ({ isOpen, onClose }) => {
@@ -26,7 +26,7 @@ const TeamModal = ({ isOpen, onClose }) => {
             const response = await apiTeam.getTeams();
             const teamsData = Array.isArray(response.data.data) ? response.data.data : [];
             setTeams(teamsData);
-        } catch (error) {
+        } catch {
             setTeams([]);
         }
     };
@@ -44,37 +44,21 @@ const TeamModal = ({ isOpen, onClose }) => {
         
         try {
             await apiTeam.createTeam(formData);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Equipo creado correctamente'
-            });
+            await showAlert('Éxito', 'Equipo creado correctamente', 'success');
             setFormData({ name: '', category: '', division: '' });
             fetchTeams();
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo crear el equipo'
-            });
+        } catch {
+            await showAlert('Error', 'No se pudo crear el equipo', 'error');
         }
     };
 
     const handleDelete = async (teamId) => {
         try {
             await apiTeam.deleteTeam(teamId);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Equipo eliminado correctamente'
-            });
+            await showAlert('Éxito', 'Equipo eliminado correctamente', 'success');
             fetchTeams();
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo eliminar el equipo'
-            });
+        } catch {
+            await showAlert('Error', 'No se pudo eliminar el equipo', 'error');
         }
     };
 
@@ -86,22 +70,14 @@ const TeamModal = ({ isOpen, onClose }) => {
     const handleSaveName = async (teamId) => {
         try {
             await apiTeam.updateTeamName(teamId, editName);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Nombre actualizado exitosamente'
-            });
+            await showAlert('Éxito', 'Nombre actualizado exitosamente', 'success');
             setEditingTeam(null);
             setEditName('');
             fetchTeams();
         } catch (error) {
             console.log(error);
             const errorMessage = error.response?.status === 404 ? 'Equipo no encontrado' : 'Error del servidor';
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: errorMessage
-            });
+            await showAlert('Error', errorMessage, 'error');
         }
     };
 
@@ -135,18 +111,10 @@ const TeamModal = ({ isOpen, onClose }) => {
         try {
             await apiTeam.reorderTeams(teamOrders);
             setHasOrderChanges(false);
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: 'Orden actualizado correctamente'
-            });
+            await showAlert('Éxito', 'Orden actualizado correctamente', 'success');
         } catch (error) {
             console.log(error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo actualizar el orden'
-            });
+            await showAlert('Error', 'No se pudo actualizar el orden', 'error');
         }
     };
 

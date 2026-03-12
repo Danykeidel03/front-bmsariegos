@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import './News.css';
 import apiNotice from '../../services/apiNotice';
 import SEO from '../../components/SEO/SEO';
+import { sanitizeWithLineBreaks } from '../../utils/sanitize';
 
 const News = () => {
     const [modal, setModal] = useState(null);
@@ -24,7 +25,7 @@ const News = () => {
             try {
                 const data = await apiNotice.getAllNotices();
                 setNoticias(data.data.data);
-            } catch (error) {
+            } catch {
                 // Error silenciado
             } finally {
                 setLoading(false);
@@ -79,7 +80,7 @@ const News = () => {
                                 <img src={modal.photoName} alt={modal.title} />
                                 <div className="content">
                                     <h2>{modal.title}</h2>
-                                    <p dangerouslySetInnerHTML={{ __html: modal.descripcion.replace(/\n/g, '<br>') }}></p>
+                                    <p dangerouslySetInnerHTML={{ __html: sanitizeWithLineBreaks(modal.descripcion) }}></p>
                                 </div>
                             </div>
                         </div>

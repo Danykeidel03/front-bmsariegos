@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Contact.css';
 import { showAlert } from '../../utils/lazyLoadLibraries';
 import SEO from '../../components/SEO/SEO';
@@ -18,14 +18,9 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        Swal.fire({
-            icon: 'success',
-            title: '¡Mensaje enviado!',
-            text: 'Gracias por contactarnos. Te responderemos pronto.',
-            confirmButtonText: 'Aceptar'
-        });
+        await showAlert('¡Mensaje enviado!', 'Gracias por contactarnos. Te responderemos pronto.', 'success');
         setFormData({ name: '', email: '', subject: '', message: '' });
     };
 
