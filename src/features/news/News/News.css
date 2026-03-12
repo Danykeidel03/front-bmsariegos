@@ -70,6 +70,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    padding: 0;
 }
 
 .news-card:hover {
@@ -285,14 +286,6 @@
     .news-grid {
         grid-template-columns: 1fr;
         gap: 20px;
-    }
-    
-    .news-card {
-        height: 350px;
-    }
-    
-    .news-card img {
-        height: 200px;
     }
     
     .info-notice {
