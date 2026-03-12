@@ -59,5 +59,6 @@ img {
     .imgSlider {
         height: 100%;
         max-height: none;
+        max-height: 672px;
     }
 }
