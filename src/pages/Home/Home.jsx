@@ -23,7 +23,7 @@ const Home = () => {
             <div className='page-main'>
                 <MatchesBar/>
                 <MySlider></MySlider>
-                <Suspense fallback={<div style={{minHeight: '200px'}}></div>}>
+                <Suspense fallback={<div style={{minHeight: '800px'}}></div>}>
                     <SlideNoticias/>
                     <SliderBirthday/>
                     <BrandSlider/>

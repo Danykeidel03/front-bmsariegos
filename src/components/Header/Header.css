@@ -66,31 +66,35 @@
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 12px 20px;
-  }
+   .header {
+     padding: 12px 20px;
+     contain: layout;
+   }
 
-  .menuToggle {
-    display: block;
-  }
+   .menuToggle {
+     display: block;
+   }
 
-  .menuOptions {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #119bc6;
-    width: 250px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    border-radius: 0 0 0 15px;
-    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
-  }
+   .menuOptions {
+     display: none;
+     position: fixed;
+     top: 100%;
+     right: 0;
+     background-color: #119bc6;
+     width: 250px;
+     transform: translateX(100%);
+     transition: transform 0.3s ease;
+     border-radius: 0 0 0 15px;
+     box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
+     z-index: 100;
+     max-height: calc(100vh - 56px);
+     overflow-y: auto;
+   }
 
-  .menuOptions.active {
-    display: block;
-    transform: translateX(0);
-  }
+   .menuOptions.active {
+     display: block;
+     transform: translateX(0);
+   }
 
   .header .menuOptions ul {
     flex-direction: column;
