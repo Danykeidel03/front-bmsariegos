@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, startTransition } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import OptimizedImage from '../OptimizedImage/OptimizedImage';
@@ -15,10 +15,25 @@ const MySlider = () => {
     useEffect(() => {
         const fetchImagenes = async () => {
             try {
-                const response = await apiImagenCabecera.getImagenesCabecera();
-                setImagenes(response.data.data || []);
+                // Set a timeout: if API doesn't respond in 3 seconds, show fallback
+                const timeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Timeout')), 3000)
+                );
+                
+                const response = await Promise.race([
+                    apiImagenCabecera.getImagenesCabecera(),
+                    timeoutPromise
+                ]);
+                
+                // Use startTransition to avoid blocking render
+                startTransition(() => {
+                    setImagenes(response.data.data || []);
+                });
             } catch {
-                // Error silenciado
+                // Error silenciado - mostrar fallback
+                startTransition(() => {
+                    setImagenes([]);
+                });
             } finally {
                 setLoading(false);
             }

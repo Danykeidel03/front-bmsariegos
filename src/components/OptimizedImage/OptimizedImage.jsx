@@ -14,7 +14,7 @@ const OptimizedImage = ({
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  const getOptimizedSrc = (originalSrc, w, q = quality) => {
+  const getOptimizedSrc = (originalSrc, w, q = quality, format = 'auto') => {
     if (!originalSrc) return '';
 
     // Limitamos la compresión para evitar pixelado; rango 50-90 mantiene buen equilibrio
@@ -25,7 +25,7 @@ const OptimizedImage = ({
       const parts = originalSrc.split('/upload/');
       if (parts.length === 2) {
         const transformations = [
-          'f_auto',
+          `f_${format}`,
           `q_${safeQuality}`,
           `w_${w}`,
           'c_limit',
@@ -48,7 +48,7 @@ const OptimizedImage = ({
       Math.round(width * 2)
     ].filter(w => w >= 100 && w <= 2048);
     
-    return widths.map(w => `${getOptimizedSrc(originalSrc, w)} ${w}w`).join(', ');
+    return widths.map(w => `${getOptimizedSrc(originalSrc, w, quality, 'auto')} ${w}w`).join(', ');
   };
 
   if (error) {
@@ -71,27 +71,38 @@ const OptimizedImage = ({
   }
 
   return (
-    <img
-      src={getOptimizedSrc(src, width || 800)}
-      srcSet={generateSrcSet(src)}
-      sizes={sizes}
-      alt={alt}
-      className={className}
-      width={width}
-      height={height}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
-      decoding="async"
-      onLoad={() => setLoaded(true)}
-      onError={() => setError(true)}
-      style={{
-        opacity: loaded ? 1 : 1,
-        transition: 'opacity 0.3s ease',
-        aspectRatio: width && height ? `${width}/${height}` : 'auto',
-        ...props.style
-      }}
-      {...props}
-    />
+    <picture>
+      {/* WebP format with priority for Cloudinary images */}
+      {src?.includes('res.cloudinary.com') && (
+        <source
+          srcSet={generateSrcSet(src)}
+          sizes={sizes}
+          type="image/webp"
+        />
+      )}
+      {/* Fallback to optimized image */}
+      <img
+        src={getOptimizedSrc(src, width || 800, quality, 'auto')}
+        srcSet={generateSrcSet(src)}
+        sizes={sizes}
+        alt={alt}
+        className={className}
+        width={width}
+        height={height}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => setError(true)}
+        style={{
+          opacity: loaded ? 1 : 1,
+          transition: 'opacity 0.3s ease',
+          aspectRatio: width && height ? `${width}/${height}` : 'auto',
+          ...props.style
+        }}
+        {...props}
+      />
+    </picture>
   );
 };
 
