@@ -15,6 +15,11 @@
     --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
 .slideNotices {
     display: flex;
     flex-direction: column;
