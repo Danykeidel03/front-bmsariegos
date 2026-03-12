@@ -54,8 +54,22 @@ const MatchesBar = () => {
         return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
     };
 
+    // Si no hay partidos, mostrar skeleton con altura reservada
+    // NO retornar null - eso causa shift cuando carguen los datos
     if (matches.length === 0) {
-        return null;
+        return (
+            <div className="matches-bar-component" style={{ minHeight: '80px' }}>
+                <div className="container">
+                    <div className="matches-bar-content" style={{
+                        height: '60px',
+                        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'loading 1.5s infinite',
+                        borderRadius: '4px'
+                    }}></div>
+                </div>
+            </div>
+        );
     }
 
     return (

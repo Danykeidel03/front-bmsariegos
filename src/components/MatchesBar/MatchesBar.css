@@ -164,7 +164,12 @@
 }
 
 @media (max-width: 768px) {
-    .matches-bar-component {
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.matches-bar-component {
         padding: 8px 0;
     }
 
