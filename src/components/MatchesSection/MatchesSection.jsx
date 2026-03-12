@@ -38,10 +38,10 @@ const MatchesSection = () => {
                     };
                 });
             
-            setMatches(upcomingMatches);
-        } catch (error) {
-            // Error silenciado - se maneja mostrando array vacío
-        }
+             setMatches(upcomingMatches);
+         } catch {
+             // Error silenciado - se maneja mostrando array vacío
+         }
     };
 
     const formatDate = (dateString) => {

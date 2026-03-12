@@ -27,7 +27,6 @@ export function asyncCSSPlugin() {
       };
       
       // Separate critical and non-critical CSS
-      const criticalCSS = cssFiles.filter(isCritical);
       const nonCriticalCSS = cssFiles.filter(f => !isCritical(f));
       
       // Generate preload + async load for non-critical CSS

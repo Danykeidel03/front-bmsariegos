@@ -19,14 +19,14 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
         }
     }, [isOpen]);
 
-    const fetchNotices = async () => {
-        try {
-            const response = await apiNotice.getAllNotices();
-            setNotices(response.data.data || []);
-        } catch (error) {
-            // Error silenciado
-        }
-    };
+     const fetchNotices = async () => {
+         try {
+             const response = await apiNotice.getAllNotices();
+             setNotices(response.data.data || []);
+         } catch {
+             // Error silenciado
+         }
+     };
 
     const handleDelete = async (id) => {
         const result = await showConfirm({

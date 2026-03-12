@@ -25,50 +25,50 @@ const Teams = () => {
         fetchRivals();
     }, []);
 
-    const fetchTeams = async () => {
-        try {
-            const response = await apiTeam.getTeams();
-            setTeams(Array.isArray(response.data.data) ? response.data.data : []);
-        } catch (error) {
-            setTeams([]);
-        }
-    };
+     const fetchTeams = async () => {
+         try {
+             const response = await apiTeam.getTeams();
+             setTeams(Array.isArray(response.data.data) ? response.data.data : []);
+         } catch {
+             setTeams([]);
+         }
+     };
 
-    const fetchPlayers = async () => {
-        try {
-            const response = await apiBirthday.getAllPlayers();
-            setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
-        } catch (error) {
-            setPlayers([]);
-        }
-    };
+     const fetchPlayers = async () => {
+         try {
+             const response = await apiBirthday.getAllPlayers();
+             setPlayers(Array.isArray(response.data.data) ? response.data.data : []);
+         } catch {
+             setPlayers([]);
+         }
+     };
 
-    const fetchClasificaciones = async () => {
-        try {
-            const response = await apiClasificaciones.getClasificaciones();
-            setClasificaciones(response.data || {});
-        } catch (error) {
-            setClasificaciones({});
-        }
-    };
+     const fetchClasificaciones = async () => {
+         try {
+             const response = await apiClasificaciones.getClasificaciones();
+             setClasificaciones(response.data || {});
+         } catch {
+             setClasificaciones({});
+         }
+     };
 
-    const fetchMatches = async () => {
-        try {
-            const response = await apiMatch.getAllMatches();
-            setMatches(Array.isArray(response.data.data) ? response.data.data : []);
-        } catch (error) {
-            setMatches([]);
-        }
-    };
+     const fetchMatches = async () => {
+         try {
+             const response = await apiMatch.getAllMatches();
+             setMatches(Array.isArray(response.data.data) ? response.data.data : []);
+         } catch {
+             setMatches([]);
+         }
+     };
 
-    const fetchRivals = async () => {
-        try {
-            const response = await apiRival.getAllRivals();
-            setRivals(Array.isArray(response.data.data) ? response.data.data : []);
-        } catch (error) {
-            setRivals([]);
-        }
-    };
+     const fetchRivals = async () => {
+         try {
+             const response = await apiRival.getAllRivals();
+             setRivals(Array.isArray(response.data.data) ? response.data.data : []);
+         } catch {
+             setRivals([]);
+         }
+     };
 
     const getPlayersByTeam = (teamName) => {
         return Array.isArray(players) ? players.filter(player => player.category === teamName) : [];

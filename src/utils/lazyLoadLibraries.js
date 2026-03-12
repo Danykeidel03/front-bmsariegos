@@ -112,7 +112,7 @@ export const showConfirm = async (options) => {
       cancelButtonText: options.cancelButtonText || 'Cancelar',
       ...options
     });
-  } catch (error) {
+  } catch {
     // Fallback to native confirm
     const result = window.confirm(`${options.title}\n${options.text}`);
     return { isConfirmed: result };
@@ -130,7 +130,7 @@ export const showAlert = async (title, message, icon = 'info') => {
   try {
     const Swal = await loadSweetAlert();
     return await Swal.fire(title, message, icon);
-  } catch (error) {
+  } catch {
     // Fallback to native alert
     window.alert(`${title}\n${message}`);
     return { isConfirmed: true };
