@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../../styles/modals-responsive.css';
 import './HeaderImageModal.css';
-import { loadSweetAlert, showConfirm } from '../../utils/lazyLoadLibraries';
+import { loadSweetAlert } from '../../utils/lazyLoadLibraries';
 import apiImagenCabecera from '../../services/apiImagenCabecera';
 
 const HeaderImageModal = ({ isOpen, onClose }) => {
@@ -20,14 +20,14 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
         }
     }, [isOpen]);
 
-    const fetchImagenes = async () => {
-        try {
-            const response = await apiImagenCabecera.getImagenesCabecera();
-            setImagenes(response.data.data || []);
-        } catch (error) {
-            // Error silenciado
-        }
-    };
+     const fetchImagenes = async () => {
+         try {
+             const response = await apiImagenCabecera.getImagenesCabecera();
+             setImagenes(response.data.data || []);
+         } catch {
+             // Error silenciado
+         }
+     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -36,7 +36,7 @@ const AdminPanel = ({ onLogout }) => {
                 title: 'Éxito',
                 text: 'Noticia creada correctamente'
             });
-        } catch (error) {
+        } catch {
             const Swal = await loadSweetAlert();
             Swal.fire({
                 icon: 'error',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import apiUser from '../../services/apiUser';
-import { showAlert, loadSweetAlert } from '../../utils/lazyLoadLibraries';
+import { loadSweetAlert } from '../../utils/lazyLoadLibraries';
 
 const Login = ({ onLogin }) => {
     const [credentials, setCredentials] = useState({ mail: '', pass: '' });
@@ -12,7 +12,7 @@ const Login = ({ onLogin }) => {
         setLoading(true);
         
         try {
-            const response = await apiUser.loginUser(credentials);
+            await apiUser.loginUser(credentials);
             onLogin(true);
         } catch (error) {
             const Swal = await loadSweetAlert();

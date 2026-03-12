@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { loadSweetAlert, showConfirm } from '../../utils/lazyLoadLibraries';
+import React, { useState, useRef, useEffect } from 'react';
+import { loadSweetAlert } from '../../utils/lazyLoadLibraries';
 import apiMatch from '../../services/apiMatch';
 import apiRival from '../../services/apiRival';
 import apiTeam from '../../services/apiTeam';
@@ -23,7 +23,6 @@ const MatchModal = ({ isOpen, onClose }) => {
     const [showRivalDropdown, setShowRivalDropdown] = useState(false);
     const [matchSearch, setMatchSearch] = useState('');
     const [filteredMatches, setFilteredMatches] = useState([]);
-    const [cssLoaded, setCssLoaded] = useState(false);
     const rivalSelectorRef = useRef(null);
 
     useEffect(() => {
@@ -32,7 +31,7 @@ const MatchModal = ({ isOpen, onClose }) => {
             loadRivals();
             loadTeams();
         }
-    }, [isOpen, cssLoaded]);
+    }, [isOpen]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {

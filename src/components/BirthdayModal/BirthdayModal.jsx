@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/modals-responsive.css';
 import './BirthdayModal.css';
-import { showConfirm, showAlert, loadReactImageCrop, loadSweetAlert } from '../../utils/lazyLoadLibraries';
+import { showConfirm, showAlert, loadReactImageCrop } from '../../utils/lazyLoadLibraries';
 import apiTeam from '../../services/apiTeam';
 import apiBirthday from '../../services/apiBirthday';
 

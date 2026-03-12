@@ -17,7 +17,7 @@ const MySlider = () => {
             try {
                 const response = await apiImagenCabecera.getImagenesCabecera();
                 setImagenes(response.data.data || []);
-            } catch (error) {
+            } catch {
                 // Error silenciado
             } finally {
                 setLoading(false);
