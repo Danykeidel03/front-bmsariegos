@@ -249,7 +249,7 @@ const MatchModal = ({ isOpen, onClose }) => {
                           )
                           .slice(0, 10)
                           .map((rival) => (
-                            <div
+                            <button
                               key={rival._id}
                               className="rival-option"
                               onClick={() => {
@@ -257,9 +257,10 @@ const MatchModal = ({ isOpen, onClose }) => {
                                 setRivalSearch(rival.name);
                                 setShowRivalDropdown(false);
                               }}
+                              type="button"
                             >
                               {rival.name}
-                            </div>
+                            </button>
                           ))}
                       </div>
                     )}

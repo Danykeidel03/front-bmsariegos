@@ -120,7 +120,7 @@ const Teams = () => {
         {Array.isArray(teams) &&
           teams.map((team) => (
             <div key={team._id} className="team-card">
-              <div className="team-header" onClick={() => toggleTeam(team._id)}>
+              <button className="team-header" onClick={() => toggleTeam(team._id)} type="button">
                 <LocalOptimizedImage
                   src="logo-30.webp"
                   alt={team.name}
@@ -132,7 +132,7 @@ const Teams = () => {
                 />
                 <h2>{team.name}</h2>
                 <span className={`arrow ${expandedTeam === team._id ? 'expanded' : ''}`}>▼</span>
-              </div>
+              </button>
 
               {expandedTeam === team._id && (
                 <div className="team-content">

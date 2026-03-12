@@ -62,13 +62,18 @@ const News = () => {
                 .slice()
                 .reverse()
                 .map((noticia, idx) => (
-                  <div className="news-card" key={idx} onClick={() => handleNoticiaClick(noticia)}>
+                  <button
+                    className="news-card"
+                    key={idx}
+                    onClick={() => handleNoticiaClick(noticia)}
+                    type="button"
+                  >
                     <img src={noticia.photoName} alt={noticia.title} />
                     <div className="news-content">
                       <h3>{noticia.title}</h3>
                       <p>{noticia.descripcion.substring(0, 150)}...</p>
                     </div>
-                  </div>
+                  </button>
                 ))}
             </div>
           )}

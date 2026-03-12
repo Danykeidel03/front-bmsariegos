@@ -76,7 +76,12 @@ export default function SlideNoticias() {
           </div>
         ) : (
           noticias.map((noticia, idx) => (
-            <div className="noticeCard" key={idx} onClick={() => handleNoticiaClick(noticia)}>
+            <button
+              className="noticeCard"
+              key={idx}
+              onClick={() => handleNoticiaClick(noticia)}
+              type="button"
+            >
               <CloudinaryImage
                 src={noticia.photoName}
                 alt={noticia.title}
@@ -87,7 +92,7 @@ export default function SlideNoticias() {
                 crop="fill"
               />
               <h3>{noticia.title}</h3>
-            </div>
+            </button>
           ))
         )}
       </div>
