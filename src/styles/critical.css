@@ -1,19 +1,22 @@
 /* CSS Crítico - Above the fold */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 header,
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.4;
-    /* Prevent layout shifts from fonts loading */
-    font-display: swap;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  line-height: 1.4;
+  /* Prevent layout shifts from fonts loading */
+  font-display: swap;
 }
 
 p,
@@ -25,40 +28,40 @@ ul,
 li,
 div,
 span {
-    font-family: inherit;
+  font-family: inherit;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .main-content {
-    min-height: 100vh;
-    /* Isolate layout shifts from nested content */
-    contain: layout style paint;
+  min-height: 100vh;
+  /* Isolate layout shifts from nested content */
+  contain: layout style paint;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .imgSlider {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background: #f0f0f0;
-    max-height: 350px;
-    /* Reserve aspect ratio to prevent shifts */
-    aspect-ratio: 2000 / 700;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #f0f0f0;
+  max-height: 350px;
+  /* Reserve aspect ratio to prevent shifts */
+  aspect-ratio: 2000 / 700;
 }
 
 @media (min-width: 768px) {
-    .imgSlider {
-        height: 100%;
-        max-height: none;
-        max-height: 672px;
-    }
+  .imgSlider {
+    height: 100%;
+    max-height: none;
+    max-height: 672px;
+  }
 }

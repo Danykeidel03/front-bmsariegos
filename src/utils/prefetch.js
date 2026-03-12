@@ -23,11 +23,11 @@ export const prefetchComponent = (importFn) => {
 export const prefetchComponents = (importFns) => {
   if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
     requestIdleCallback(() => {
-      importFns.forEach(fn => fn());
+      importFns.forEach((fn) => fn());
     });
   } else {
     setTimeout(() => {
-      importFns.forEach(fn => fn());
+      importFns.forEach((fn) => fn());
     }, 1);
   }
 };
@@ -43,7 +43,7 @@ export const usePrefetchOnInteraction = (importFn) => {
 
   return {
     onMouseEnter: handleInteraction,
-    onFocus: handleInteraction
+    onFocus: handleInteraction,
   };
 };
 
@@ -58,10 +58,10 @@ export const prefetchData = async (url, options = {}) => {
       ...options,
       headers: {
         'Content-Type': 'application/json',
-        ...options.headers
-      }
+        ...options.headers,
+      },
     });
-    
+
     if (response.ok) {
       // Cache the response in memory or use Cache API
       const data = await response.json();
@@ -81,11 +81,11 @@ export class PrefetchObserver {
   constructor() {
     this.observer = null;
     this.targets = new Map();
-    
+
     if ('IntersectionObserver' in window) {
       this.observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const importFn = this.targets.get(entry.target);
               if (importFn) {
@@ -97,7 +97,7 @@ export class PrefetchObserver {
           });
         },
         {
-          rootMargin: '50px' // Start prefetching 50px before entering viewport
+          rootMargin: '50px', // Start prefetching 50px before entering viewport
         }
       );
     }
@@ -128,7 +128,7 @@ export const preloadCriticalResources = () => {
     preconnect.rel = 'preconnect';
     preconnect.href = 'https://back-bmsariegos-production.up.railway.app';
     document.head.appendChild(preconnect);
-    
+
     // DNS prefetch for Cloudinary
     const dnsPrefetch = document.createElement('link');
     dnsPrefetch.rel = 'dns-prefetch';
@@ -142,20 +142,20 @@ export const preloadCriticalResources = () => {
  */
 export const initSmartPrefetch = () => {
   if (typeof window === 'undefined') return;
-  
+
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  
+
   // Only prefetch on fast connections
   if (connection) {
     const effectiveType = connection.effectiveType;
     const saveData = connection.saveData;
-    
+
     // Don't prefetch on slow connections or when data saver is on
     if (saveData || effectiveType === 'slow-2g' || effectiveType === '2g') {
       return false;
     }
   }
-  
+
   return true;
 };
 
@@ -164,7 +164,7 @@ export const initSmartPrefetch = () => {
  */
 export const warmupCache = () => {
   if (!initSmartPrefetch()) return;
-  
+
   // Wait for page to be fully loaded
   if (document.readyState === 'complete') {
     prefetchCommonRoutes();
@@ -175,11 +175,14 @@ export const warmupCache = () => {
 
 const prefetchCommonRoutes = () => {
   if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      // Prefetch common routes
-      import('../pages/Teams/Teams');
-      import('../pages/News/News');
-      import('../pages/Matches/Matches');
-    }, { timeout: 2000 });
+    requestIdleCallback(
+      () => {
+        // Prefetch common routes
+        import('../features/teams/Teams/Teams');
+        import('../features/news/News/News');
+        import('../features/matches/Matches/Matches');
+      },
+      { timeout: 2000 }
+    );
   }
 };

@@ -3,15 +3,15 @@ import { useMemo } from 'react';
 export const useSmartImage = (src) => {
   const imageType = useMemo(() => {
     if (!src) return 'none';
-    
+
     if (src.includes('res.cloudinary.com')) {
       return 'cloudinary';
     }
-    
+
     if (src.startsWith('http') || src.startsWith('//')) {
       return 'external';
     }
-    
+
     return 'local';
   }, [src]);
 
@@ -30,7 +30,7 @@ export const useSmartImage = (src) => {
 
   const getOptimalProps = (baseProps) => {
     const { width, height, quality = 75, ...rest } = baseProps;
-    
+
     switch (imageType) {
       case 'cloudinary':
         return {
@@ -39,14 +39,14 @@ export const useSmartImage = (src) => {
           height,
           quality,
           format: 'auto',
-          crop: 'limit'
+          crop: 'limit',
         };
       case 'local':
         return {
           ...rest,
           width,
           height,
-          quality
+          quality,
         };
       default:
         return baseProps;
@@ -56,6 +56,6 @@ export const useSmartImage = (src) => {
   return {
     imageType,
     getOptimalComponent,
-    getOptimalProps
+    getOptimalProps,
   };
 };

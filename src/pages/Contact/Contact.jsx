@@ -1,97 +1,109 @@
 import { useState } from 'react';
 import './Contact.css';
 import { showAlert } from '../../utils/lazyLoadLibraries';
-import SEO from '../../components/SEO/SEO';
+import SEO from '../../components/ui/SEO/SEO';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await showAlert('¡Mensaje enviado!', 'Gracias por contactarnos. Te responderemos pronto.', 'success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-    };
-
-    return (
-        <>
-            <SEO 
-                title="Contacto - Balonmano Sariegos"
-                description="Contacta con el Club de Balonmano Sariegos. Envíanos tu mensaje y te responderemos lo antes posible."
-                keywords="contacto, balonmano sariegos, club deportivo león, handball"
-            />
-            <div className='contact-container'>
-            <h1 className='contact-title'>Contacto</h1>
-            <form className='contact-form' onSubmit={handleSubmit}>
-                <div className='form-group'>
-                    <label className='form-label' htmlFor='name'>Nombre</label>
-                    <input
-                        type='text'
-                        id='name'
-                        name='name'
-                        className='form-input'
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                
-                <div className='form-group'>
-                    <label className='form-label' htmlFor='email'>Email</label>
-                    <input
-                        type='email'
-                        id='email'
-                        name='email'
-                        className='form-input'
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                
-                <div className='form-group'>
-                    <label className='form-label' htmlFor='subject'>Asunto</label>
-                    <input
-                        type='text'
-                        id='subject'
-                        name='subject'
-                        className='form-input'
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                
-                <div className='form-group'>
-                    <label className='form-label' htmlFor='message'>Mensaje</label>
-                    <textarea
-                        id='message'
-                        name='message'
-                        className='form-textarea'
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                    ></textarea>
-                </div>
-                
-                <button type='submit' className='submit-btn'>
-                    Enviar Mensaje
-                </button>
-            </form>
-            </div>
-        </>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await showAlert(
+      '¡Mensaje enviado!',
+      'Gracias por contactarnos. Te responderemos pronto.',
+      'success'
     );
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  return (
+    <>
+      <SEO
+        title="Contacto - Balonmano Sariegos"
+        description="Contacta con el Club de Balonmano Sariegos. Envíanos tu mensaje y te responderemos lo antes posible."
+        keywords="contacto, balonmano sariegos, club deportivo león, handball"
+      />
+      <div className="contact-container">
+        <h1 className="contact-title">Contacto</h1>
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label" htmlFor="name">
+              Nombre
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className="form-input"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="form-input"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label" htmlFor="subject">
+              Asunto
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              className="form-input"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label" htmlFor="message">
+              Mensaje
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              className="form-textarea"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" className="submit-btn">
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </>
+  );
 };
 
 export default Contact;

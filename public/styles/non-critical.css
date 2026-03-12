@@ -3,19 +3,19 @@
 
 /* Transiciones y efectos - No necesarios para el renderizado inicial */
 a {
-    position: relative;
+  position: relative;
 }
 
 @media (min-width: 768px) {
-    a {
-        transition: all 0.3s ease;
-    }
-    
-    a:hover {
-        transform: translateY(-1px);
-    }
-    
-    a:not(.no-underline):hover::after {
-        width: 100%;
-    }
+  a {
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    transform: translateY(-1px);
+  }
+
+  a:not(.no-underline):hover::after {
+    width: 100%;
+  }
 }

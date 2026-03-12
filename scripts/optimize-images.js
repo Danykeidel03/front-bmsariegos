@@ -15,20 +15,20 @@ async function optimizeImage(inputPath, outputPath) {
   try {
     const stats = fs.statSync(inputPath);
     const fileSizeKB = stats.size / 1024;
-    
+
     console.log(`Optimizando: ${path.basename(inputPath)} (${fileSizeKB.toFixed(1)}KB)`);
-    
+
     await sharp(inputPath)
-      .webp({ 
+      .webp({
         quality: 80,
-        effort: 6
+        effort: 6,
       })
       .toFile(outputPath);
-      
+
     const newStats = fs.statSync(outputPath);
     const newSizeKB = newStats.size / 1024;
-    const savings = ((fileSizeKB - newSizeKB) / fileSizeKB * 100).toFixed(1);
-    
+    const savings = (((fileSizeKB - newSizeKB) / fileSizeKB) * 100).toFixed(1);
+
     console.log(`✓ Convertido a WebP: ${newSizeKB.toFixed(1)}KB (${savings}% reducción)`);
   } catch (error) {
     console.error(`Error optimizando ${inputPath}:`, error.message);
@@ -37,11 +37,11 @@ async function optimizeImage(inputPath, outputPath) {
 
 async function processDirectory(dir) {
   const files = fs.readdirSync(dir);
-  
+
   for (const file of files) {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
-    
+
     if (stat.isDirectory()) {
       await processDirectory(filePath);
     } else {
@@ -49,10 +49,9 @@ async function processDirectory(dir) {
       if (imageExtensions.includes(ext)) {
         const nameWithoutExt = path.basename(file, ext);
         const webpPath = path.join(dir, `${nameWithoutExt}.webp`);
-        
+
         // Solo convertir si el WebP no existe o es más antiguo
-        if (!fs.existsSync(webpPath) || 
-            fs.statSync(filePath).mtime > fs.statSync(webpPath).mtime) {
+        if (!fs.existsSync(webpPath) || fs.statSync(filePath).mtime > fs.statSync(webpPath).mtime) {
           await optimizeImage(filePath, webpPath);
         }
       }
@@ -62,7 +61,7 @@ async function processDirectory(dir) {
 
 async function main() {
   console.log('🖼️  Optimizando imágenes...\n');
-  
+
   try {
     await processDirectory(publicDir);
     console.log('\n✅ Optimización completada');

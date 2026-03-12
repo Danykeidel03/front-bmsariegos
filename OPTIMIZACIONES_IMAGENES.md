@@ -1,23 +1,27 @@
 # Optimizaciones de Imágenes Implementadas
 
 ## Resumen
+
 Se han implementado optimizaciones que reducen **11.772 KiB** del tamaño de descarga de imágenes, mejorando significativamente el LCP y FCP.
 
 ## Componentes Creados
 
 ### 1. OptimizedImage
+
 - Soporte para formatos modernos (WebP, AVIF)
 - Imágenes responsivas con srcset
 - Lazy loading inteligente
 - Transformaciones automáticas de Cloudinary
 
 ### 2. CloudinaryImage
+
 - Optimizaciones específicas para Cloudinary
 - Compresión automática con calidad ajustable
 - Crop inteligente según dimensiones mostradas
 - DPR automático para pantallas de alta densidad
 
 ### 3. SponsorImage
+
 - Componente preconfigurado para patrocinadores
 - Dimensiones optimizadas (105x70)
 - Calidad 70% para máximo ahorro
@@ -25,6 +29,7 @@ Se han implementado optimizaciones que reducen **11.772 KiB** del tamaño de des
 ## Optimizaciones Aplicadas
 
 ### Imágenes de Cloudinary
+
 - **Formato automático**: f_auto (WebP/AVIF cuando sea compatible)
 - **Calidad optimizada**: q_auto o valores específicos (70-85%)
 - **Dimensiones exactas**: Redimensionado a tamaños mostrados
@@ -32,6 +37,7 @@ Se han implementado optimizaciones que reducen **11.772 KiB** del tamaño de des
 - **DPR automático**: dpr_auto para pantallas Retina
 
 ### Imágenes Locales
+
 - **Lazy loading**: Carga diferida excepto imágenes críticas
 - **Dimensiones específicas**: width/height para evitar layout shift
 - **Compresión**: Calidad optimizada por tipo de imagen
@@ -57,7 +63,7 @@ Se han implementado optimizaciones que reducen **11.772 KiB** del tamaño de des
 
 ```jsx
 // Para imágenes de Cloudinary
-<CloudinaryImage 
+<CloudinaryImage
   src={imageUrl}
   alt="Descripción"
   width={356}
@@ -67,7 +73,7 @@ Se han implementado optimizaciones que reducen **11.772 KiB** del tamaño de des
 />
 
 // Para imágenes locales
-<OptimizedImage 
+<OptimizedImage
   src="/logo.png"
   alt="Logo"
   width={140}
@@ -76,7 +82,7 @@ Se han implementado optimizaciones que reducen **11.772 KiB** del tamaño de des
 />
 
 // Para patrocinadores
-<SponsorImage 
+<SponsorImage
   src={sponsorUrl}
   alt="Patrocinador"
 />

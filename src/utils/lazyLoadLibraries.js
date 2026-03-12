@@ -14,7 +14,7 @@ export const loadSweetAlert = async () => {
   if (swalInstance) {
     return swalInstance;
   }
-  
+
   const { default: Swal } = await import('sweetalert2');
   swalInstance = Swal;
   return swalInstance;
@@ -28,12 +28,12 @@ export const loadReactImageCrop = async () => {
   if (reactImageCropInstance) {
     return reactImageCropInstance;
   }
-  
+
   const [ReactCropModule] = await Promise.all([
     import('react-image-crop'),
-    import('react-image-crop/dist/ReactCrop.css')
+    import('react-image-crop/dist/ReactCrop.css'),
   ]);
-  
+
   reactImageCropInstance = ReactCropModule;
   return reactImageCropInstance;
 };
@@ -75,7 +75,7 @@ export const showNativeLoading = (message = 'Cargando...') => {
     justify-content: center;
     z-index: 9999;
   `;
-  
+
   const content = document.createElement('div');
   content.style.cssText = `
     background: white;
@@ -85,10 +85,10 @@ export const showNativeLoading = (message = 'Cargando...') => {
     color: #333;
   `;
   content.textContent = message;
-  
+
   loading.appendChild(content);
   document.body.appendChild(loading);
-  
+
   return () => {
     const el = document.getElementById('native-loading');
     if (el) el.remove();
@@ -110,7 +110,7 @@ export const showConfirm = async (options) => {
       showCancelButton: true,
       confirmButtonText: options.confirmButtonText || 'Sí',
       cancelButtonText: options.cancelButtonText || 'Cancelar',
-      ...options
+      ...options,
     });
   } catch {
     // Fallback to native confirm

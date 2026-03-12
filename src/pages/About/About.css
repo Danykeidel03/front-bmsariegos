@@ -198,7 +198,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
   pointer-events: none;
 }
 
@@ -277,7 +277,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.05) 75%);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    transparent 25%,
+    transparent 75%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
   background-size: 60px 60px;
   opacity: 0.3;
   pointer-events: none;
@@ -310,75 +316,75 @@
   .about-container {
     padding: 0;
   }
-  
+
   .about-hero {
     height: 50vh;
     min-height: 350px;
   }
-  
+
   .about-hero-content h1 {
     font-size: 2.2rem;
     padding: 0 20px;
   }
-  
+
   .about-content {
     padding: 50px 20px;
     gap: 50px;
   }
-  
+
   .about-intro p {
     font-size: 1.1rem;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .feature-item {
     padding: 25px;
   }
-  
+
   .feature-item p {
     font-size: 1rem;
   }
-  
+
   .categories-section {
     padding: 30px 20px;
   }
-  
+
   .category-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .training-info {
     padding: 20px;
   }
-  
+
   .training-info p {
     font-size: 1rem;
   }
-  
+
   .about-cta {
     padding: 40px 25px;
     border-radius: 20px;
   }
-  
+
   .cta-content p {
     font-size: 1.1rem;
   }
-  
+
   .final-cta {
     font-size: 1.3rem;
     padding: 20px 25px;
   }
-  
+
   .about-features h2,
   .about-categories h2 {
     font-size: 2.2rem;
   }
-  
+
   .categories-section h3 {
     font-size: 1.6rem;
   }
@@ -389,68 +395,68 @@
     height: 40vh;
     min-height: 300px;
   }
-  
+
   .about-hero-content h1 {
     font-size: 1.6rem;
   }
-  
+
   .about-content {
     padding: 30px 15px;
     gap: 40px;
   }
-  
+
   .about-intro p {
     font-size: 1rem;
   }
-  
+
   .feature-item {
     padding: 20px;
     gap: 15px;
   }
-  
+
   .feature-icon {
     font-size: 2rem;
   }
-  
+
   .categories-section {
     padding: 25px 15px;
   }
-  
+
   .category-item {
     padding: 25px 20px;
   }
-  
+
   .category-item h4 {
     font-size: 1.4rem;
   }
-  
+
   .training-info {
     padding: 18px;
   }
-  
+
   .training-start {
     font-size: 1rem;
     padding: 15px 30px;
   }
-  
+
   .about-cta {
     padding: 30px 20px;
   }
-  
+
   .cta-content p {
     font-size: 1rem;
   }
-  
+
   .final-cta {
     font-size: 1.2rem;
     padding: 18px 20px;
   }
-  
+
   .about-features h2,
   .about-categories h2 {
     font-size: 1.8rem;
   }
-  
+
   .categories-section h3 {
     font-size: 1.4rem;
   }

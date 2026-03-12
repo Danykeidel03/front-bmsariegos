@@ -23,16 +23,16 @@ export const loadCSS = (href, id) => {
     link.rel = 'stylesheet';
     link.href = href;
     link.id = id;
-    
+
     link.onload = () => {
       loadedStyles.add(id);
       resolve();
     };
-    
+
     link.onerror = () => {
       reject(new Error(`Failed to load CSS: ${href}`));
     };
-    
+
     document.head.appendChild(link);
   });
 };
@@ -46,7 +46,7 @@ export const preloadCSS = (href) => {
   link.rel = 'preload';
   link.as = 'style';
   link.href = href;
-  link.onload = function() {
+  link.onload = function () {
     this.rel = 'stylesheet';
   };
   document.head.appendChild(link);
@@ -61,7 +61,7 @@ export const loadCSSAsync = (href) => {
   link.rel = 'stylesheet';
   link.href = href;
   link.media = 'print'; // Load with low priority
-  link.onload = function() {
+  link.onload = function () {
     this.media = 'all'; // Apply styles after load
   };
   document.head.appendChild(link);

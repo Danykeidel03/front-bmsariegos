@@ -5,37 +5,43 @@ import { warmupCache, preloadCriticalResources } from './utils/prefetch';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 // Componentes críticos - carga inmediata
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import CookieBanner from './components/CookieBanner/CookieBanner';
+import Header from './components/layout/Header/Header';
+import Footer from './components/layout/Footer/Footer';
+import CookieBanner from './components/layout/CookieBanner/CookieBanner';
 
-// Lazy loading de páginas - se cargan solo cuando se navega a ellas
+// Lazy loading de páginas y features - se cargan solo cuando se navega a ellas
 const Home = lazy(() => import('./pages/Home/Home'));
 const Contact = lazy(() => import('./pages/Contact/Contact'));
-const Admin = lazy(() => import('./pages/Admin/Admin'));
-const News = lazy(() => import('./pages/News/News'));
-const Teams = lazy(() => import('./pages/Teams/Teams'));
 const About = lazy(() => import('./pages/About/About'));
 const Privacy = lazy(() => import('./pages/Privacy/Privacy'));
 const Terms = lazy(() => import('./pages/Terms/Terms'));
-const Matches = lazy(() => import('./pages/Matches/Matches'));
 const Equipaciones = lazy(() => import('./pages/Equipaciones/Equipaciones'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
+// Features
+const Admin = lazy(() => import('./features/admin/Admin/Admin'));
+const News = lazy(() => import('./features/news/News/News'));
+const Teams = lazy(() => import('./features/teams/Teams/Teams'));
+const Matches = lazy(() => import('./features/matches/Matches/Matches'));
+
 function AppRoutes() {
   return (
-    <Suspense fallback={
-      <div style={{
-        height: '200px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#119bc6',
-        fontSize: '18px'
-      }}>
-        Cargando...
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            height: '200px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#119bc6',
+            fontSize: '18px',
+          }}
+        >
+          Cargando...
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contacto" element={<Contact />} />
@@ -68,11 +74,11 @@ function AppContent() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="main-content">
         <AppRoutes />
       </div>
-      <Footer/>
+      <Footer />
       <CookieBanner />
     </>
   );
@@ -82,17 +88,15 @@ function App() {
   useEffect(() => {
     // Cargar CSS no crítico de forma asíncrona después del renderizado inicial
     loadCSSAsync('/styles/non-critical.css');
-    
+
     // Precargar recursos críticos
     preloadCriticalResources();
-    
+
     // Iniciar precarga inteligente de rutas comunes
     warmupCache();
   }, []);
 
-  return (
-    <AppContent />
-  );
+  return <AppContent />;
 }
 
 export default App;

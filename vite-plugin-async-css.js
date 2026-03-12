@@ -7,34 +7,34 @@ export function asyncCSSPlugin() {
   return {
     name: 'vite-plugin-async-css',
     enforce: 'post',
-    
+
     transformIndexHtml(html, { bundle }) {
       if (!bundle) return html;
-      
+
       // Find CSS files
-      const cssFiles = Object.keys(bundle).filter(
-        fileName => fileName.endsWith('.css')
-      );
-      
+      const cssFiles = Object.keys(bundle).filter((fileName) => fileName.endsWith('.css'));
+
       // Critical CSS patterns - should be loaded synchronously
       const criticalPatterns = [
         'critical',
         'index-', // Main app CSS
       ];
-      
+
       const isCritical = (fileName) => {
-        return criticalPatterns.some(pattern => fileName.includes(pattern));
+        return criticalPatterns.some((pattern) => fileName.includes(pattern));
       };
-      
+
       // Separate critical and non-critical CSS
-      const nonCriticalCSS = cssFiles.filter(f => !isCritical(f));
-      
+      const nonCriticalCSS = cssFiles.filter((f) => !isCritical(f));
+
       // Generate preload + async load for non-critical CSS
-      const asyncCSSLinks = nonCriticalCSS.map(fileName => {
-        return `<link rel="preload" href="/assets/${fileName}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      const asyncCSSLinks = nonCriticalCSS
+        .map((fileName) => {
+          return `<link rel="preload" href="/assets/${fileName}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="/assets/${fileName}"></noscript>`;
-      }).join('\n');
-      
+        })
+        .join('\n');
+
       // Add async CSS loading script
       const asyncLoadScript = `
 <script>
@@ -47,11 +47,11 @@ export function asyncCSSPlugin() {
     });
   })();
 </script>`;
-      
+
       // Insert before </head>
       html = html.replace('</head>', `${asyncCSSLinks}\n${asyncLoadScript}\n</head>`);
-      
+
       return html;
-    }
+    },
   };
 }

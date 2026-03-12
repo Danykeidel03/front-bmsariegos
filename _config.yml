@@ -6,4 +6,4 @@ source: /_none_
 
 # Exclude all directories from Jekyll processing
 exclude:
-  - "/"
+  - '/'
