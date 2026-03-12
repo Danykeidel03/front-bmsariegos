@@ -1,13 +1,16 @@
 .imgSlider {
     width: 100%;
-    height: 100%h;
+    height: 100%;
     object-fit: cover;
+    aspect-ratio: 2000 / 700;
     will-change: transform;
 }
 
 .hero-swiper {
     width: 100%;
     margin: 0 auto;
+    height: 80vh;
+    contain: layout style paint;
 }
 
 .swiper-lazy-preloader {
@@ -48,6 +51,11 @@
 @media (max-width: 767px) {
     .imgSlider {
         max-height: 400px;
+        aspect-ratio: auto;
+    }
+    
+    .hero-swiper {
+        height: 400px;
     }
     
     .slider-loading, .slider-fallback {
