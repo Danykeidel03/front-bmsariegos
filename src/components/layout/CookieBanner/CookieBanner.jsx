@@ -22,8 +22,8 @@ const CookieBanner = () => {
     <div className="cookie-banner">
       <div className="cookie-content">
         <p>
-          Utilizamos cookies técnicas necesarias para el funcionamiento de la web.
-          <a href="/politica-privacidad"> Más información</a>
+          Utilizamos cookies técnicas necesarias para el funcionamiento de la web. Consulta nuestra{' '}
+          <a href="/politica-privacidad">política de privacidad</a>.
         </p>
         <button onClick={acceptCookies} className="cookie-accept">
           Aceptar

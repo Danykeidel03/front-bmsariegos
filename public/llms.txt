@@ -1,0 +1,20 @@
+# BM Sariegos
+
+> Web oficial del Club de Balonmano Sariegos, en León (España).
+
+Información pública sobre el club: equipos y categorías, calendario de partidos y resultados, noticias, equipaciones oficiales y contacto.
+
+## Páginas
+
+- [Inicio](https://balonmanosariegos.com/): Presentación general del club y contenido destacado.
+- [Quiénes somos](https://balonmanosariegos.com/quienes-somos): Historia y presentación del club.
+- [Equipos](https://balonmanosariegos.com/equipos): Plantillas y categorías del club.
+- [Partidos](https://balonmanosariegos.com/partidos): Calendario, resultados y clasificaciones.
+- [Noticias](https://balonmanosariegos.com/noticias): Actualidad y comunicados del club.
+- [Equipaciones](https://balonmanosariegos.com/equipaciones): Equipaciones oficiales del club.
+- [Contacto](https://balonmanosariegos.com/contacto): Datos de contacto del club.
+
+## Legal
+
+- [Política de privacidad](https://balonmanosariegos.com/politica-privacidad): Tratamiento de datos personales.
+- [Términos y condiciones](https://balonmanosariegos.com/terminos-condiciones): Condiciones de uso del sitio.
