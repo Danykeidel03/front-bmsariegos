@@ -22,6 +22,29 @@ const News = () => {
     fetchNoticias();
   }, []);
 
+  const noticiasGenerales = noticias
+    .filter((n) => n.category !== 'deportiva')
+    .slice()
+    .reverse();
+  const noticiasDeportivas = noticias
+    .filter((n) => n.category === 'deportiva')
+    .slice()
+    .reverse();
+
+  const renderGrid = (lista) => (
+    <div className="news-grid">
+      {lista.map((noticia) => (
+        <Link className="news-card" key={noticia.slug} to={`/noticias/${noticia.slug}`}>
+          <img src={noticia.photoName} alt={noticia.title} />
+          <div className="news-content">
+            <h3>{noticia.title}</h3>
+            <p>{noticia.descripcion.substring(0, 150)}...</p>
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <SEO
@@ -45,20 +68,25 @@ const News = () => {
               <p>No hay noticias disponibles en este momento.</p>
             </div>
           ) : (
-            <div className="news-grid">
-              {noticias
-                .slice()
-                .reverse()
-                .map((noticia) => (
-                  <Link className="news-card" key={noticia.slug} to={`/noticias/${noticia.slug}`}>
-                    <img src={noticia.photoName} alt={noticia.title} />
-                    <div className="news-content">
-                      <h3>{noticia.title}</h3>
-                      <p>{noticia.descripcion.substring(0, 150)}...</p>
-                    </div>
-                  </Link>
-                ))}
-            </div>
+            <>
+              <section className="news-section">
+                <h2>Noticias</h2>
+                {noticiasGenerales.length === 0 ? (
+                  <p className="no-news">No hay noticias en esta categoría.</p>
+                ) : (
+                  renderGrid(noticiasGenerales)
+                )}
+              </section>
+
+              <section className="news-section">
+                <h2>Noticias Deportivas</h2>
+                {noticiasDeportivas.length === 0 ? (
+                  <p className="no-news">No hay noticias en esta categoría.</p>
+                ) : (
+                  renderGrid(noticiasDeportivas)
+                )}
+              </section>
+            </>
           )}
         </div>
       </div>

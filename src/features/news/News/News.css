@@ -51,6 +51,29 @@
     color: #666;
 }
 
+.news-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.news-section h2 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-border);
+}
+
+.news-section .no-news {
+    padding: 30px 20px;
+}
+
+@media (max-width: 768px) {
+    .news-section h2 {
+        font-size: 1.4rem;
+    }
+}
+
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));

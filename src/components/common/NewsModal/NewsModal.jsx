@@ -9,6 +9,7 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
     titulo: '',
     descripcion: '',
     photo: null,
+    category: 'general',
   });
   const [notices, setNotices] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -59,7 +60,7 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await onSubmit(formData);
-    setFormData({ titulo: '', descripcion: '', photo: null });
+    setFormData({ titulo: '', descripcion: '', photo: null, category: 'general' });
     setShowForm(false);
     await fetchNotices();
   };
@@ -129,6 +130,13 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
             <div className="form-group">
               <label>Foto</label>
               <input type="file" name="photo" onChange={handleChange} accept="image/*" required />
+            </div>
+            <div className="form-group">
+              <label>Categoría</label>
+              <select name="category" value={formData.category} onChange={handleChange}>
+                <option value="general">General</option>
+                <option value="deportiva">Deportiva</option>
+              </select>
             </div>
             <div className="form-actions">
               <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>

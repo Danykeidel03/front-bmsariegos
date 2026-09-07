@@ -27,6 +27,7 @@ const AdminPanel = ({ onLogout }) => {
     data.append('title', formData.titulo);
     data.append('descripcion', formData.descripcion);
     data.append('photo', formData.photo);
+    data.append('category', formData.category);
 
     try {
       await apiNotice.createNotice(data);
