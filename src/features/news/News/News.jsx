@@ -1,24 +1,12 @@
 import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 import './News.css';
 import apiNotice from '../../../api/apiNotice';
 import SEO from '../../../components/ui/SEO/SEO';
-import { sanitizeWithLineBreaks } from '../../../utils/sanitize';
 
 const News = () => {
-  const [modal, setModal] = useState(null);
   const [noticias, setNoticias] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const handleNoticiaClick = (noticia) => {
-    setModal(noticia);
-    setTimeout(() => {
-      window.scrollTo({
-        top: window.innerHeight / 4,
-        behavior: 'smooth',
-      });
-    }, 50);
-  };
 
   useEffect(() => {
     const fetchNoticias = async () => {
@@ -61,47 +49,18 @@ const News = () => {
               {noticias
                 .slice()
                 .reverse()
-                .map((noticia, idx) => (
-                  <button
-                    className="news-card"
-                    key={idx}
-                    onClick={() => handleNoticiaClick(noticia)}
-                    type="button"
-                  >
+                .map((noticia) => (
+                  <Link className="news-card" key={noticia.slug} to={`/noticias/${noticia.slug}`}>
                     <img src={noticia.photoName} alt={noticia.title} />
                     <div className="news-content">
                       <h3>{noticia.title}</h3>
                       <p>{noticia.descripcion.substring(0, 150)}...</p>
                     </div>
-                  </button>
+                  </Link>
                 ))}
             </div>
           )}
         </div>
-
-        {modal &&
-          createPortal(
-            <div onClick={() => setModal(null)} className="modal-notice">
-              <div className="overlay-modal" />
-              <div onClick={(e) => e.stopPropagation()} className="info-notice">
-                <div className="info-notice-content">
-                  <button onClick={() => setModal(null)} aria-label="Cerrar">
-                    ×
-                  </button>
-                  <img src={modal.photoName} alt={modal.title} />
-                  <div className="content">
-                    <h2>{modal.title}</h2>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: sanitizeWithLineBreaks(modal.descripcion),
-                      }}
-                    ></p>
-                  </div>
-                </div>
-              </div>
-            </div>,
-            document.body
-          )}
       </div>
     </>
   );
