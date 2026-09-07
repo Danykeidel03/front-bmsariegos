@@ -66,13 +66,17 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
 
   if (!isOpen) return null;
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
   const handleOverlayKeyDown = (e) => {
     if (e.key === 'Escape') onClose();
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose} onKeyDown={handleOverlayKeyDown}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={handleOverlayClick} onKeyDown={handleOverlayKeyDown}>
+      <div className="modal-content">
         <div className="modal-header">
           <h2>Gestión de Noticias</h2>
           <button className="close-btn" onClick={onClose}>
