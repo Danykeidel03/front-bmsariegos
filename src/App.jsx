@@ -21,6 +21,7 @@ const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 // Features
 const Admin = lazy(() => import('./features/admin/Admin/Admin'));
 const News = lazy(() => import('./features/news/News/News'));
+const NewsDetail = lazy(() => import('./features/news/NewsDetail/NewsDetail'));
 const Teams = lazy(() => import('./features/teams/Teams/Teams'));
 const Matches = lazy(() => import('./features/matches/Matches/Matches'));
 
@@ -46,6 +47,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/contacto" element={<Contact />} />
         <Route path="/noticias" element={<News />} />
+        <Route path="/noticias/:slug" element={<NewsDetail />} />
         <Route path="/equipos" element={<Teams />} />
         <Route path="/partidos" element={<Matches />} />
         <Route path="/tienda" element={<Equipaciones />} />

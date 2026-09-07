@@ -22,6 +22,7 @@ const objServices = {
     }),
   getNotices: () => api.get('/notice'),
   getAllNotices: () => api.get('/notice/getAll'),
+  getNoticeBySlug: (slug) => api.get(`/notice/slug/${slug}`),
   deleteNotice: (id) => api.delete(`/notice/${id}`),
 };
 
