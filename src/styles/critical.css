@@ -15,8 +15,6 @@ body {
     -apple-system,
     sans-serif;
   line-height: 1.4;
-  /* Prevent layout shifts from fonts loading */
-  font-display: swap;
 }
 
 p,
