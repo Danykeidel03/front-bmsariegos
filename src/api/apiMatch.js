@@ -20,6 +20,7 @@ const objServices = {
   updateMatchDateTime: (matchId, dateTimeData) =>
     api.put(`/match/${matchId}/datetime`, dateTimeData),
   deleteMatch: (matchId) => api.delete(`/match/${matchId}`),
+  deleteAllMatches: () => api.delete('/match/all'),
 };
 
 export default objServices;

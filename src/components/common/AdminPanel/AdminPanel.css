@@ -22,6 +22,13 @@
   font-weight: 600;
 }
 
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .logout-btn {
   background-color: #e74c3c;
   color: white;
@@ -35,6 +42,24 @@
 
 .logout-btn:hover {
   background-color: #c0392b;
+}
+
+.danger-btn {
+  background-color: white;
+  color: #e74c3c;
+  padding: 10px 20px;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.danger-btn:hover {
+  background-color: #e74c3c;
+  color: white;
 }
 
 .admin-content {
@@ -101,6 +126,16 @@
     text-align: center;
     padding: 15px;
     margin-bottom: 30px;
+  }
+
+  .admin-header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-header-actions .danger-btn,
+  .admin-header-actions .logout-btn {
+    width: 100%;
   }
 
   .admin-title {

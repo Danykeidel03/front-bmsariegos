@@ -11,7 +11,8 @@ import apiNotice from '../../../api/apiNotice';
 import apiBirthday from '../../../api/apiBirthday';
 import apiSponsor from '../../../api/apiSponsor';
 import apiRival from '../../../api/apiRival';
-import { loadSweetAlert } from '../../../utils/lazyLoadLibraries';
+import apiMatch from '../../../api/apiMatch';
+import { loadSweetAlert, showConfirm } from '../../../utils/lazyLoadLibraries';
 
 const AdminPanel = ({ onLogout }) => {
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
@@ -123,13 +124,76 @@ const AdminPanel = ({ onLogout }) => {
       });
     }
   };
+  const handleWipeMatches = async () => {
+    const result = await showConfirm({
+      title: '¿Eliminar TODOS los partidos?',
+      text: 'Esta acción no se puede deshacer. Escribí BORRAR para confirmar.',
+      icon: 'warning',
+      input: 'text',
+      inputPlaceholder: 'BORRAR',
+      confirmButtonText: 'Eliminar todo',
+      confirmButtonColor: '#e74c3c',
+      inputValidator: (value) => (value !== 'BORRAR' ? 'Tenés que escribir BORRAR' : undefined),
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      const response = await apiMatch.deleteAllMatches();
+      const Swal = await loadSweetAlert();
+      Swal.fire('Listo', `${response.data.data.matchesDeleted} partido(s) eliminado(s)`, 'success');
+    } catch (error) {
+      console.log(error);
+      const Swal = await loadSweetAlert();
+      Swal.fire('Error', 'No se pudieron eliminar los partidos', 'error');
+    }
+  };
+
+  const handleWipeRoster = async () => {
+    const result = await showConfirm({
+      title: '¿Eliminar TODOS los jugadores y equipos?',
+      text: 'Esta acción no se puede deshacer. Escribí BORRAR para confirmar.',
+      icon: 'warning',
+      input: 'text',
+      inputPlaceholder: 'BORRAR',
+      confirmButtonText: 'Eliminar todo',
+      confirmButtonColor: '#e74c3c',
+      inputValidator: (value) => (value !== 'BORRAR' ? 'Tenés que escribir BORRAR' : undefined),
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      const response = await apiBirthday.deleteRoster();
+      const { playersDeleted, teamsDeleted } = response.data.data;
+      const Swal = await loadSweetAlert();
+      Swal.fire(
+        'Listo',
+        `${playersDeleted} jugador(es) y ${teamsDeleted} equipo(s) eliminados`,
+        'success'
+      );
+    } catch (error) {
+      console.log(error);
+      const Swal = await loadSweetAlert();
+      Swal.fire('Error', 'No se pudieron eliminar los jugadores y equipos', 'error');
+    }
+  };
+
   return (
     <div className="admin-panel">
       <div className="admin-header">
         <h1 className="admin-title">Panel de Administración</h1>
-        <button className="logout-btn" onClick={onLogout}>
-          Cerrar Sesión
-        </button>
+        <div className="admin-header-actions">
+          <button className="danger-btn" onClick={handleWipeMatches}>
+            Eliminar Todos los Partidos
+          </button>
+          <button className="danger-btn" onClick={handleWipeRoster}>
+            Eliminar Jugadores y Equipos
+          </button>
+          <button className="logout-btn" onClick={onLogout}>
+            Cerrar Sesión
+          </button>
+        </div>
       </div>
 
       <div className="admin-content">

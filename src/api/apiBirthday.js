@@ -34,6 +34,7 @@ const objServices = {
     return api.put(`/birthday/${id}`, data, config);
   },
   deleteBirthday: (id) => api.delete(`/birthday/${id}`),
+  deleteRoster: () => api.delete('/birthday/roster'),
 };
 
 export default objServices;
