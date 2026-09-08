@@ -13,6 +13,8 @@ const TeamModal = ({ isOpen, onClose }) => {
   });
   const [editingTeam, setEditingTeam] = useState(null);
   const [editName, setEditName] = useState('');
+  const [editCategory, setEditCategory] = useState('');
+  const [editDivision, setEditDivision] = useState('');
   const [hasOrderChanges, setHasOrderChanges] = useState(false);
 
   useEffect(() => {
@@ -65,14 +67,21 @@ const TeamModal = ({ isOpen, onClose }) => {
   const handleEditName = (team) => {
     setEditingTeam(team._id);
     setEditName(team.name);
+    setEditCategory(team.category);
+    setEditDivision(team.division);
   };
 
   const handleSaveName = async (teamId) => {
     try {
-      await apiTeam.updateTeamName(teamId, editName);
-      await showAlert('Éxito', 'Nombre actualizado exitosamente', 'success');
+      await Promise.all([
+        apiTeam.updateTeamName(teamId, editName),
+        apiTeam.updateTeamDetails(teamId, { category: editCategory, division: editDivision }),
+      ]);
+      await showAlert('Éxito', 'Equipo actualizado exitosamente', 'success');
       setEditingTeam(null);
       setEditName('');
+      setEditCategory('');
+      setEditDivision('');
       fetchTeams();
     } catch (error) {
       console.log(error);
@@ -85,6 +94,8 @@ const TeamModal = ({ isOpen, onClose }) => {
   const handleCancelEdit = () => {
     setEditingTeam(null);
     setEditName('');
+    setEditCategory('');
+    setEditDivision('');
   };
 
   const moveTeamUp = (index) => {
@@ -211,6 +222,21 @@ const TeamModal = ({ isOpen, onClose }) => {
                         value={editName}
                         onChange={(e) => setEditName(e.target.value)}
                         className="edit-input"
+                        placeholder="Nombre"
+                      />
+                      <input
+                        type="text"
+                        value={editCategory}
+                        onChange={(e) => setEditCategory(e.target.value)}
+                        className="edit-input"
+                        placeholder="Categoría"
+                      />
+                      <input
+                        type="text"
+                        value={editDivision}
+                        onChange={(e) => setEditDivision(e.target.value)}
+                        className="edit-input"
+                        placeholder="División"
                       />
                       <button className="save-btn" onClick={() => handleSaveName(team._id)}>
                         Guardar

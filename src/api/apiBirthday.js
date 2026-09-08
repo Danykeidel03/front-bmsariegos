@@ -17,6 +17,7 @@ const objServices = {
   getBirthday: () => api.get('/birthday'),
   getAllPlayers: () => api.get('/birthday/getAllbirthday'),
   createBirthday: (formData) => api.post('/birthday', formData),
+  importCsv: (formData) => api.post('/birthday/import', formData),
   updateBirthday: (id, data) => {
     // Si es FormData, axios detecta automáticamente el Content-Type
     // Si es objeto JSON, configuramos el Content-Type explícitamente

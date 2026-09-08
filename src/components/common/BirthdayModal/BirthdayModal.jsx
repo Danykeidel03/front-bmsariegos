@@ -24,7 +24,9 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
   const [crop, setCrop] = useState({ aspect: 1, width: 50, height: 50, unit: '%', x: 25, y: 25 });
   const [completedCrop, setCompletedCrop] = useState(null);
   const [ReactCrop, setReactCrop] = useState(null);
+  const [isImporting, setIsImporting] = useState(false);
   const imgRef = useRef(null);
+  const csvInputRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -183,6 +185,46 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     }
   };
 
+  const handleImportCsvClick = () => {
+    csvInputRef.current?.click();
+  };
+
+  const handleImportCsvChange = async (e) => {
+    const file = e.target.files[0];
+    e.target.value = '';
+    if (!file) return;
+
+    setIsImporting(true);
+    try {
+      const data = new FormData();
+      data.append('file', file, file.name);
+      const response = await apiBirthday.importCsv(data);
+      const { playersCreated, playersUpdated, teamsCreated, errors } = response.data.data;
+
+      const errorDetail =
+        errors.length > 0
+          ? `\n${errors.length} fila(s) con error: ${errors
+              .slice(0, 5)
+              .map((err) => `fila ${err.row} (${err.reason})`)
+              .join(', ')}${errors.length > 5 ? '...' : ''}`
+          : '';
+
+      await showAlert(
+        'Importación completada',
+        `${playersCreated} jugadores creados, ${playersUpdated} actualizados, ${teamsCreated} equipos nuevos.${errorDetail}`,
+        errors.length > 0 ? 'warning' : 'success'
+      );
+      await fetchPlayers();
+      const teamsResponse = await apiTeam.getTeams();
+      setTeams(Array.isArray(teamsResponse.data.data) ? teamsResponse.data.data : []);
+    } catch (error) {
+      console.error('Error al importar CSV:', error);
+      await showAlert('Error', 'No se pudo importar el archivo CSV', 'error');
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
   const handleDelete = async (playerId) => {
     const result = await showConfirm({
       title: '¿Estás seguro?',
@@ -265,9 +307,26 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
           <div className="players-list">
             <div className="list-header">
               <h3>Jugadores Existentes</h3>
-              <button className="add-btn" onClick={() => setShowForm(true)}>
-                Añadir Nuevo
-              </button>
+              <div className="list-header-actions">
+                <input
+                  type="file"
+                  accept=".csv,text/csv"
+                  ref={csvInputRef}
+                  onChange={handleImportCsvChange}
+                  hidden
+                />
+                <button
+                  className="add-btn"
+                  onClick={handleImportCsvClick}
+                  disabled={isImporting}
+                  type="button"
+                >
+                  {isImporting ? 'Importando...' : 'Importar CSV'}
+                </button>
+                <button className="add-btn" onClick={() => setShowForm(true)}>
+                  Añadir Nuevo
+                </button>
+              </div>
             </div>
             <div className="search-container">
               <input

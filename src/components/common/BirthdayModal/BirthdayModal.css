@@ -28,6 +28,11 @@
   font-size: 1.2rem;
 }
 
+.birthday-modal .list-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
 .birthday-modal .add-btn {
   background-color: #007bff;
   color: white;
@@ -41,6 +46,11 @@
 
 .birthday-modal .add-btn:hover {
   background-color: #0056b3;
+}
+
+.birthday-modal .add-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .birthday-modal .search-container {
@@ -208,6 +218,10 @@
     flex-direction: column;
     gap: 15px;
     align-items: stretch;
+  }
+
+  .birthday-modal .list-header-actions {
+    flex-direction: column;
   }
 
   .birthday-modal .add-btn {
