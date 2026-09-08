@@ -27,7 +27,7 @@ const Header = forwardRef(() => {
       <div className={`menuOptions ${isMenuOpen ? 'active' : ''}`}>
         <ul>
           <li>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfl0oxDg7twPZwtHJjXVFvkbbEabbiX0ISSD-j5fnmxwAMSnQ/viewform?pli=1">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdQ2WouLYkxJJexZFqckbwHUiYi0UGE2X-sMWuPmBjFFk8uw/viewform">
               Socios
             </a>
           </li>
