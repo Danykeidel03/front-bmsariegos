@@ -26,10 +26,9 @@ const LocalOptimizedImage = ({
   };
 
   const getFallbackSrc = (originalSrc) => {
-    // Si es WebP, intentar encontrar el original
-    if (originalSrc.endsWith('.webp')) {
-      return originalSrc.replace('.webp', '.png');
-    }
+    // No asumir que existe un .png hermano: los assets con sufijo de tamaño
+    // (logo-245, iconos -56, sliders, etc.) se generan directo como .webp,
+    // sin raster original. El fallback del <img> debe apuntar al propio webp.
     return originalSrc;
   };
 
