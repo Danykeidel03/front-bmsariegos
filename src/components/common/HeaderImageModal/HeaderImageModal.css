@@ -102,10 +102,28 @@
   background: white;
 }
 
+.image-item-photos {
+  display: flex;
+}
+
+.image-item-photos > div {
+  flex: 1;
+  min-width: 0;
+}
+
 .image-item img {
   width: 100%;
   height: 150px;
   object-fit: cover;
+  display: block;
+}
+
+.image-item-label {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  padding: 4px 0;
 }
 
 .image-actions {
