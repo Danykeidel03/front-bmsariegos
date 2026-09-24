@@ -5,6 +5,22 @@
 
 import DOMPurify from 'dompurify';
 
+// Matches bare http(s) URLs, trimming trailing punctuation that's likely
+// sentence formatting rather than part of the link (e.g. "...fotos: https://x.com.")
+const URL_REGEX = /https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"]/g;
+
+/**
+ * Wraps bare URLs in a plain-text string with anchor tags.
+ * Must run before sanitizing so DOMPurify validates the resulting markup.
+ * @param {string} text - Plain text possibly containing bare URLs
+ * @returns {string} - Text with URLs replaced by <a> tags
+ */
+const linkifyURLs = (text) =>
+  text.replace(
+    URL_REGEX,
+    (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+  );
+
 /**
  * Sanitizes HTML content to prevent XSS attacks
  * @param {string} html - The HTML string to sanitize
@@ -26,8 +42,9 @@ export const sanitizeHTML = (html) => {
  */
 export const sanitizeWithLineBreaks = (text) => {
   if (!text) return '';
-  // First sanitize, then replace newlines (to prevent injection via newline manipulation)
-  const sanitized = DOMPurify.sanitize(text, {
+  // Linkify first (raw text, no markup yet), then sanitize the result, then
+  // replace newlines (to prevent injection via newline manipulation)
+  const sanitized = DOMPurify.sanitize(linkifyURLs(text), {
     ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'span'],
     ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
   });
