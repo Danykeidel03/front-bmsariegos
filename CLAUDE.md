@@ -93,6 +93,18 @@ The `VITE_API_KEY` is unavoidably visible in the browser Network tab (it's a bui
 
 `SweetAlert2` and `react-image-crop` are excluded from `optimizeDeps` and never statically imported in components. Use the wrappers in `src/utils/lazyLoadLibraries.js` (`showAlert`, `showConfirm`, `loadReactImageCrop`) instead of importing `sweetalert2`/`react-image-crop` directly — static imports would pull them back into the initial bundle.
 
+### Slow/bulk admin requests
+
+`VITE_API_TIMEOUT` (default 5000ms) is shared by every `src/api/*.js` axios instance and is tuned for normal CRUD calls, not bulk operations. A request that does many sequential DB round-trips on the backend (e.g. `apiBirthday.importCsv`, which imports a whole roster CSV row by row) needs a per-call override — pass `{ timeout: ... }` as the axios config on that one call, don't raise the global default. This was learned the hard way: the first production CSV import (~114 rows) actually succeeded on the backend but the client gave up at 5s and showed a false error, which the admin then "fixed" by re-clicking import (harmless here because the import is idempotent by `dni`, but the false-negative itself was the bug).
+
+### Danger-zone actions
+
+`AdminPanel.jsx` has an `admin-header-actions` group next to "Cerrar Sesión" for irreversible bulk actions (currently: wipe all matches, wipe all players+teams). The pattern: a `showConfirm` call with `input: 'text'` + `inputValidator` requiring the literal word `BORRAR` before the confirm button does anything, styled with the `.danger-btn` class (outline red, fills red on hover). Follow this same pattern for any future "delete everything in X" button rather than a plain yes/no confirm — these calls hit endpoints that run `deleteMany({})` on the backend with no filter.
+
+### Player ↔ Team linkage
+
+There's no `Player` model on the backend — `PlayerBirthday` (surfaced in the UI as "Gestión de Jugadores" / `BirthdayModal`) is the real player CRUD. A player's team is **not** a foreign key: `player.category` holds the same string as `team.name`, and matching is by string equality (see `features/teams/Teams/Teams.jsx`, `players.filter(p => p.category === teamName)`). When adding a team dropdown/selector anywhere, populate it from `apiTeam.getTeams()` and use `team.name` as the value — don't invent a `teamId` field, nothing on the backend reads it.
+
 ### Build/lint conventions already enforced
 
 - Prettier: single quotes, semicolons, 100 char width, trailing commas (`es5`), LF line endings — enforced as ESLint errors (`prettier/prettier`), not just formatting.
