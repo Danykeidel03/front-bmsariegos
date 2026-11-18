@@ -24,35 +24,17 @@ export default function SlideNoticias() {
   return (
     <div className="slideNotices">
       <div className="slideNotices-header">
-        <h1>ACTUALIDAD</h1>
-        <a href="/noticias" className="view-all-news">
+        <h1 className="section-title">Actualidad</h1>
+        <a href="/noticias" className="view-all-news link-arrow">
           Ver todas las noticias →
         </a>
       </div>
       <div className="noticesContainer">
         {loading ? (
           // Skeleton con altura correcta para evitar shift
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(356px, 1fr))',
-              gap: '20px',
-              width: '100%',
-              justifyItems: 'center',
-            }}
-          >
+          <div className="noticesSkeleton">
             {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                style={{
-                  width: '356px',
-                  height: '300px',
-                  background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-                  backgroundSize: '200% 100%',
-                  animation: 'loading 1.5s infinite',
-                  borderRadius: '8px',
-                }}
-              ></div>
+              <div key={i} className="noticesSkeleton__item"></div>
             ))}
           </div>
         ) : (

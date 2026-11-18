@@ -1,12 +1,12 @@
 .logo-slider {
   overflow: hidden;
-  padding: 60px 0;
+  padding: var(--space-7) 0;
   white-space: nowrap;
   position: relative;
-  margin-top: 0;
   display: flex;
-  margin-bottom: 0;
-  background: #119bc6;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .logo-slider:hover .logos-slide {
@@ -15,6 +15,7 @@
 
 .logos-slide {
   display: flex;
+  flex-shrink: 0;
   animation: 180s slide infinite linear;
   justify-content: center;
   align-items: center;
@@ -23,24 +24,32 @@
 .logos-slide img {
   width: 200px;
   height: 100px;
-  margin: 0 30px;
+  margin: 0 var(--space-4);
   object-fit: contain;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.logoLink:hover img {
-  transform: rotateY(360deg);
-  transition: all ease-in-out 0.75s;
+  background: var(--color-surface);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
 }
 
 .logoLink {
   width: auto;
   max-width: 450px;
-  text-decoration: none;
   display: inline-block;
+  transform: none;
+}
+
+.logoLink:hover img {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.logoLink:hover {
+  transform: none;
 }
 
 .sr-only {
@@ -67,26 +76,29 @@
 
 @media (max-width: 768px) {
   .logo-slider {
-    margin-top: 15px;
-    padding: 15px 0;
+    padding: var(--space-5) 0;
   }
 
   .logos-slide img {
-    margin: 0 20px;
+    margin: 0 var(--space-3);
     max-height: 80px;
     max-width: 180px;
   }
 }
 
 @media (max-width: 480px) {
-  .logo-slider {
-    margin-top: 10px;
-    padding: 10px 0;
+  .logos-slide img {
+    max-height: 64px;
+    max-width: 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logos-slide {
+    animation: none;
   }
 
-  .logos-slide img {
-    margin: 0 15px;
-    max-height: 60px;
-    max-width: 140px;
+  .logo-slider {
+    overflow-x: auto;
   }
 }

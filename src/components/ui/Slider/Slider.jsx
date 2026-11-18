@@ -65,15 +65,7 @@ const MySlider = () => {
   if (loading) {
     return (
       <div className="slider-loading">
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-            backgroundSize: '200% 100%',
-            animation: 'loading 1.5s infinite',
-          }}
-        ></div>
+        <div className="slider-loading__shimmer"></div>
       </div>
     );
   }
@@ -112,26 +104,29 @@ const MySlider = () => {
         const mobileSrc = imagen.imgCabeceraMobile || imagen.imgCabecera;
 
         const picture = (
-          <picture>
-            <source
-              media={`(max-width: ${MOBILE_BREAKPOINT}px)`}
-              srcSet={getCloudinarySrc(mobileSrc, 1080, quality)}
-            />
-            <source
-              media={`(min-width: ${MOBILE_BREAKPOINT + 1}px)`}
-              srcSet={getCloudinarySrc(imagen.imgCabecera, 2000, quality)}
-            />
-            <img
-              src={getCloudinarySrc(imagen.imgCabecera, 2000, quality)}
-              alt={`Slide ${index + 1}`}
-              className="imgSlider"
-              width={2000}
-              height={700}
-              loading={index === 0 ? 'eager' : 'lazy'}
-              fetchPriority={index === 0 ? 'high' : 'auto'}
-              decoding="async"
-            />
-          </picture>
+          <div className="hero-slide">
+            <picture>
+              <source
+                media={`(max-width: ${MOBILE_BREAKPOINT}px)`}
+                srcSet={getCloudinarySrc(mobileSrc, 1080, quality)}
+              />
+              <source
+                media={`(min-width: ${MOBILE_BREAKPOINT + 1}px)`}
+                srcSet={getCloudinarySrc(imagen.imgCabecera, 2000, quality)}
+              />
+              <img
+                src={getCloudinarySrc(imagen.imgCabecera, 2000, quality)}
+                alt={`Slide ${index + 1}`}
+                className="imgSlider"
+                width={2000}
+                height={700}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                decoding="async"
+              />
+            </picture>
+            <span className="hero-slide__overlay" aria-hidden="true"></span>
+          </div>
         );
 
         return (

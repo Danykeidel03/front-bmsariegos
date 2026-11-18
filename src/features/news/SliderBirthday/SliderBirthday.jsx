@@ -41,6 +41,7 @@ const SliderBirthday = () => {
 
   return (
     <div className="slideBirthday" style={{ minHeight: '500px' }}>
+      {birthDaysList.length > 0 && <h2 className="section-title">Cumpleaños</h2>}
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}
