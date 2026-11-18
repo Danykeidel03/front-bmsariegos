@@ -38,7 +38,9 @@ const Equipaciones = () => {
 
   return (
     <div className="equipaciones-container">
-      <h1>Equipaciones</h1>
+      <header className="equipaciones-header">
+        <h1>Equipaciones</h1>
+      </header>
       <div className="equipaciones-grid">
         {equipaciones.map((equipacion) => (
           <div key={equipacion.id} className="equipacion-card">

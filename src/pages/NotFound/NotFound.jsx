@@ -11,8 +11,10 @@ const NotFound = () => {
       />
       <div className="notfound-page">
         <div className="notfound-content">
-          <h1>404</h1>
-          <h2>Página no encontrada</h2>
+          <p className="notfound-code" aria-hidden="true">
+            404
+          </p>
+          <h1>Página no encontrada</h1>
           <p>La página que buscas no existe o ha sido movida.</p>
           <a href="/" className="home-btn">
             Volver al inicio

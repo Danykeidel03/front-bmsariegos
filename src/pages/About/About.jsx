@@ -13,58 +13,60 @@ const About = () => {
       />
 
       <div className="about-container">
-        <div className="about-hero">
-          <OptimizedImage
-            src="quienesSomos.webp"
-            alt="BM Sariegos - Quiénes Somos"
-            className="about-hero-image"
-          />
-          <div className="about-hero-content">
-            <h1>💙🤾 ¡VEN A VIVIR EL BALONMANO CON EL BM SARIEGOS! 🤾🤍</h1>
-          </div>
-        </div>
+        <header className="about-header">
+          <h1>💙🤾 ¡VEN A VIVIR EL BALONMANO CON EL BM SARIEGOS! 🤾🤍</h1>
+        </header>
 
         <div className="about-content">
           <section className="about-intro">
-            <p>
-              En pleno corazón del Alfoz de León, a solo unos minutos de la capital, el Club
-              Balonmano Sariegos se ha convertido en un referente del balonmano provincial y
-              autonómico. Somos el club con más fichas federativas de toda la provincia de León, y
-              cada temporada seguimos creciendo gracias a la pasión y el esfuerzo de nuestros
-              jugadores, familias y entrenadores. 🙌
-            </p>
+            <div className="about-intro-text">
+              <p>
+                En pleno corazón del Alfoz de León, a solo unos minutos de la capital, el Club
+                Balonmano Sariegos se ha convertido en un referente del balonmano provincial y
+                autonómico. Somos el club con más fichas federativas de toda la provincia de León, y
+                cada temporada seguimos creciendo gracias a la pasión y el esfuerzo de nuestros
+                jugadores, familias y entrenadores. 🙌
+              </p>
 
-            <p>
-              Nuestro pabellón, el Municipal de Sariegos, es el escenario donde se respira balonmano
-              a diario. Aquí entrenan y compiten desde los más pequeños que empiezan en las
-              categorías base 🏃♂️, hasta nuestros equipos sénior, que representan con orgullo los
-              colores azul y blanco en cada partido 💪.
-            </p>
+              <p>
+                Nuestro pabellón, el Municipal de Sariegos, es el escenario donde se respira
+                balonmano a diario. Aquí entrenan y compiten desde los más pequeños que empiezan en
+                las categorías base 🏃♂️, hasta nuestros equipos sénior, que representan con orgullo
+                los colores azul y blanco en cada partido 💪.
+              </p>
+            </div>
+            <figure className="about-intro-media">
+              <OptimizedImage
+                src="quienesSomos.webp"
+                alt="BM Sariegos - Quiénes Somos"
+                className="about-hero-image"
+              />
+            </figure>
           </section>
 
           <section className="about-features">
             <h2>¿Qué nos diferencia?</h2>
             <div className="features-grid">
               <div className="feature-item">
-                <span className="feature-icon">✔️</span>
+                <span className="feature-icon" aria-hidden="true"></span>
                 <p>Un ambiente familiar y cercano donde cada jugador/a encuentra su sitio.</p>
               </div>
               <div className="feature-item">
-                <span className="feature-icon">✔️</span>
+                <span className="feature-icon" aria-hidden="true"></span>
                 <p>
                   Una estructura sólida que fomenta tanto la formación deportiva como los valores
                   del esfuerzo, respeto y compañerismo.
                 </p>
               </div>
               <div className="feature-item">
-                <span className="feature-icon">✔️</span>
+                <span className="feature-icon" aria-hidden="true"></span>
                 <p>
                   Oportunidades para todas las edades y niveles: iniciación, categorías base,
                   competición y sénior.
                 </p>
               </div>
               <div className="feature-item">
-                <span className="feature-icon">✔️</span>
+                <span className="feature-icon" aria-hidden="true"></span>
                 <p>Actividades, torneos y experiencias que van mucho más allá del deporte.</p>
               </div>
             </div>
