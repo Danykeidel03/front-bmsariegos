@@ -1,0 +1,123 @@
+/*
+ * Estilos de SweetAlert2 (se cargan junto con la librería desde utils/lazyLoadLibraries.js).
+ * Todo acotado a las clases bm-swal-* añadidas vía customClass.
+ */
+.swal2-popup.bm-swal-popup {
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.swal2-popup.bm-swal-popup .bm-swal-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.swal2-popup.bm-swal-popup .swal2-html-container {
+  font-size: var(--fs-md);
+  color: var(--color-ink-soft);
+}
+
+.swal2-popup.bm-swal-popup .bm-swal-input {
+  width: calc(100% - 2 * var(--space-2));
+  min-height: 44px;
+  margin: var(--space-4) var(--space-2) 0;
+  padding: 10px var(--space-4);
+  font: inherit;
+  font-size: var(--fs-md);
+  color: var(--color-ink);
+  background: var(--color-surface-alt);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.swal2-popup.bm-swal-popup .bm-swal-input:focus {
+  outline: 2px solid transparent;
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.swal2-popup.bm-swal-popup .bm-swal-actions {
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.swal2-popup.bm-swal-popup :is(.bm-swal-confirm, .bm-swal-cancel, .bm-swal-deny) {
+  min-height: 44px;
+  margin: 0;
+  padding: 10px var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    background var(--duration) var(--ease),
+    color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+/* Confirmar: azul del club */
+.swal2-popup.bm-swal-popup .bm-swal-confirm {
+  color: #fff;
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.swal2-popup.bm-swal-popup .bm-swal-confirm:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+/* Cancelar: gris */
+.swal2-popup.bm-swal-popup .bm-swal-cancel {
+  color: var(--color-ink);
+  background: var(--color-surface-alt);
+  border-color: var(--color-border);
+}
+
+.swal2-popup.bm-swal-popup .bm-swal-cancel:hover {
+  background: var(--color-border);
+}
+
+/* Confirmaciones destructivas (icono de advertencia): confirmar en rojo */
+.swal2-popup.bm-swal-popup:has(.swal2-icon.swal2-warning) .bm-swal-confirm,
+.swal2-popup.bm-swal-popup .bm-swal-deny {
+  color: #fff;
+  background: #b42318;
+  border-color: #b42318;
+}
+
+.swal2-popup.bm-swal-popup:has(.swal2-icon.swal2-warning) .bm-swal-confirm:hover,
+.swal2-popup.bm-swal-popup .bm-swal-deny:hover {
+  background: #8e1b12;
+  border-color: #8e1b12;
+}
+
+.swal2-popup.bm-swal-popup :is(.bm-swal-confirm, .bm-swal-cancel, .bm-swal-deny):focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .swal2-popup.bm-swal-popup .bm-swal-actions {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .swal2-popup.bm-swal-popup :is(.bm-swal-confirm, .bm-swal-cancel, .bm-swal-deny) {
+    width: 100%;
+  }
+}

@@ -1,195 +1,244 @@
 .admin-panel {
-  max-width: 1200px;
+  --admin-danger: #b42318; /* rojo con contraste AA sobre blanco */
+  --admin-danger-soft: #fdecea;
+
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--space-6) var(--gutter) var(--space-8);
 }
 
-.admin-header {
+/* ---------- Cabecera ---------- */
+.admin-panel .admin-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.admin-title {
-  color: #119bc6;
-  font-size: 2rem;
-  margin: 0;
-  font-weight: 600;
-}
-
-.admin-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-.logout-btn {
-  background-color: #e74c3c;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
+.admin-panel .admin-title {
+  position: relative;
+  margin: 0;
+  padding-left: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.admin-panel .admin-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 6px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--color-primary) 0 60%, var(--color-accent) 60% 100%);
+}
+
+.admin-panel .admin-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: var(--space-4);
+}
+
+/* Cerrar sesión: acción neutra (ya no usa rojo, para no confundirse con la zona de peligro) */
+.admin-panel .logout-btn {
+  align-self: center;
+  min-height: 44px;
+  padding: 10px var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
-
-.logout-btn:hover {
-  background-color: #c0392b;
-}
-
-.danger-btn {
-  background-color: white;
-  color: #e74c3c;
-  padding: 10px 20px;
-  border: 1px solid #e74c3c;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    background var(--duration) var(--ease),
+    color var(--duration) var(--ease);
 }
 
-.danger-btn:hover {
-  background-color: #e74c3c;
-  color: white;
+.admin-panel .logout-btn:hover {
+  color: #fff;
+  background: var(--color-ink);
 }
 
-.admin-content {
-  background-color: white;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+/* ---------- Zona de peligro ---------- */
+.admin-panel .admin-danger-zone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  background: var(--admin-danger-soft);
+  border: 1px dashed var(--admin-danger);
+  border-radius: var(--radius-md);
 }
 
-.admin-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+.admin-panel .admin-danger-label {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--admin-danger);
 }
 
-.admin-card {
-  background-color: #f9f9f9;
-  padding: 25px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  text-align: center;
-  transition: transform 0.2s ease;
+.admin-panel .admin-danger-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
-.admin-card:hover {
-  transform: translateY(-2px);
-}
-
-.admin-card h3 {
-  color: #119bc6;
-  margin: 0 0 15px 0;
-  font-size: 1.3rem;
-}
-
-.admin-card p {
-  color: #666;
-  margin: 0 0 20px 0;
-  line-height: 1.5;
-}
-
-.card-btn {
-  background-color: #119bc6;
-  color: white;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 4px;
+.admin-panel .danger-btn {
+  min-height: 40px;
+  padding: 8px var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-danger);
+  background: var(--color-surface);
+  border: 2px solid var(--admin-danger);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
+  transition:
+    background var(--duration) var(--ease),
+    color var(--duration) var(--ease);
 }
 
-.card-btn:hover {
-  background-color: #0e7a9a;
+.admin-panel .danger-btn:hover {
+  color: #fff;
+  background: var(--admin-danger);
 }
 
+.admin-panel .danger-btn:focus-visible {
+  outline: 3px solid var(--admin-danger);
+  outline-offset: 2px;
+}
+
+.admin-panel .logout-btn:focus-visible,
+.admin-panel .card-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ---------- Tarjetas de gestión ---------- */
+.admin-panel .admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+
+.admin-panel .admin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-5);
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    transform var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.admin-panel .admin-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-panel .admin-card h3 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.admin-panel .admin-card p {
+  margin: 0 0 var(--space-5);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.admin-panel .card-btn {
+  margin-top: auto;
+  min-height: 44px;
+  padding: 10px var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-primary-dark);
+  border: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--duration) var(--ease);
+}
+
+.admin-panel .card-btn:hover {
+  background: var(--color-ink);
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .admin-panel {
-    padding: 15px;
+    padding-top: var(--space-4);
   }
 
-  .admin-header {
+  .admin-panel .admin-header {
     flex-direction: column;
-    gap: 15px;
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 30px;
+    align-items: stretch;
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
   }
 
-  .admin-header-actions {
+  .admin-panel .admin-header-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .admin-panel .logout-btn {
+    align-self: stretch;
+  }
+
+  .admin-panel .admin-danger-buttons {
     flex-direction: column;
-    width: 100%;
   }
 
-  .admin-header-actions .danger-btn,
-  .admin-header-actions .logout-btn {
-    width: 100%;
-  }
-
-  .admin-title {
-    font-size: 1.5rem;
-  }
-
-  .admin-content {
-    padding: 20px;
-  }
-
-  .admin-grid {
+  .admin-panel .admin-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .admin-card {
-    padding: 20px;
+    gap: var(--space-4);
   }
 }
 
 @media (max-width: 480px) {
-  .admin-panel {
-    padding: 10px;
-  }
-
-  .admin-header {
-    padding: 12px;
-    margin-bottom: 20px;
-  }
-
-  .admin-title {
-    font-size: 1.25rem;
-  }
-
-  .admin-content {
-    padding: 15px;
-  }
-
-  .admin-card {
-    padding: 15px;
-  }
-
-  .admin-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .card-btn {
-    padding: 10px 20px;
-    font-size: 13px;
+  .admin-panel .card-btn {
     width: 100%;
-  }
-
-  .logout-btn {
-    padding: 8px 16px;
-    font-size: 13px;
   }
 }

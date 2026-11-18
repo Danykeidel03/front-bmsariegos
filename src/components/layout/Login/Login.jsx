@@ -50,13 +50,24 @@ const Login = ({ onLogin }) => {
   return (
     <div className="login-wrapper">
       <div className="login-container">
-        <h2 className="login-title">Panel de Administración</h2>
+        <img
+          src="/logo-123.webp"
+          alt="Logo BM Sariegos"
+          className="login-logo"
+          width="88"
+          height="88"
+        />
+        <h1 className="login-title">Panel de Administración</h1>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="form-label">Usuario</label>
+            <label className="form-label" htmlFor="login-mail">
+              Usuario
+            </label>
             <input
+              id="login-mail"
               type="text"
               name="mail"
+              autoComplete="username"
               className="form-input"
               value={credentials.mail}
               onChange={handleChange}
@@ -64,10 +75,14 @@ const Login = ({ onLogin }) => {
             />
           </div>
           <div className="form-group">
-            <label className="form-label">Contraseña</label>
+            <label className="form-label" htmlFor="login-pass">
+              Contraseña
+            </label>
             <input
+              id="login-pass"
               type="password"
               name="pass"
+              autoComplete="current-password"
               className="form-input"
               value={credentials.pass}
               onChange={handleChange}

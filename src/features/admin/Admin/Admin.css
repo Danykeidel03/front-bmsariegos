@@ -1,5 +1,4 @@
 .admin-container {
   min-height: 100vh;
-  background-color: #f9f9f9;
-  padding: 20px;
+  background-color: var(--color-surface-alt);
 }

@@ -134,10 +134,15 @@ const TeamModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content team-modal">
+      <div
+        className="modal-content team-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Gestión de Equipos"
+      >
         <div className="modal-header">
           <h2>Gestión de Equipos</h2>
-          <button className="close-btn" onClick={onClose}>
+          <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
             ×
           </button>
         </div>
@@ -202,6 +207,7 @@ const TeamModal = ({ isOpen, onClose }) => {
                   <button
                     className="arrow-btn"
                     onClick={() => moveTeamUp(index)}
+                    aria-label="Subir equipo"
                     disabled={index === 0}
                   >
                     ↑
@@ -209,6 +215,7 @@ const TeamModal = ({ isOpen, onClose }) => {
                   <button
                     className="arrow-btn"
                     onClick={() => moveTeamDown(index)}
+                    aria-label="Bajar equipo"
                     disabled={index === teams.length - 1}
                   >
                     ↓

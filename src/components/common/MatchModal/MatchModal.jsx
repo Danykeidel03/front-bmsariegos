@@ -3,6 +3,7 @@ import { loadSweetAlert } from '../../../utils/lazyLoadLibraries';
 import apiMatch from '../../../api/apiMatch';
 import apiRival from '../../../api/apiRival';
 import apiTeam from '../../../api/apiTeam';
+import '../../../styles/modals-responsive.css';
 import './MatchModal.css';
 
 const MatchModal = ({ isOpen, onClose }) => {
@@ -216,10 +217,15 @@ const MatchModal = ({ isOpen, onClose }) => {
   return (
     <div className="match-modal">
       <div className="modal-overlay">
-        <div className="modal-content">
+        <div
+          className="modal-content"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Gestión de Partidos"
+        >
           <div className="modal-header">
             <h2>Gestión de Partidos</h2>
-            <button className="close-btn" onClick={onClose}>
+            <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
               ×
             </button>
           </div>

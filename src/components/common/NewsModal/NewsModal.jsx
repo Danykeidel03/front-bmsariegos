@@ -77,10 +77,15 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay" onClick={handleOverlayClick} onKeyDown={handleOverlayKeyDown}>
-      <div className="modal-content">
+      <div
+        className="modal-content news-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Gestión de Noticias"
+      >
         <div className="modal-header">
           <h2>Gestión de Noticias</h2>
-          <button className="close-btn" onClick={onClose}>
+          <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
             ×
           </button>
         </div>

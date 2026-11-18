@@ -83,10 +83,15 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content header-image-modal">
+      <div
+        className="modal-content header-image-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Gestión de Imágenes del Slider"
+      >
         <div className="modal-header">
           <h2>Gestión de Imágenes del Slider</h2>
-          <button className="close-btn" onClick={onClose}>
+          <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
             ×
           </button>
         </div>
@@ -119,7 +124,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
               placeholder="https://ejemplo.com"
             />
           </div>
-          <button type="submit" disabled={loading}>
+          <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? 'Añadiendo...' : 'Añadir Imagen'}
           </button>
         </form>

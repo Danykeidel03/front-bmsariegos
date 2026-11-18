@@ -15,8 +15,23 @@ export const loadSweetAlert = async () => {
     return swalInstance;
   }
 
-  const { default: Swal } = await import('sweetalert2');
-  swalInstance = Swal;
+  const [{ default: Swal }] = await Promise.all([
+    import('sweetalert2'),
+    import('../styles/swal.css'),
+  ]);
+  // Estilo de marca: botones propios (buttonsStyling: false) vía clases bm-swal-*
+  swalInstance = Swal.mixin({
+    buttonsStyling: false,
+    customClass: {
+      popup: 'bm-swal-popup',
+      title: 'bm-swal-title',
+      confirmButton: 'bm-swal-confirm',
+      cancelButton: 'bm-swal-cancel',
+      denyButton: 'bm-swal-deny',
+      input: 'bm-swal-input',
+      actions: 'bm-swal-actions',
+    },
+  });
   return swalInstance;
 };
 
