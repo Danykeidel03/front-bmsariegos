@@ -1,56 +1,82 @@
 .notfound-page {
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 60vh;
-  padding: 40px 20px;
+  justify-content: center;
+  min-height: 70vh;
+  padding: var(--space-8) var(--gutter);
+  background: var(--color-ink);
+  border-bottom: 4px solid var(--color-primary);
+  text-align: center;
+  color: #fff;
 }
 
 .notfound-content {
-  text-align: center;
-  max-width: 500px;
+  max-width: 560px;
+}
+
+.notfound-code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 30vw, 14rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+  text-shadow: 6px 6px 0 var(--color-primary-dark);
 }
 
 .notfound-content h1 {
-  font-size: 6rem;
-  color: #119bc6;
-  margin: 0;
-  font-weight: bold;
+  position: relative;
+  margin: var(--space-5) 0 var(--space-3);
+  padding-top: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.notfound-content h2 {
-  font-size: 2rem;
-  color: #333;
-  margin: 20px 0;
+.notfound-content h1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 72px;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--color-primary) 0 60%, var(--color-accent) 60% 100%);
 }
 
 .notfound-content p {
-  color: #666;
-  font-size: 1.1rem;
-  margin-bottom: 30px;
+  margin: 0 0 var(--space-6);
+  font-size: var(--fs-lg);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .home-btn {
   display: inline-block;
-  background-color: #119bc6;
-  color: white;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: background-color 0.2s ease;
+  padding: var(--space-3) var(--space-7);
+  background: var(--color-accent);
+  color: var(--color-ink);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease);
 }
 
 .home-btn:hover {
-  background-color: #0e7a9a;
+  background: var(--color-accent-orange);
+  box-shadow: var(--shadow-md);
 }
 
-@media (max-width: 768px) {
-  .notfound-content h1 {
-    font-size: 4rem;
-  }
-
-  .notfound-content h2 {
-    font-size: 1.5rem;
-  }
+.home-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
 }

@@ -15,8 +15,23 @@ export const loadSweetAlert = async () => {
     return swalInstance;
   }
 
-  const { default: Swal } = await import('sweetalert2');
-  swalInstance = Swal;
+  const [{ default: Swal }] = await Promise.all([
+    import('sweetalert2'),
+    import('../styles/swal.css'),
+  ]);
+  // Estilo de marca: botones propios (buttonsStyling: false) vía clases bm-swal-*
+  swalInstance = Swal.mixin({
+    buttonsStyling: false,
+    customClass: {
+      popup: 'bm-swal-popup',
+      title: 'bm-swal-title',
+      confirmButton: 'bm-swal-confirm',
+      cancelButton: 'bm-swal-cancel',
+      denyButton: 'bm-swal-deny',
+      input: 'bm-swal-input',
+      actions: 'bm-swal-actions',
+    },
+  });
   return swalInstance;
 };
 
@@ -45,10 +60,10 @@ export const loadReactImageCrop = async () => {
 export const preloadLibrary = (libraryName) => {
   switch (libraryName) {
     case 'sweetalert2':
-      import('sweetalert2');
+      import('sweetalert2').catch((error) => console.warn('Preload failed:', error));
       break;
     case 'react-image-crop':
-      import('react-image-crop');
+      import('react-image-crop').catch((error) => console.warn('Preload failed:', error));
       break;
     default:
       console.warn(`Unknown library: ${libraryName}`);

@@ -1,245 +1,135 @@
-.team-modal {
-  max-width: 700px;
+/* Específico de TeamModal (lo común vive en styles/modals-responsive.css) */
+.modal-overlay .modal-content.team-modal {
+  max-width: 720px;
 }
 
-.teams-list {
-  margin-top: 30px;
-  border-top: 1px solid #ddd;
-  padding-top: 20px;
-}
-
-.teams-list h3 {
+.team-modal .teams-list {
   margin: 0;
-  color: #333;
+  padding: var(--space-5);
+  border-top: 1px solid var(--color-border);
 }
 
-.teams-list p {
+.team-modal .teams-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.team-modal .teams-list > p {
+  margin: var(--space-5) 0;
   text-align: center;
-  color: #666;
   font-style: italic;
-  margin: 20px 0;
+  color: var(--color-muted);
 }
 
-.team-item {
+.team-modal .team-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  padding: var(--space-3) var(--space-4);
 }
 
-.teams-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.save-order-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.save-order-btn:hover {
-  background-color: #1e7e34;
-}
-
-.order-controls {
+.team-modal .order-controls {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-right: 10px;
 }
 
-.arrow-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  width: 24px;
-  height: 20px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 12px;
+.team-modal .arrow-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  font-size: var(--fs-sm);
+  color: var(--color-ink);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
 }
 
-.arrow-btn:hover:not(:disabled) {
-  background-color: #0056b3;
+.team-modal .arrow-btn:hover:not(:disabled) {
+  color: #fff;
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 }
 
-.arrow-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.team-info {
+.team-modal .team-info {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
   flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-.team-info strong {
-  font-size: 16px;
-  color: #333;
+.team-modal .team-info strong {
+  font-size: var(--fs-md);
+  color: var(--color-ink);
 }
 
-.team-info span {
-  font-size: 14px;
-  color: #666;
+.team-modal .team-info span {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
 }
 
-.edit-name {
+.team-modal .edit-name {
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.edit-input {
-  padding: 5px 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  min-width: 150px;
+.team-modal .edit-input {
+  flex: 1 1 140px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px var(--space-3);
+  font-size: var(--fs-sm);
 }
 
-.team-actions {
+.team-modal .team-actions {
   display: flex;
-  gap: 10px;
+  gap: var(--space-2);
 }
 
-.edit-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.edit-btn:hover {
-  background-color: #0056b3;
-}
-
-.save-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.save-btn:hover {
-  background-color: #1e7e34;
-}
-
-.cancel-btn {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.cancel-btn:hover {
-  background-color: #545b62;
-}
-
-.delete-btn {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.delete-btn:hover {
-  background-color: #c82333;
-}
-
-/* Responsive styles for TeamModal */
 @media (max-width: 768px) {
-  .teams-header {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+  .team-modal .teams-list {
+    padding: var(--space-4);
   }
 
-  .save-order-btn {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .team-item {
+  .team-modal .teams-header {
     flex-direction: column;
-    gap: 15px;
     align-items: stretch;
   }
 
-  .order-controls {
+  .team-modal .team-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .team-modal .order-controls {
     flex-direction: row;
     justify-content: center;
-    margin-right: 0;
-    gap: 10px;
+    gap: var(--space-3);
   }
 
-  .team-actions {
+  .team-modal .team-actions {
     justify-content: center;
-    gap: 15px;
-  }
-
-  .edit-name {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .edit-input {
-    min-width: auto;
-    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .team-item {
-    padding: 15px;
-  }
-
-  .teams-header h3 {
-    font-size: 1.1rem;
-  }
-
-  .team-actions {
+  .team-modal .team-actions {
     flex-direction: column;
-    gap: 10px;
   }
 
-  .edit-btn,
-  .delete-btn {
+  .team-modal .team-actions > button,
+  .team-modal .edit-name > button {
     width: 100%;
-    padding: 8px;
-  }
-
-  .save-btn,
-  .cancel-btn {
-    width: 100%;
-    padding: 8px;
   }
 }

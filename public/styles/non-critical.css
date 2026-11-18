@@ -1,21 +1,7 @@
 /* CSS No Crítico - Carga diferida */
 @import '/styles/accessibility.css';
 
-/* Transiciones y efectos - No necesarios para el renderizado inicial */
+/* Los efectos hover de enlaces viven en el CSS de cada componente (sin globales). */
 a {
   position: relative;
-}
-
-@media (min-width: 768px) {
-  a {
-    transition: all 0.3s ease;
-  }
-
-  a:hover {
-    transform: translateY(-1px);
-  }
-
-  a:not(.no-underline):hover::after {
-    width: 100%;
-  }
 }

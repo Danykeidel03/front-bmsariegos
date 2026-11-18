@@ -26,7 +26,7 @@ const NewsDetail = () => {
         setLoading(false);
       }
     };
-    fetchNoticia();
+    void fetchNoticia();
   }, [slug]);
 
   if (loading) {
@@ -70,12 +70,16 @@ const NewsDetail = () => {
         type="article"
       />
       <article className="news-detail-page">
+        <header className="news-detail-header">
+          <div className="news-detail-header-inner">
+            <Link to="/noticias" className="back-to-news">
+              ← Volver a noticias
+            </Link>
+            <h1>{noticia.title}</h1>
+          </div>
+        </header>
         <div className="news-detail-container">
-          <Link to="/noticias" className="back-to-news">
-            ← Volver a noticias
-          </Link>
           <img className="news-detail-image" src={noticia.photoName} alt={noticia.title} />
-          <h1>{noticia.title}</h1>
           <div
             className="news-detail-body"
             dangerouslySetInnerHTML={{

@@ -40,8 +40,13 @@
         font-family:
           system-ui,
           -apple-system,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
           sans-serif;
-        line-height: 1.4;
+        line-height: 1.45;
+        color: #1a1a1a;
         background: #fff;
       }
       p,
@@ -70,16 +75,9 @@
       }
       .imgSlider {
         width: 100%;
-        height: 40vh;
+        height: 100%;
         object-fit: cover;
-        background: #f0f0f0;
-        aspect-ratio: 2000/700;
-      }
-      @media (min-width: 768px) {
-        .imgSlider {
-          height: 80vh;
-          aspect-ratio: 2000/700;
-        }
+        background: #f4f6f8;
       }
       .slideBirthday {
         min-height: 500px;
@@ -102,6 +100,25 @@
         object-fit: cover;
       }
     </style>
+
+    <!-- Web font (no bloquea render: preload + swap) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&display=swap"
+      />
+    </noscript>
 
     <!-- Preconnect - Early Connection Setup -->
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />

@@ -1,4 +1,69 @@
-/* CSS Crítico - Above the fold */
+/* CSS Crítico - Above the fold: tokens + base + header + hero */
+
+:root {
+  /* Marca */
+  --color-primary: #119bc6;
+  --color-primary-dark: #0b6f91; /* texto/enlaces sobre blanco (contraste AA) */
+  --color-primary-light: #e6f5fa;
+  --color-accent: #fcc800;
+  --color-accent-orange: #f7941d;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #4a4f55;
+  --color-muted: #6b7078;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f6f8;
+  --color-border: #e3e7eb;
+
+  /* Tipografía */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --fs-2xl: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+
+  /* Espaciado */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+  --container-max: 1280px;
+  --gutter: clamp(16px, 4vw, 40px);
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(16, 24, 32, 0.08);
+  --shadow-md: 0 6px 18px rgba(16, 24, 32, 0.1);
+  --shadow-lg: 0 16px 36px rgba(16, 24, 32, 0.18);
+
+  /* Transición */
+  --duration: 0.25s;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+
+  /* Layout */
+  --header-h: 72px;
+  --topbar-h: 32px;
+  --hero-h: clamp(380px, 68vh, 720px);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 64px;
+    --hero-h: 420px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,11 +75,10 @@ body {
 }
 
 body {
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
-  line-height: 1.4;
+  font-family: var(--font-body);
+  line-height: 1.45;
+  color: var(--color-ink);
+  background: var(--color-surface);
 }
 
 p,
@@ -50,16 +114,29 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #f0f0f0;
-  max-height: 350px;
-  /* Reserve aspect ratio to prevent shifts */
-  aspect-ratio: 2000 / 700;
+  background: var(--color-surface-alt);
 }
 
-@media (min-width: 768px) {
-  .imgSlider {
-    height: 100%;
-    max-height: none;
-    max-height: 672px;
+/* Altura del hero reservada desde el primer paint (evita CLS mientras carga Slider.css) */
+.hero-swiper {
+  width: 100%;
+  height: var(--hero-h);
+}
+
+.hero-slide,
+.hero-slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

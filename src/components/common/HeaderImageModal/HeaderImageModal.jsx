@@ -16,7 +16,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      fetchImagenes();
+      void fetchImagenes();
     }
   }, [isOpen]);
 
@@ -48,7 +48,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
       const Swal = await loadSweetAlert();
       Swal.fire('Éxito', 'Imagen añadida correctamente', 'success');
       setFormData({ photoDesktop: null, photoMobile: null, urlImagen: '' });
-      fetchImagenes();
+      void fetchImagenes();
     } catch {
       const Swal = await loadSweetAlert();
       Swal.fire('Error', 'No se pudo añadir la imagen', 'error');
@@ -72,7 +72,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
       try {
         await apiImagenCabecera.deleteImagenCabecera(id);
         Swal.fire('Eliminado', 'Imagen eliminada correctamente', 'success');
-        fetchImagenes();
+        void fetchImagenes();
       } catch {
         Swal.fire('Error', 'No se pudo eliminar la imagen', 'error');
       }
@@ -83,10 +83,15 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content header-image-modal">
+      <dialog
+        open
+        className="modal-content header-image-modal"
+        aria-modal="true"
+        aria-label="Gestión de Imágenes del Slider"
+      >
         <div className="modal-header">
           <h2>Gestión de Imágenes del Slider</h2>
-          <button className="close-btn" onClick={onClose}>
+          <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
             ×
           </button>
         </div>
@@ -119,7 +124,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
               placeholder="https://ejemplo.com"
             />
           </div>
-          <button type="submit" disabled={loading}>
+          <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? 'Añadiendo...' : 'Añadir Imagen'}
           </button>
         </form>
@@ -158,7 +163,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
             </div>
           )}
         </div>
-      </div>
+      </dialog>
     </div>
   );
 };

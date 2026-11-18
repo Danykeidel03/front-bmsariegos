@@ -36,7 +36,9 @@ const Contact = () => {
         keywords="contacto, balonmano sariegos, club deportivo león, handball"
       />
       <div className="contact-container">
-        <h1 className="contact-title">Contacto</h1>
+        <header className="contact-header">
+          <h1 className="contact-title">Contacto</h1>
+        </header>
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label" htmlFor="name">
