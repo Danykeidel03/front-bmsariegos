@@ -48,7 +48,7 @@ export const sanitizeWithLineBreaks = (text) => {
     ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'span'],
     ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
   });
-  return sanitized.replace(/\n/g, '<br>');
+  return sanitized.replaceAll('\n', '<br>');
 };
 
 /**

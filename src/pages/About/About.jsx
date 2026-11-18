@@ -1,12 +1,12 @@
 import React from 'react';
 import './About.css';
-import SEO from '../../components/ui/SEO/SEO';
+import Seo from '../../components/ui/SEO/SEO';
 import OptimizedImage from '../../components/ui/OptimizedImage/OptimizedImage';
 
 const About = () => {
   return (
     <>
-      <SEO
+      <Seo
         title="Quiénes Somos - BM Sariegos"
         description="Conoce al Club Balonmano Sariegos, el club con más fichas federativas de León. Descubre nuestra historia, valores y categorías."
         keywords="BM Sariegos, balonmano León, club balonmano, categorías base, sénior"

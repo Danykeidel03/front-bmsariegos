@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './NewsDetail.css';
 import apiNotice from '../../../api/apiNotice';
-import SEO from '../../../components/ui/SEO/SEO';
+import Seo from '../../../components/ui/SEO/SEO';
 import { sanitizeWithLineBreaks, stripHTML } from '../../../utils/sanitize';
 
 const NewsDetail = () => {
@@ -42,7 +42,7 @@ const NewsDetail = () => {
   if (notFound || !noticia) {
     return (
       <div className="news-detail-page">
-        <SEO
+        <Seo
           title="Noticia no encontrada - Balonmano Sariegos"
           description="La noticia que buscas no existe o ha sido eliminada."
         />
@@ -62,7 +62,7 @@ const NewsDetail = () => {
 
   return (
     <>
-      <SEO
+      <Seo
         title={`${noticia.title} - Balonmano Sariegos`}
         description={metaDescription}
         keywords={`noticias, balonmano sariegos, ${noticia.title}`}

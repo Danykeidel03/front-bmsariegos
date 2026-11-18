@@ -1,6 +1,6 @@
 import './Home.css';
 import { lazy, Suspense } from 'react';
-import SEO from '../../components/ui/SEO/SEO';
+import Seo from '../../components/ui/SEO/SEO';
 
 // Componentes críticos - carga inmediata
 import MatchesBar from '../../features/matches/MatchesBar/MatchesBar';
@@ -15,7 +15,7 @@ const SocialLinks = lazy(() => import('../../components/ui/SocialLinks/SocialLin
 const Home = () => {
   return (
     <>
-      <SEO
+      <Seo
         title="Balonmano Sariegos - Club de Balonmano en León"
         description="Club de Balonmano Sariegos en León. Noticias, partidos, equipos y toda la información del club. Únete a nuestra comunidad deportiva."
         keywords="balonmano, sariegos, león, club deportivo, handball, deporte, equipos, partidos, noticias"

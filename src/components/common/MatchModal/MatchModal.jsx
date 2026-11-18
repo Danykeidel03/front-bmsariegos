@@ -315,7 +315,7 @@ const MatchModal = ({ isOpen, onClose }) => {
                             location: 'PABELLÓN MUNICIPAL DE SARIEGOS',
                           })
                         }
-                      />
+                      />{' '}
                       Local
                     </label>
                     <label>
@@ -324,7 +324,7 @@ const MatchModal = ({ isOpen, onClose }) => {
                         name="isHome"
                         checked={formData.isHome === false}
                         onChange={() => setFormData({ ...formData, isHome: false, location: '' })}
-                      />
+                      />{' '}
                       Suplente
                     </label>
                   </div>
@@ -408,7 +408,7 @@ const MatchModal = ({ isOpen, onClose }) => {
                                 <strong>Fecha:</strong>{' '}
                                 {new Date(match.date)
                                   .toLocaleDateString('es-ES')
-                                  .replace(/\//g, '-')}
+                                  .replaceAll('/', '-')}
                               </p>
                               <p>
                                 <strong>Hora:</strong> {match.time}

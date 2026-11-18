@@ -34,7 +34,12 @@ const SponsorModal = ({ isOpen, onClose, onSubmit }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={handleOverlayClick} onKeyDown={handleOverlayKeyDown}>
+    <div
+      role="presentation"
+      className="modal-overlay"
+      onClick={handleOverlayClick}
+      onKeyDown={handleOverlayKeyDown}
+    >
       <dialog
         open
         className="modal-content sponsor-modal"

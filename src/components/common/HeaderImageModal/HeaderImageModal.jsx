@@ -98,8 +98,11 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
         <form onSubmit={handleSubmit} className="header-image-form">
           <div className="form-group">
-            <label>Imagen para escritorio (recomendado 2000×700px):</label>
+            <label htmlFor="header-image-desktop">
+              Imagen para escritorio (recomendado 2000×700px):
+            </label>
             <input
+              id="header-image-desktop"
               type="file"
               accept="image/*"
               onChange={(e) => setFormData({ ...formData, photoDesktop: e.target.files[0] })}
@@ -107,8 +110,11 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
             />
           </div>
           <div className="form-group">
-            <label>Imagen para móvil (recomendado 1200×1200px, cuadrada):</label>
+            <label htmlFor="header-image-mobile">
+              Imagen para móvil (recomendado 1200×1200px, cuadrada):
+            </label>
             <input
+              id="header-image-mobile"
               type="file"
               accept="image/*"
               onChange={(e) => setFormData({ ...formData, photoMobile: e.target.files[0] })}
@@ -116,8 +122,9 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
             />
           </div>
           <div className="form-group">
-            <label>URL de enlace (opcional):</label>
+            <label htmlFor="header-image-url">URL de enlace (opcional):</label>
             <input
+              id="header-image-url"
               type="url"
               value={formData.urlImagen}
               onChange={(e) => setFormData({ ...formData, urlImagen: e.target.value })}

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Terms.css';
-import SEO from '../../components/ui/SEO/SEO';
+import Seo from '../../components/ui/SEO/SEO';
 
 const Terms = () => {
   return (
     <>
-      <SEO
+      <Seo
         title="Términos y Condiciones - Balonmano Sariegos"
         description="Términos y condiciones de uso del Club de Balonmano Sariegos. Normas y condiciones para socios y usuarios."
         keywords="términos condiciones, normas club, balonmano sariegos, reglamento"
