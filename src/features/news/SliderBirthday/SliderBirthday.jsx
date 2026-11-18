@@ -50,8 +50,8 @@ const SliderBirthday = () => {
         autoplay={{ delay: 500000 }}
         loop={true}
       >
-        {birthDaysList.map((day, index) => (
-          <SwiperSlide key={index}>
+        {birthDaysList.map((day) => (
+          <SwiperSlide key={day._id}>
             <div className="cardBirthday">
               <div className="imgBirth">
                 <CloudinaryImage

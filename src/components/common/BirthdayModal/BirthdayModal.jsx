@@ -201,12 +201,13 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
       const response = await apiBirthday.importCsv(data);
       const { playersCreated, playersUpdated, teamsCreated, errors } = response.data.data;
 
+      const errorsOverflow = errors.length > 5 ? '...' : '';
       const errorDetail =
         errors.length > 0
           ? `\n${errors.length} fila(s) con error: ${errors
               .slice(0, 5)
               .map((err) => `fila ${err.row} (${err.reason})`)
-              .join(', ')}${errors.length > 5 ? '...' : ''}`
+              .join(', ')}${errorsOverflow}`
           : '';
 
       await showAlert(

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './News.css';
 import apiNotice from '../../../api/apiNotice';
-import SEO from '../../../components/ui/SEO/SEO';
+import Seo from '../../../components/ui/SEO/SEO';
 
 const News = () => {
   const [noticias, setNoticias] = useState([]);
@@ -47,9 +47,47 @@ const News = () => {
     </div>
   );
 
+  const renderContent = () => {
+    if (loading) {
+      return (
+        <div className="loading">
+          <p>Cargando noticias...</p>
+        </div>
+      );
+    }
+    if (noticias.length === 0) {
+      return (
+        <div className="no-news">
+          <p>No hay noticias disponibles en este momento.</p>
+        </div>
+      );
+    }
+    return (
+      <>
+        <section className="news-section">
+          <h2>Noticias</h2>
+          {noticiasGenerales.length === 0 ? (
+            <p className="no-news">No hay noticias en esta categoría.</p>
+          ) : (
+            renderGrid(noticiasGenerales)
+          )}
+        </section>
+
+        <section className="news-section">
+          <h2>Noticias Deportivas</h2>
+          {noticiasDeportivas.length === 0 ? (
+            <p className="no-news">No hay noticias en esta categoría.</p>
+          ) : (
+            renderGrid(noticiasDeportivas)
+          )}
+        </section>
+      </>
+    );
+  };
+
   return (
     <>
-      <SEO
+      <Seo
         title="Noticias - Balonmano Sariegos"
         description="Todas las noticias del Club de Balonmano Sariegos. Mantente al día con las últimas novedades, partidos y eventos del club."
         keywords="noticias, balonmano sariegos, actualidad, partidos, eventos, club"
@@ -60,37 +98,7 @@ const News = () => {
           <p>Mantente al día con las últimas novedades del club</p>
         </div>
 
-        <div className="news-container">
-          {loading ? (
-            <div className="loading">
-              <p>Cargando noticias...</p>
-            </div>
-          ) : noticias.length === 0 ? (
-            <div className="no-news">
-              <p>No hay noticias disponibles en este momento.</p>
-            </div>
-          ) : (
-            <>
-              <section className="news-section">
-                <h2>Noticias</h2>
-                {noticiasGenerales.length === 0 ? (
-                  <p className="no-news">No hay noticias en esta categoría.</p>
-                ) : (
-                  renderGrid(noticiasGenerales)
-                )}
-              </section>
-
-              <section className="news-section">
-                <h2>Noticias Deportivas</h2>
-                {noticiasDeportivas.length === 0 ? (
-                  <p className="no-news">No hay noticias en esta categoría.</p>
-                ) : (
-                  renderGrid(noticiasDeportivas)
-                )}
-              </section>
-            </>
-          )}
-        </div>
+        <div className="news-container">{renderContent()}</div>
       </div>
     </>
   );

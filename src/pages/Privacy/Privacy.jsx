@@ -1,11 +1,11 @@
 import React from 'react';
 import './Privacy.css';
-import SEO from '../../components/ui/SEO/SEO';
+import Seo from '../../components/ui/SEO/SEO';
 
 const Privacy = () => {
   return (
     <>
-      <SEO
+      <Seo
         title="Política de Privacidad - Balonmano Sariegos"
         description="Política de privacidad del Club de Balonmano Sariegos. Información sobre el tratamiento de datos personales."
         keywords="política privacidad, protección datos, balonmano sariegos, RGPD"

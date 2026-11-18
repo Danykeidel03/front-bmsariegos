@@ -178,9 +178,15 @@ const prefetchCommonRoutes = () => {
     requestIdleCallback(
       () => {
         // Prefetch common routes
-        import('../features/teams/Teams/Teams');
-        import('../features/news/News/News');
-        import('../features/matches/Matches/Matches');
+        import('../features/teams/Teams/Teams').catch((error) =>
+          console.debug('Prefetch failed:', error)
+        );
+        import('../features/news/News/News').catch((error) =>
+          console.debug('Prefetch failed:', error)
+        );
+        import('../features/matches/Matches/Matches').catch((error) =>
+          console.debug('Prefetch failed:', error)
+        );
       },
       { timeout: 2000 }
     );

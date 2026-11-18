@@ -16,7 +16,7 @@ const MatchesBar = () => {
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
-    loadUpcomingMatches();
+    void loadUpcomingMatches();
   }, []);
 
   const loadUpcomingMatches = async () => {
@@ -94,14 +94,13 @@ const MatchesBar = () => {
     <div className="matches-bar-component">
       <div className="container">
         <div className="matches-bar-content">
-          <div
+          <section
             ref={scrollContainerRef}
             className="matches-list"
             onMouseDown={handleMouseDown}
             onMouseLeave={handleDragEnd}
             onMouseUp={handleDragEnd}
             onMouseMove={handleMouseMove}
-            role="region"
             aria-label="Próximos partidos"
           >
             {matches.map((match) => (
@@ -141,7 +140,7 @@ const MatchesBar = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </section>
           <Link to="/partidos" className="view-all-btn">
             Ver todos los partidos
           </Link>

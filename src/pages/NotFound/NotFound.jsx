@@ -1,11 +1,11 @@
 import React from 'react';
 import './NotFound.css';
-import SEO from '../../components/ui/SEO/SEO';
+import Seo from '../../components/ui/SEO/SEO';
 
 const NotFound = () => {
   return (
     <>
-      <SEO
+      <Seo
         title="Página no encontrada - Balonmano Sariegos"
         description="La página que buscas no existe. Vuelve al inicio del Club de Balonmano Sariegos."
       />

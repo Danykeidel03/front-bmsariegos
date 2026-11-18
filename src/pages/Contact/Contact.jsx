@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Contact.css';
 import { showAlert } from '../../utils/lazyLoadLibraries';
-import SEO from '../../components/ui/SEO/SEO';
+import Seo from '../../components/ui/SEO/SEO';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ const Contact = () => {
 
   return (
     <>
-      <SEO
+      <Seo
         title="Contacto - Balonmano Sariegos"
         description="Contacta con el Club de Balonmano Sariegos. Envíanos tu mensaje y te responderemos lo antes posible."
         keywords="contacto, balonmano sariegos, club deportivo león, handball"

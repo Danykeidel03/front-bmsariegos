@@ -3,7 +3,6 @@ import apiTeam from '../../../api/apiTeam';
 import apiBirthday from '../../../api/apiBirthday';
 import apiClasificaciones from '../../../api/apiClasificaciones';
 import apiMatch from '../../../api/apiMatch';
-import apiRival from '../../../api/apiRival';
 import OptimizedImage from '../../../components/ui/OptimizedImage/OptimizedImage';
 import LocalOptimizedImage from '../../../components/ui/LocalOptimizedImage/LocalOptimizedImage';
 import './Teams.css';
@@ -13,7 +12,6 @@ const Teams = () => {
   const [players, setPlayers] = useState([]);
   const [clasificaciones, setClasificaciones] = useState({});
   const [matches, setMatches] = useState([]);
-  const [_rivals, setRivals] = useState([]);
   const [expandedTeam, setExpandedTeam] = useState(null);
   const [activeTab, setActiveTab] = useState('players');
 
@@ -22,7 +20,6 @@ const Teams = () => {
     void fetchPlayers();
     void fetchClasificaciones();
     void fetchMatches();
-    void fetchRivals();
   }, []);
 
   const fetchTeams = async () => {
@@ -58,15 +55,6 @@ const Teams = () => {
       setMatches(Array.isArray(response.data.data) ? response.data.data : []);
     } catch {
       setMatches([]);
-    }
-  };
-
-  const fetchRivals = async () => {
-    try {
-      const response = await apiRival.getAllRivals();
-      setRivals(Array.isArray(response.data.data) ? response.data.data : []);
-    } catch {
-      setRivals([]);
     }
   };
 
