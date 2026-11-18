@@ -1,7 +1,8 @@
 .slideBirthday {
   background: var(--color-surface-alt);
   padding: var(--space-8) var(--gutter);
-  display: flex;
+  /* Oculto temporalmente: para volver a mostrarlo, cambiar a `display: flex` */
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
