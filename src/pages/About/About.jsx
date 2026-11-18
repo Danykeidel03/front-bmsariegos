@@ -93,20 +93,6 @@ const About = () => {
                   <p>Nacid@s 2008 en adelante</p>
                 </div>
               </div>
-              <div className="training-info">
-                <p>
-                  <strong>Horarios Infantil - Masculino:</strong> Martes 17:00-18:15 (Sariegos) y
-                  Viernes 16:00-18:00 (Villaobispo)
-                </p>
-                <p>
-                  <strong>Horarios Infantil - Femenino:</strong> Lunes 18:10-19:20 y Miércoles
-                  17:00-18:10 (Sariegos)
-                </p>
-                <p>
-                  <em>Para horarios de otras categorías, contáctanos</em>
-                </p>
-              </div>
-              <div className="training-start">Comienzo de entrenamientos: Agosto</div>
             </div>
 
             <div className="categories-section">
@@ -114,15 +100,15 @@ const About = () => {
               <div className="category-grid">
                 <div className="category-item">
                   <h4>Alevines</h4>
-                  <p>Nacidos 2014-2015</p>
+                  <p>Nacidos 2015-2016</p>
                 </div>
                 <div className="category-item">
                   <h4>Benjamines</h4>
-                  <p>Nacidos 2016-2017</p>
+                  <p>Nacidos 2017-2018</p>
                 </div>
                 <div className="category-item">
                   <h4>Prebenjamines</h4>
-                  <p>Nacidos 2018-2019</p>
+                  <p>Nacidos 2019-2020</p>
                 </div>
               </div>
               <div className="training-info">
