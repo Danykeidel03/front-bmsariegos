@@ -115,12 +115,19 @@ const Teams = () => {
 
   return (
     <div className="teams-container">
-      <h1>Equipos</h1>
+      <header className="teams-page-header">
+        <h1>Equipos</h1>
+      </header>
       <div className="teams-list">
         {Array.isArray(teams) &&
           teams.map((team) => (
             <div key={team._id} className="team-card">
-              <button className="team-header" onClick={() => toggleTeam(team._id)} type="button">
+              <button
+                className="team-header"
+                onClick={() => toggleTeam(team._id)}
+                type="button"
+                aria-expanded={expandedTeam === team._id}
+              >
                 <LocalOptimizedImage
                   src="logo-30.webp"
                   alt={team.name}
@@ -131,25 +138,39 @@ const Teams = () => {
                   sizes="30px"
                 />
                 <h2>{team.name}</h2>
-                <span className={`arrow ${expandedTeam === team._id ? 'expanded' : ''}`}>▼</span>
+                <span
+                  aria-hidden="true"
+                  className={`arrow ${expandedTeam === team._id ? 'expanded' : ''}`}
+                >
+                  ▼
+                </span>
               </button>
 
               {expandedTeam === team._id && (
                 <div className="team-content">
-                  <div className="tabs">
+                  <div className="tabs" role="tablist">
                     <button
+                      type="button"
+                      role="tab"
+                      aria-selected={activeTab === 'players'}
                       className={`tab ${activeTab === 'players' ? 'active' : ''}`}
                       onClick={() => setActiveTab('players')}
                     >
                       Jugadores
                     </button>
                     <button
+                      type="button"
+                      role="tab"
+                      aria-selected={activeTab === 'clasificacion'}
                       className={`tab ${activeTab === 'clasificacion' ? 'active' : ''}`}
                       onClick={() => setActiveTab('clasificacion')}
                     >
                       Clasificación
                     </button>
                     <button
+                      type="button"
+                      role="tab"
+                      aria-selected={activeTab === 'partidos'}
                       className={`tab ${activeTab === 'partidos' ? 'active' : ''}`}
                       onClick={() => setActiveTab('partidos')}
                     >

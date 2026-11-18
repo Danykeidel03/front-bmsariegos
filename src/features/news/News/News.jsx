@@ -35,7 +35,9 @@ const News = () => {
     <div className="news-grid">
       {lista.map((noticia) => (
         <Link className="news-card" key={noticia.slug} to={`/noticias/${noticia.slug}`}>
-          <img src={noticia.photoName} alt={noticia.title} />
+          <div className="news-card-media">
+            <img src={noticia.photoName} alt={noticia.title} loading="lazy" />
+          </div>
           <div className="news-content">
             <h3>{noticia.title}</h3>
             <p>{noticia.descripcion.substring(0, 150)}...</p>

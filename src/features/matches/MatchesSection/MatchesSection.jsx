@@ -51,8 +51,10 @@ const MatchesSection = () => {
 
   return (
     <section className="matches-section">
+      <header className="matches-header">
+        <h1>Próximos Partidos</h1>
+      </header>
       <div className="container">
-        <h2>Próximos Partidos</h2>
         <div className="matches-grid">
           {matches.map((match) => (
             <div key={match._id} className="match-card">
@@ -91,9 +93,13 @@ const MatchesSection = () => {
                 </div>
               </div>
 
-              <div className="match-category">{match.ownTeam?.category}</div>
-              <div className="match-location">{match.location}</div>
-              <div className="match-type">{match.isHome ? 'LOCAL' : 'VISITANTE'}</div>
+              <div className="match-footer">
+                <div className="match-category">{match.ownTeam?.category}</div>
+                <div className="match-location">{match.location}</div>
+                <div className={`match-type ${match.isHome ? 'is-home' : 'is-away'}`}>
+                  {match.isHome ? 'LOCAL' : 'VISITANTE'}
+                </div>
+              </div>
             </div>
           ))}
         </div>
