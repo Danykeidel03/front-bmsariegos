@@ -91,13 +91,13 @@
 }
 
 /* Paginación (scoped para no afectar al hero) */
-.slideBirthday .swiper-pagination-bullet {
-  background: var(--color-muted) !important;
+.slideBirthday .swiper-pagination .swiper-pagination-bullet {
+  background: var(--color-muted);
   opacity: 0.5;
 }
 
-.slideBirthday .swiper-pagination-bullet-active {
-  background: var(--color-primary) !important;
+.slideBirthday .swiper-pagination .swiper-pagination-bullet-active {
+  background: var(--color-primary);
   opacity: 1;
 }
 

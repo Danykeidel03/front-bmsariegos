@@ -36,7 +36,7 @@ const SliderBirthday = () => {
   };
 
   useEffect(() => {
-    birthDays();
+    void birthDays();
   }, []);
 
   return (

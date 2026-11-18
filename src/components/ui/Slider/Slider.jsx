@@ -50,7 +50,7 @@ const MySlider = () => {
         setLoading(false);
       }
     };
-    fetchImagenes();
+    void fetchImagenes();
   }, []);
 
   useEffect(() => {

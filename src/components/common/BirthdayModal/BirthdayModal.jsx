@@ -49,7 +49,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
     };
 
     if (isOpen) {
-      fetchData();
+      void fetchData();
     }
   }, [isOpen]);
 
@@ -295,12 +295,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="birthday-modal modal-overlay">
-      <div
-        className="modal-content"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Gestión de Jugadores"
-      >
+      <dialog open className="modal-content" aria-modal="true" aria-label="Gestión de Jugadores">
         <div className="modal-header">
           <h2>Gestión de Jugadores</h2>
           <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
@@ -508,7 +503,7 @@ const BirthdayModal = ({ isOpen, onClose, onSubmit }) => {
             </div>
           </form>
         )}
-      </div>
+      </dialog>
     </div>
   );
 };

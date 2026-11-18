@@ -184,8 +184,8 @@ const AdminPanel = ({ onLogout }) => {
       <div className="admin-header">
         <h1 className="admin-title">Panel de Administración</h1>
         <div className="admin-header-actions">
-          <div className="admin-danger-zone" role="group" aria-label="Zona de peligro">
-            <span className="admin-danger-label">Zona de peligro</span>
+          <fieldset className="admin-danger-zone">
+            <legend className="admin-danger-label">Zona de peligro</legend>
             <div className="admin-danger-buttons">
               <button className="danger-btn" onClick={handleWipeMatches}>
                 Eliminar Todos los Partidos
@@ -194,7 +194,7 @@ const AdminPanel = ({ onLogout }) => {
                 Eliminar Jugadores y Equipos
               </button>
             </div>
-          </div>
+          </fieldset>
           <button className="logout-btn" onClick={onLogout}>
             Cerrar Sesión
           </button>

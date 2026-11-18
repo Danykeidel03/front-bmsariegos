@@ -19,7 +19,7 @@ const News = () => {
         setLoading(false);
       }
     };
-    fetchNoticias();
+    void fetchNoticias();
   }, []);
 
   const noticiasGenerales = noticias

@@ -19,7 +19,7 @@ export default function SlideNoticias() {
         setLoading(false);
       }
     };
-    fetchNoticias();
+    void fetchNoticias();
   }, []);
   return (
     <div className="slideNotices">

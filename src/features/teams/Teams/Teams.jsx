@@ -18,11 +18,11 @@ const Teams = () => {
   const [activeTab, setActiveTab] = useState('players');
 
   useEffect(() => {
-    fetchTeams();
-    fetchPlayers();
-    fetchClasificaciones();
-    fetchMatches();
-    fetchRivals();
+    void fetchTeams();
+    void fetchPlayers();
+    void fetchClasificaciones();
+    void fetchMatches();
+    void fetchRivals();
   }, []);
 
   const fetchTeams = async () => {

@@ -16,7 +16,7 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
 
   useEffect(() => {
     if (isOpen) {
-      fetchNotices();
+      void fetchNotices();
     }
   }, [isOpen]);
 
@@ -42,9 +42,9 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
       try {
         await apiNotice.deleteNotice(id);
         await fetchNotices();
-        showAlert('Eliminado', 'La noticia ha sido eliminada', 'success');
+        void showAlert('Eliminado', 'La noticia ha sido eliminada', 'success');
       } catch {
-        showAlert('Error', 'No se pudo eliminar la noticia', 'error');
+        void showAlert('Error', 'No se pudo eliminar la noticia', 'error');
       }
     }
   };
@@ -77,9 +77,9 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay" onClick={handleOverlayClick} onKeyDown={handleOverlayKeyDown}>
-      <div
+      <dialog
+        open
         className="modal-content news-modal"
-        role="dialog"
         aria-modal="true"
         aria-label="Gestión de Noticias"
       >
@@ -153,7 +153,7 @@ const NewsModal = ({ isOpen, onClose, onSubmit }) => {
             </div>
           </form>
         )}
-      </div>
+      </dialog>
     </div>
   );
 };

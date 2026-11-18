@@ -28,9 +28,9 @@ const MatchModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      loadMatches();
-      loadRivals();
-      loadTeams();
+      void loadMatches();
+      void loadRivals();
+      void loadTeams();
     }
   }, [isOpen]);
 
@@ -110,7 +110,7 @@ const MatchModal = ({ isOpen, onClose }) => {
         isHome: true,
       });
       setRivalSearch('');
-      loadMatches();
+      void loadMatches();
     } catch {
       const Swal = await loadSweetAlert();
       Swal.fire({
@@ -140,7 +140,7 @@ const MatchModal = ({ isOpen, onClose }) => {
         text: 'La fecha y hora se han actualizado correctamente',
       });
       setEditingMatch(null);
-      loadMatches();
+      void loadMatches();
     } catch {
       const Swal = await loadSweetAlert();
       Swal.fire({
@@ -171,7 +171,7 @@ const MatchModal = ({ isOpen, onClose }) => {
           title: 'Partido finalizado',
           text: `Resultado: ${result}`,
         });
-        loadMatches();
+        void loadMatches();
       } catch {
         Swal.fire({
           icon: 'error',
@@ -201,7 +201,7 @@ const MatchModal = ({ isOpen, onClose }) => {
           title: 'Eliminado',
           text: 'Partido eliminado correctamente',
         });
-        loadMatches();
+        void loadMatches();
       } catch {
         Swal.fire({
           icon: 'error',
@@ -217,12 +217,7 @@ const MatchModal = ({ isOpen, onClose }) => {
   return (
     <div className="match-modal">
       <div className="modal-overlay">
-        <div
-          className="modal-content"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Gestión de Partidos"
-        >
+        <dialog open className="modal-content" aria-modal="true" aria-label="Gestión de Partidos">
           <div className="modal-header">
             <h2>Gestión de Partidos</h2>
             <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar">
@@ -457,7 +452,7 @@ const MatchModal = ({ isOpen, onClose }) => {
               </div>
             </div>
           </div>
-        </div>
+        </dialog>
       </div>
     </div>
   );

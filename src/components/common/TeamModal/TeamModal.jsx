@@ -19,7 +19,7 @@ const TeamModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      fetchTeams();
+      void fetchTeams();
     }
   }, [isOpen]);
 
@@ -48,7 +48,7 @@ const TeamModal = ({ isOpen, onClose }) => {
       await apiTeam.createTeam(formData);
       await showAlert('Éxito', 'Equipo creado correctamente', 'success');
       setFormData({ name: '', category: '', division: '' });
-      fetchTeams();
+      void fetchTeams();
     } catch {
       await showAlert('Error', 'No se pudo crear el equipo', 'error');
     }
@@ -58,7 +58,7 @@ const TeamModal = ({ isOpen, onClose }) => {
     try {
       await apiTeam.deleteTeam(teamId);
       await showAlert('Éxito', 'Equipo eliminado correctamente', 'success');
-      fetchTeams();
+      void fetchTeams();
     } catch {
       await showAlert('Error', 'No se pudo eliminar el equipo', 'error');
     }
@@ -82,7 +82,7 @@ const TeamModal = ({ isOpen, onClose }) => {
       setEditName('');
       setEditCategory('');
       setEditDivision('');
-      fetchTeams();
+      void fetchTeams();
     } catch (error) {
       console.log(error);
       const errorMessage =
@@ -134,9 +134,9 @@ const TeamModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div
+      <dialog
+        open
         className="modal-content team-modal"
-        role="dialog"
         aria-modal="true"
         aria-label="Gestión de Equipos"
       >
@@ -275,7 +275,7 @@ const TeamModal = ({ isOpen, onClose }) => {
             ))
           )}
         </div>
-      </div>
+      </dialog>
     </div>
   );
 };

@@ -60,10 +60,10 @@ export const loadReactImageCrop = async () => {
 export const preloadLibrary = (libraryName) => {
   switch (libraryName) {
     case 'sweetalert2':
-      import('sweetalert2');
+      import('sweetalert2').catch((error) => console.warn('Preload failed:', error));
       break;
     case 'react-image-crop':
-      import('react-image-crop');
+      import('react-image-crop').catch((error) => console.warn('Preload failed:', error));
       break;
     default:
       console.warn(`Unknown library: ${libraryName}`);

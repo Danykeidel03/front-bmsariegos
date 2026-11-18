@@ -34,9 +34,9 @@ const RivalModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay">
-      <div
+      <dialog
+        open
         className="modal-content rival-modal"
-        role="dialog"
         aria-modal="true"
         aria-label="Crear Equipo Rival"
       >
@@ -81,7 +81,7 @@ const RivalModal = ({ isOpen, onClose, onSubmit }) => {
             </button>
           </div>
         </form>
-      </div>
+      </dialog>
     </div>
   );
 };

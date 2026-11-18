@@ -248,13 +248,13 @@
   color: var(--color-ink-soft);
 }
 
-.final-cta {
-  margin: var(--space-5) 0 0 !important;
+.cta-content .final-cta {
+  margin: var(--space-5) 0 0;
   font-family: var(--font-display);
-  font-size: var(--fs-xl) !important;
+  font-size: var(--fs-xl);
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--color-ink) !important;
+  color: var(--color-ink);
 }
 
 @media (max-width: 900px) {

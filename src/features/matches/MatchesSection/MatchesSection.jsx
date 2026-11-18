@@ -9,7 +9,7 @@ const MatchesSection = () => {
   const [matches, setMatches] = useState([]);
 
   useEffect(() => {
-    loadUpcomingMatches();
+    void loadUpcomingMatches();
   }, []);
 
   const loadUpcomingMatches = async () => {

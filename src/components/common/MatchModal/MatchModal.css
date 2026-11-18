@@ -15,9 +15,9 @@
   gap: var(--space-3);
 }
 
-/* .matches-section también existe en el CSS de la feature de partidos: se fuerza el padding */
+/* .matches-section también existe en el CSS de la feature de partidos: se pisa su padding por especificidad */
 .match-modal .matches-section {
-  padding: 0 !important;
+  padding: 0;
   background: transparent;
 }
 

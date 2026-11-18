@@ -16,7 +16,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      fetchImagenes();
+      void fetchImagenes();
     }
   }, [isOpen]);
 
@@ -48,7 +48,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
       const Swal = await loadSweetAlert();
       Swal.fire('Éxito', 'Imagen añadida correctamente', 'success');
       setFormData({ photoDesktop: null, photoMobile: null, urlImagen: '' });
-      fetchImagenes();
+      void fetchImagenes();
     } catch {
       const Swal = await loadSweetAlert();
       Swal.fire('Error', 'No se pudo añadir la imagen', 'error');
@@ -72,7 +72,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
       try {
         await apiImagenCabecera.deleteImagenCabecera(id);
         Swal.fire('Eliminado', 'Imagen eliminada correctamente', 'success');
-        fetchImagenes();
+        void fetchImagenes();
       } catch {
         Swal.fire('Error', 'No se pudo eliminar la imagen', 'error');
       }
@@ -83,9 +83,9 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div
+      <dialog
+        open
         className="modal-content header-image-modal"
-        role="dialog"
         aria-modal="true"
         aria-label="Gestión de Imágenes del Slider"
       >
@@ -163,7 +163,7 @@ const HeaderImageModal = ({ isOpen, onClose }) => {
             </div>
           )}
         </div>
-      </div>
+      </dialog>
     </div>
   );
 };

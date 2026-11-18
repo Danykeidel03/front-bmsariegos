@@ -38,6 +38,17 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Reset del <dialog open> nativo (position/inset/margin/padding/border/height de UA).
+   Background, color, width, max-width y border-top ya los fija .modal-content (y cada modal). */
+.modal-overlay dialog.modal-content {
+  inset: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border-inline: 0;
+  border-bottom: 0;
+}
+
 /* ---------- Cabecera ---------- */
 .modal-overlay .modal-header {
   position: sticky;

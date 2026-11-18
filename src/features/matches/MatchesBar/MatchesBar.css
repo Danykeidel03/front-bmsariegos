@@ -94,7 +94,7 @@
   width: 22px;
   height: 22px;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.2);
+  background: #484848; /* = blanco 20% sobre --color-ink; con texto #fff da 9.2:1 */
   border-radius: 50%;
   display: flex;
   align-items: center;

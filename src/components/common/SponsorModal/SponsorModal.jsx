@@ -35,9 +35,9 @@ const SponsorModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay" onClick={handleOverlayClick} onKeyDown={handleOverlayKeyDown}>
-      <div
+      <dialog
+        open
         className="modal-content sponsor-modal"
-        role="dialog"
         aria-modal="true"
         aria-label="Gestión de Patrocinadores"
       >
@@ -65,7 +65,7 @@ const SponsorModal = ({ isOpen, onClose, onSubmit }) => {
             </button>
           </div>
         </form>
-      </div>
+      </dialog>
     </div>
   );
 };

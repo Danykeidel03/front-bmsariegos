@@ -26,7 +26,7 @@ const NewsDetail = () => {
         setLoading(false);
       }
     };
-    fetchNoticia();
+    void fetchNoticia();
   }, [slug]);
 
   if (loading) {
