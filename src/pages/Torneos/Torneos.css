@@ -1,0 +1,314 @@
+.torneos-container {
+  background: var(--color-surface-alt);
+  padding-bottom: var(--space-8);
+}
+
+.torneos-container .torneos-header {
+  background: var(--color-ink);
+  color: #fff;
+  padding: var(--space-8) var(--gutter) var(--space-6);
+  border-bottom: 4px solid var(--color-accent);
+}
+
+.torneos-container .torneos-header__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.torneos-container .torneos-header h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.torneos-container .torneos-header p {
+  margin: var(--space-3) 0 0;
+  color: #dbe7ee;
+}
+
+.torneos-container .torneos-header strong {
+  color: var(--color-accent);
+}
+
+.torneos-container .torneos-header__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.torneos-container .torneos-header__nav a {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid #ffffff;
+  border-radius: var(--radius-pill);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.torneos-container .torneos-header__nav a:hover,
+.torneos-container .torneos-header__nav a:focus-visible {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.torneos-container .torneos-main {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-7) var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Cada torneo define su acento; el femenino usa la paleta morada de la maqueta */
+.torneos-container .torneo {
+  --torneo-accent: var(--color-primary-dark);
+  --torneo-soft: var(--color-primary-light);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 6px solid var(--torneo-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.torneos-container .torneo--fem {
+  --torneo-accent: #6b3fa8;
+  --torneo-soft: #f0eaf6;
+}
+
+.torneos-container .torneo__cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.torneos-container .torneo__ocasion {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--torneo-accent);
+}
+
+.torneos-container .torneo h2 {
+  margin: var(--space-2) 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.torneos-container .torneo__fechas {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.torneos-container .torneo__categorias {
+  margin: var(--space-2) 0 var(--space-5);
+  color: var(--color-ink-soft);
+}
+
+.torneos-container .torneo__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.torneos-container .torneos-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+.torneos-container .torneos-btn:hover,
+.torneos-container .torneos-btn:focus-visible {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.torneos-container .torneos-btn--primary {
+  background: var(--torneo-accent, var(--color-primary-dark));
+  border-color: var(--torneo-accent, var(--color-primary-dark));
+  color: #fff;
+}
+
+.torneos-container .torneo__portada {
+  width: 100%;
+  max-height: 420px;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.torneos-container .torneo__subtitulo {
+  margin: var(--space-7) 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.torneos-container .torneo__galeria,
+.torneos-container .torneo__sedes,
+.torneos-container .torneo__precios,
+.torneos-container .torneos-logos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.torneos-container .torneo__galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.torneos-container .torneo__galeria img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.torneos-container .torneo__sedes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.torneos-container .torneo__sedes figure {
+  margin: 0;
+}
+
+.torneos-container .torneo__sedes img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.torneos-container .torneo__sedes figcaption {
+  margin-top: var(--space-2);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.torneos-container .torneo__nota {
+  margin: 0 0 var(--space-4);
+  color: var(--color-ink-soft);
+}
+
+.torneos-container .torneo__precios {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.torneos-container .torneo__precios li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--torneo-soft);
+  border-radius: var(--radius-sm);
+}
+
+.torneos-container .torneo__precios strong {
+  display: block;
+  color: var(--color-ink);
+}
+
+.torneos-container .torneo__precios span {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+}
+
+.torneos-container .torneo__precio {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+
+.torneos-container .torneos-contacto {
+  padding: var(--space-6);
+  background: var(--color-ink);
+  color: #fff;
+  border-bottom: 4px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+}
+
+.torneos-container .torneos-contacto h2 {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.torneos-container .torneos-contacto .torneos-btn {
+  border-color: #fff;
+}
+
+.torneos-container .torneos-contacto .torneos-btn--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.torneos-container .torneos-contacto__tel {
+  margin: var(--space-4) 0 0;
+  color: #dbe7ee;
+}
+
+.torneos-container .torneos-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+.torneos-container .torneos-logos img {
+  display: block;
+  width: auto;
+  height: 64px;
+}
+
+@media (max-width: 767px) {
+  .torneos-container .torneo {
+    padding: var(--space-4);
+  }
+
+  .torneos-container .torneo__cabecera {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .torneos-container .torneo__precios li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

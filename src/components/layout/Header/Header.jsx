@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: '/quienes-somos', label: 'Quiénes Somos' },
   { href: '/noticias', label: 'Noticias' },
   { href: '/equipos', label: 'Equipos' },
+  { href: '/torneos', label: 'Torneos' },
   { href: '/tienda', label: 'Tienda' },
   { href: '/contacto', label: 'Contacto' },
 ];

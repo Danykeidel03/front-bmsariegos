@@ -16,6 +16,7 @@ const About = lazy(() => import('./pages/About/About'));
 const Privacy = lazy(() => import('./pages/Privacy/Privacy'));
 const Terms = lazy(() => import('./pages/Terms/Terms'));
 const Equipaciones = lazy(() => import('./pages/Equipaciones/Equipaciones'));
+const Torneos = lazy(() => import('./pages/Torneos/Torneos'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 // Features
@@ -50,6 +51,7 @@ function AppRoutes() {
         <Route path="/noticias/:slug" element={<NewsDetail />} />
         <Route path="/equipos" element={<Teams />} />
         <Route path="/partidos" element={<Matches />} />
+        <Route path="/torneos" element={<Torneos />} />
         <Route path="/tienda" element={<Equipaciones />} />
         <Route path="/quienes-somos" element={<About />} />
         <Route path="/politica-privacidad" element={<Privacy />} />
