@@ -1,0 +1,422 @@
+.insc {
+  --insc-accent: var(--color-primary-dark);
+  --insc-soft: var(--color-primary-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 6px solid var(--insc-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+.insc.insc--fem {
+  --insc-accent: #6b3fa8;
+  --insc-soft: #f0eaf6;
+}
+
+.insc .insc__titulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.insc .insc__intro,
+.insc .insc-note {
+  margin: 0;
+  max-width: 66ch;
+  color: var(--color-ink-soft);
+}
+
+.insc .insc-note {
+  font-size: var(--fs-sm);
+}
+
+.insc fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  margin: 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.insc legend {
+  padding: 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.insc .insc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.insc .insc-full {
+  grid-column: 1 / -1;
+}
+
+.insc .insc-f {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.insc label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.insc .insc-hint {
+  font-weight: 400;
+  color: var(--color-ink-soft);
+}
+
+.insc input[type='text'],
+.insc input[type='tel'],
+.insc input[type='email'],
+.insc input[type='number'],
+.insc input[type='date'],
+.insc select,
+.insc textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-ink-soft);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.insc textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.insc input:focus-visible,
+.insc select:focus-visible,
+.insc textarea:focus-visible,
+.insc button:focus-visible,
+.insc a:focus-visible {
+  outline: 3px solid var(--color-accent-orange);
+  outline-offset: 2px;
+}
+
+.insc input.insc-bad {
+  border-color: #b42318;
+}
+
+.insc .insc-err {
+  font-size: var(--fs-sm);
+  color: #b42318;
+}
+
+.insc .insc-opts {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.insc .insc-opt {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.insc .insc-opt:has(input:checked) {
+  border-color: var(--insc-accent);
+  box-shadow: inset 0 0 0 1px var(--insc-accent);
+}
+
+.insc .insc-opt input,
+.insc .insc-check input,
+.insc .insc-resp input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--insc-accent);
+}
+
+.insc .insc-opt b,
+.insc .insc-when,
+.insc .insc-d {
+  display: block;
+}
+
+.insc .insc-when {
+  font-weight: 600;
+}
+
+.insc .insc-d {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--color-ink-soft);
+}
+
+.insc .insc-price {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  white-space: nowrap;
+}
+
+.insc .insc-counts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.insc .insc-count {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.insc .insc-cat {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  text-transform: uppercase;
+}
+
+.insc .insc-teams {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.insc .insc-empty {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px dashed var(--color-ink-soft);
+  color: var(--color-ink-soft);
+}
+
+.insc .insc-team {
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.insc .insc-team__head {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-ink);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.insc .insc-team__head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.insc .insc-team__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+}
+
+.insc .insc-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.insc .insc-block h4 {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  font-size: var(--fs-md);
+}
+
+.insc .insc-block h4 span {
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: var(--color-ink-soft);
+}
+
+.insc .insc-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.insc .insc-row {
+  display: grid;
+  gap: var(--space-2);
+  align-items: end;
+  min-width: 0;
+  padding: var(--space-3);
+  border-radius: 4px;
+  background: var(--insc-soft);
+}
+
+.insc .insc-row--staff {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) 150px 150px 44px;
+}
+
+.insc .insc-row--player {
+  grid-template-columns: 76px minmax(0, 1fr) minmax(0, 1.3fr) 160px 44px;
+}
+
+.insc .insc-row--player > .insc-f:last-child {
+  grid-column: 1 / -1;
+}
+
+.insc .insc-resp {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.insc .insc-icon-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-ink-soft);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.insc .insc-add {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px dashed var(--insc-accent);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--insc-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.insc .insc-check {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  font-weight: 400;
+}
+
+.insc .insc-send {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-md);
+}
+
+.insc .insc-send h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  text-transform: uppercase;
+}
+
+.insc .insc-send p {
+  margin: 0;
+  color: var(--color-ink-soft);
+}
+
+.insc pre {
+  max-height: 360px;
+  margin: 0;
+  padding: var(--space-4);
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  font: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.insc .insc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.insc .insc-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  border: 2px solid var(--color-ink);
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.insc .insc-btn--wa {
+  background: #0e7a47;
+  border-color: #0e7a47;
+  color: #fff;
+}
+
+.insc .insc-status {
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .insc .insc-row--staff {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insc .insc-row--player {
+    grid-template-columns: 76px minmax(0, 1fr) 44px;
+  }
+}
+
+@media (max-width: 560px) {
+  .insc {
+    padding: var(--space-4);
+  }
+
+  .insc .insc-grid,
+  .insc .insc-counts,
+  .insc .insc-row--staff {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .insc .insc-opt {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .insc .insc-price {
+    grid-column: 2;
+  }
+}

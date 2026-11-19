@@ -1,8 +1,7 @@
 import './Torneos.css';
+import { useState } from 'react';
 import Seo from '../../components/ui/SEO/SEO';
-
-const WHATSAPP_URL = 'https://wa.me/34608108320';
-const EMAIL = 'balonmanosariegos@gmail.com';
+import InscripcionForm from './InscripcionForm';
 
 const TORNEOS = [
   {
@@ -146,7 +145,7 @@ const COLABORADORES = [
   { src: '/torneos/logo-logotipo-de-esport-plus-tv.webp', alt: 'Logotipo de Esport Plus TV' },
 ];
 
-const Torneo = ({ torneo }) => {
+const Torneo = ({ torneo, onInscribir }) => {
   const { id, modifier, title, fechas, ocasion, categorias, dossier, portada } = torneo;
   return (
     <section className={`torneo torneo--${modifier}`} id={id} aria-labelledby={`${id}-titulo`}>
@@ -162,6 +161,9 @@ const Torneo = ({ torneo }) => {
             </a>
             <a className="torneos-btn" href={dossier} target="_blank" rel="noopener noreferrer">
               Ver en el navegador
+            </a>
+            <a className="torneos-btn" href="#inscripcion" onClick={() => onInscribir(modifier)}>
+              Inscribirse
             </a>
           </div>
         </div>
@@ -220,68 +222,51 @@ const Torneo = ({ torneo }) => {
   );
 };
 
-const Torneos = () => (
-  <>
-    <Seo
-      title="Torneos de Base - BM Sariegos"
-      description="V Torneo Femenino (5-8 febrero 2027) y III Torneo Masculino (21-24 marzo 2027) del BM Sariegos. Dossier, sedes, alojamiento y precios."
-      keywords="torneo balonmano base, torneo femenino balonmano, torneo masculino balonmano, BM Sariegos, León"
-    />
-    <div className="torneos-container">
-      <header className="torneos-header">
-        <div className="torneos-header__inner">
-          <h1>Torneos de base BM Sariegos</h1>
-          <p>
-            <strong>Temporada 2026-27.</strong> Doce plazas por categoría, adjudicadas por orden de
-            inscripción.
-          </p>
-          <nav aria-label="Torneos" className="torneos-header__nav">
-            {TORNEOS.map((t) => (
-              <a key={t.id} href={`#${t.id}`}>
-                {t.title}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
-
-      <main className="torneos-main">
-        {TORNEOS.map((t) => (
-          <Torneo key={t.id} torneo={t} />
-        ))}
-
-        <section className="torneos-contacto" aria-labelledby="torneos-contacto-titulo">
-          <h2 id="torneos-contacto-titulo">Inscripciones</h2>
-          <p>
-            Escríbenos por WhatsApp o por correo y te confirmaremos la plaza. Si un club va a los
-            dos torneos, envía una inscripción para cada uno.
-          </p>
-          <div className="torneo__acciones">
-            <a
-              className="torneos-btn torneos-btn--primary"
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Escribir por WhatsApp
-            </a>
-            <a className="torneos-btn" href={`mailto:${EMAIL}`}>
-              {EMAIL}
-            </a>
+const Torneos = () => {
+  const [preseleccion, setPreseleccion] = useState(null);
+  return (
+    <>
+      <Seo
+        title="Torneos de Base - BM Sariegos"
+        description="V Torneo Femenino (5-8 febrero 2027) y III Torneo Masculino (21-24 marzo 2027) del BM Sariegos. Dossier, sedes, alojamiento y precios."
+        keywords="torneo balonmano base, torneo femenino balonmano, torneo masculino balonmano, BM Sariegos, León"
+      />
+      <div className="torneos-container">
+        <header className="torneos-header">
+          <div className="torneos-header__inner">
+            <h1>Torneos de base BM Sariegos</h1>
+            <p>
+              <strong>Temporada 2026-27.</strong> Doce plazas por categoría, adjudicadas por orden
+              de inscripción.
+            </p>
+            <nav aria-label="Torneos" className="torneos-header__nav">
+              {TORNEOS.map((t) => (
+                <a key={t.id} href={`#${t.id}`}>
+                  {t.title}
+                </a>
+              ))}
+            </nav>
           </div>
-          <p className="torneos-contacto__tel">Teléfono: 608 10 83 20 · 695 04 87 96</p>
-        </section>
+        </header>
 
-        <ul className="torneos-logos" aria-label="Organizan y colaboran">
-          {COLABORADORES.map((logo) => (
-            <li key={logo.src}>
-              <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" height="64" />
-            </li>
+        <main className="torneos-main">
+          {TORNEOS.map((t) => (
+            <Torneo key={t.id} torneo={t} onInscribir={(torneo) => setPreseleccion({ torneo })} />
           ))}
-        </ul>
-      </main>
-    </div>
-  </>
-);
+
+          <InscripcionForm preseleccion={preseleccion} />
+
+          <ul className="torneos-logos" aria-label="Organizan y colaboran">
+            {COLABORADORES.map((logo) => (
+              <li key={logo.src}>
+                <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" height="64" />
+              </li>
+            ))}
+          </ul>
+        </main>
+      </div>
+    </>
+  );
+};
 
 export default Torneos;
